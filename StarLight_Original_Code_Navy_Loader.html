@@ -1,0 +1,2392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>StarLight</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Anti-Copy CSS Start --- */
+        * { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; -webkit-touch-callout: none !important; }
+        input, textarea { -webkit-user-select: text !important; -moz-user-select: text !important; -ms-user-select: text !important; user-select: text !important; }
+        
+        :root { 
+            --primary: #b88a3b; 
+            --secondary: #76521e; 
+            --accent: #e7ca83; 
+            --success: #b88a3b; 
+            --danger: #ef4444; 
+            --dark-bg: #f8fafc; 
+            --glass: rgba(0,0,0,0.05); 
+            --card-bg: #ffffff; 
+            --gold: linear-gradient(135deg, #b88a3b, #76521e); 
+        }
+
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; font-family: Inter, sans-serif; margin: 0; padding: 0; user-select: none }
+        body { background-color: #f1f5f9; color: #333; min-height: 100vh; overflow-x: hidden }
+        .app-shell { background: #fff; box-shadow: 0 0 50px rgba(0,0,0,.05); display: flex; flex-direction: column; margin: 0 auto; max-width: 430px; min-height: 100vh; position: relative; width: 100% }
+        .auth-header { background: linear-gradient(135deg, var(--secondary), var(--primary)); border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; box-shadow: 0 10px 20px rgba(184, 138, 59, .2); color: #fff; padding: 40px 20px; text-align: center }
+        .brand-logo { font-size: 32px; font-weight: 800; letter-spacing: -1px }
+        .brand-logo span { color: #fff }
+        .tab-box { background: #fff; border: 1px solid #eee; border-radius: 20px; box-shadow: 0 10px 15px rgba(0,0,0,.1); display: flex; margin: -25px 30px 20px; padding: 6px }
+        .auth-tab { color: #94a3b8; cursor: pointer; flex: 1; font-weight: 700; padding: 12px; border-radius: 15px; text-align: center; transition: .3s }
+        .auth-tab.active { background: var(--primary); color: #fff }
+        .cat-scroll { background: #fff; display: flex; gap: 10px; overflow-x: auto; padding: 10px 15px; scrollbar-width: none }
+        .cat-scroll::-webkit-scrollbar { display: none }
+        .cat-btn { align-items: center; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; color: #64748b; display: flex; flex-direction: column; font-size: 12px; font-weight: 700; gap: 5px; min-width: 75px; padding: 10px 20px; transition: .3s; white-space: nowrap }
+        .cat-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; transform: scale(1.05) }
+        .cat-btn i { font-size: 18px }
+        .input-group { margin: 0 25px 18px }
+        .input-group label { color: #475569; display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px }
+        .input-wrapper { align-items: center; background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 15px; display: flex; padding: 0 15px; transition: .3s }
+        .input-wrapper:focus-within { background: #fff; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(184, 138, 59, .1) }
+        .input-wrapper input { background: 0 0; border: none; color: #333; font-size: 15px; margin-left: 10px; outline: 0; padding: 14px 0; width: 100% }
+        .toggle-pass { color: #94a3b8; cursor: pointer; padding: 10px }
+        .btn-main { background: linear-gradient(to right, var(--primary), var(--secondary)); border: none; border-radius: 15px; box-shadow: 0 4px 12px rgba(184, 138, 59, .3); color: #fff; cursor: pointer; font-weight: 700; margin: 10px 25px; padding: 16px; transition: .2s; width: calc(100% - 50px) }
+        .btn-main:active { transform: translateY(2px) }
+        .top-bar { align-items: center; background: #fff; border-bottom: 1px solid #f1f5f9; display: flex; justify-content: space-between; padding: 15px 20px; position: sticky; top: 0; z-index: 1000 }
+        .slider-container { background: #fff; padding: 15px }
+        .hero-banner { background-color: #f1f5f9; background-position: center; background-repeat: no-repeat; background-size: cover; border: 1px solid #eee; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,.08); height: 170px; overflow: hidden; position: relative; transition: background-image .6s ease-in-out; width: 100% }
+        .slider-dots { display: flex; gap: 6px; justify-content: center; margin-top: 10px }
+        .dot { background: #cbd5e1; border-radius: 50%; height: 8px; transition: .3s; width: 8px }
+        .dot.active { background: var(--primary); border-radius: 10px; width: 22px }
+        .notice-bar { align-items: center; background: #fbf6eb; border-left: 4px solid var(--primary); border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,.03); display: flex; gap: 10px; margin: 0 15px 15px; padding: 10px 15px }
+        
+        .game-grid { background: #fff; display: grid; gap: 10px; grid-template-columns: repeat(3, 1fr); padding: 0 15px 15px }
+        .game-btn { background: #fff; border: 1px solid #f1f5f9; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,.05); cursor: pointer; overflow: hidden; position: relative; transition: .3s; display: flex; flex-direction: column; height: 100% }
+        .game-btn:active { transform: scale(.95) }
+        .game-btn img { display: block; width: 100%; height: auto; aspect-ratio: 1/1; object-fit: contain; background: #f8fafc; }
+        .game-btn p { color: #334155; font-size: 10px; font-weight: 800; overflow: hidden; padding: 6px 2px; text-align: center; text-overflow: ellipsis; white-space: nowrap }
+
+        .game-tag { background: var(--primary); border-radius: 4px; color: #fff; font-size: 8px; font-weight: 900; padding: 2px 5px; position: absolute; right: 5px; text-transform: uppercase; top: 5px; z-index: 10; }
+        
+        /* --- UPDATED DEPOSIT PAGE CSS (MATCHING VIDEO) --- */
+        .dep-top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #fff; border-bottom: 1px solid #f1f5f9; position: sticky; top: 0; z-index: 10;}
+        .dep-top-nav i { font-size: 18px; color: #333; cursor: pointer; }
+        .dep-top-nav h3 { font-size: 16px; font-weight: 700; color: #1e293b; }
+        .dep-top-nav span { font-size: 13px; color: #475569; cursor: pointer; font-weight: 600;}
+
+        .dep-header-card {
+            background: linear-gradient(135deg, #b88a3b, #76521e);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(184, 138, 59, 0.3);
+        }
+        .dep-header-card::after {
+            content: ''; position: absolute; right: -20px; top: -20px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%;
+        }
+        .dep-bal-title { font-size: 14px; opacity: 0.9; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+        .dep-bal-amt { font-size: 28px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .dep-bal-amt i { font-size: 16px; cursor: pointer; opacity: 0.8; }
+        .dep-bal-mask { position: absolute; bottom: 15px; right: 20px; font-size: 20px; letter-spacing: 2px; opacity: 0.5; }
+
+        .dep-methods-row { display: flex; gap: 10px; padding: 0 15px; margin-bottom: 15px; }
+        .dep-method-btn { 
+            flex: 1; background: #fff; border: 1px solid transparent; border-radius: 12px; padding: 15px 5px; 
+            display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+        .dep-method-btn.active { background: linear-gradient(135deg, #b88a3b, #76521e); border-color: var(--primary); box-shadow: 0 4px 10px rgba(184,138,59,0.2); }
+        .dep-method-btn img { width: 35px; height: 35px; object-fit: contain; border-radius: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));}
+        .dep-method-btn span { font-size: 13px; font-weight: 700; color: #475569; }
+        .dep-method-btn.active span { color: #fff; }
+
+        /* Channel Selection Grid */
+        .dep-channel-section { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .dep-sec-title { font-size: 15px; font-weight: 800; color: #1e293b; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .dep-sec-title i { color: var(--primary); }
+        
+        .channel-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .channel-card {
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; cursor: pointer; transition: 0.2s;
+        }
+        .channel-card.active {
+            background: linear-gradient(135deg, #b88a3b, #76521e); border-color: var(--primary); color: #fff;
+        }
+        .channel-card h5 { font-size: 13px; font-weight: 700; margin-bottom: 4px; color: #475569; }
+        .channel-card.active h5 { color: #fff; }
+        .channel-card p { font-size: 11px; color: #94a3b8; margin: 0; }
+        .channel-card.active p { color: rgba(255,255,255,0.9); }
+
+        .dep-amount-section { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        
+        .dep-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 15px; }
+        .dep-grid-btn { 
+            background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 0; 
+            text-align: center; font-size: 14px; font-weight: 700; color: var(--primary); cursor: pointer; transition: 0.2s;
+        }
+        .dep-grid-btn:active, .dep-grid-btn.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+
+        .dep-custom-input { 
+            display: flex; align-items: center; background: #f1f5f9; border-radius: 25px; padding: 5px 15px; border: 1px solid #e2e8f0; margin-bottom: 15px;
+        }
+        .dep-custom-input span { color: var(--primary); font-weight: 800; font-size: 18px; margin-right: 10px; }
+        .dep-custom-input input { flex: 1; background: transparent; border: none; outline: none; font-size: 14px; color: #333; padding: 10px 0; }
+        .dep-custom-input i { color: #94a3b8; cursor: pointer; padding: 5px; }
+
+        .dep-submit-full-btn {
+            width: 100%; background: #cbd5e1; color: #fff; border: none; padding: 14px; border-radius: 25px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s;
+        }
+        .dep-submit-full-btn.ready { background: linear-gradient(to right, var(--primary), var(--secondary)); box-shadow: 0 4px 10px rgba(184,138,59,0.3); }
+
+        .dep-instructions { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .dep-inst-list { list-style: none; padding: 0; margin: 10px 0 0 0; }
+        .dep-inst-list li { font-size: 12px; color: #64748b; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.5; }
+        .dep-inst-list li::before { content: '♦'; color: var(--primary); font-size: 10px; margin-top: 3px; }
+
+        /* Deposit History Card inside Deposit Page */
+        .dep-history-card { background: #fff; border-radius: 15px; margin: 0 15px 20px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .dh-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px dashed #e2e8f0;}
+        .dh-status-badge { background: #fef3c7; color: #d97706; font-size: 11px; padding: 4px 8px; border-radius: 6px; font-weight: bold;}
+        .dh-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
+        .dh-row .label { color: #64748b; }
+        .dh-row .val { color: #1e293b; font-weight: 600; }
+        .dh-row .val.amt { color: #f59e0b; font-size: 15px; font-weight: 800;}
+        .dh-submit-receipt { width: 100%; background: var(--primary); color: #fff; border: none; padding: 12px; border-radius: 25px; font-weight: bold; margin-top: 10px; cursor: pointer;}
+
+        /* --- WITHDRAW PAGE CSS --- */
+        .with-top-nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: #fff; border-bottom: 1px solid #f1f5f9; }
+        .with-top-nav i { font-size: 18px; color: #333; cursor: pointer; }
+        .with-top-nav h3 { font-size: 16px; font-weight: 700; color: #1e293b; }
+        .with-top-nav span { font-size: 13px; color: #475569; cursor: pointer; }
+
+        .with-header-card {
+            background: linear-gradient(135deg, #b88a3b, #76521e);
+            border-radius: 15px; padding: 20px; margin: 15px; color: #fff; position: relative; overflow: hidden; box-shadow: 0 4px 15px rgba(184, 138, 59, 0.3);
+        }
+        .with-header-card::after { content: ''; position: absolute; right: -20px; top: -20px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .with-bal-title { font-size: 14px; opacity: 0.9; display: flex; align-items: center; gap: 8px; margin-bottom: 5px; }
+        .with-bal-amt { font-size: 28px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .with-bal-amt i { font-size: 16px; cursor: pointer; opacity: 0.8; }
+        .with-bal-mask { position: absolute; bottom: 15px; right: 20px; font-size: 20px; letter-spacing: 2px; opacity: 0.5; }
+
+        .with-methods-row { display: flex; gap: 15px; padding: 0 15px; margin-bottom: 15px; }
+        .with-method-btn { flex: 1; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 5px; display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; transition: 0.3s; }
+        .with-method-btn.active { border-color: var(--primary); background: #fbf6eb; box-shadow: 0 4px 10px rgba(184,138,59,0.1); }
+        .with-method-btn img { width: 35px; height: 35px; object-fit: contain; }
+        .with-method-btn span { font-size: 12px; font-weight: 700; color: #475569; }
+        .with-method-btn.active span { color: var(--primary); }
+
+        .with-card-selector { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+        .with-card-info { display: flex; align-items: center; gap: 12px; }
+        .with-card-icon { width: 35px; height: 35px; background: #dbeafe; color: #3b82f6; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; overflow: hidden;}
+        .with-card-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .with-card-text h4 { font-size: 14px; color: #1e293b; font-weight: 700; }
+        .with-card-text p { font-size: 12px; color: #64748b; }
+
+        .with-input-section { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .with-input-box { display: flex; align-items: center; background: #f1f5f9; border-radius: 25px; padding: 5px 15px; border: 1px solid #e2e8f0; margin-bottom: 10px; }
+        .with-input-box span { color: var(--primary); font-weight: 800; font-size: 18px; margin-right: 10px; }
+        .with-input-box input { flex: 1; background: transparent; border: none; outline: none; font-size: 16px; color: #333; padding: 10px 0; font-weight: 600;}
+        
+        .with-info-row { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 5px; }
+        .with-info-row .val { color: var(--primary); font-weight: 700; }
+        .with-all-btn { border: 1px solid var(--primary); color: var(--primary); background: transparent; padding: 2px 10px; border-radius: 10px; font-size: 11px; cursor: pointer; }
+
+        .with-submit-btn { width: 100%; background: #cbd5e1; color: #fff; border: none; padding: 14px; border-radius: 25px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .with-submit-btn.ready { background: var(--primary); box-shadow: 0 4px 10px rgba(184,138,59,0.3); }
+
+        .with-rules { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .with-rules ul { list-style: none; padding: 0; margin: 0; }
+        .with-rules li { font-size: 12px; color: #64748b; margin-bottom: 10px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+        .with-rules li::before { content: '♦'; color: var(--primary); font-size: 10px; margin-top: 2px; }
+        .with-rules li span.highlight { color: var(--danger); font-weight: 600; }
+
+        /* --- REST OF CSS --- */
+        .nav-bar { align-items: center; backdrop-filter: blur(10px); background: rgba(255,255,255,.95); border-top: 1px solid #e2e8f0; bottom: 0; display: flex; height: 75px; left: 50%; max-width: 430px; padding-bottom: env(safe-area-inset-bottom); position: fixed; transform: translateX(-50%); width: 100%; z-index: 1000 }
+        .nav-item { color: #94a3b8; cursor: pointer; flex: 1; font-size: 10px; font-weight: 700; text-align: center; transition: .3s }
+        .nav-item.active { color: var(--primary) }
+        .nav-item i { display: block; font-size: 22px; margin-bottom: 5px }
+        .nav-center { align-items: center; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: 6px solid #fff; border-radius: 50%; box-shadow: 0 8px 15px rgba(184, 138, 59, .4); color: #fff; cursor: pointer; display: flex; font-size: 24px; height: 58px; justify-content: center; margin-top: -45px; width: 58px }
+        #toast { background: #334155; border-radius: 50px; box-shadow: 0 10px 25px rgba(0,0,0,.2); color: #fff; font-size: 14px; font-weight: 600; left: 50%; padding: 12px 25px; position: fixed; top: 20px; transform: translateX(-50%); transition: .3s; visibility: hidden; z-index: 10000 }
+        #toast.show { top: 40px; visibility: visible }
+        .page { animation: fadeIn .4s ease-out; background: #f4f6f9; display: none; padding-bottom: 100px; min-height: 100vh; }
+        .page.active { display: block }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px) } to { opacity: 1; transform: translateY(0) } }
+        #floating-help { bottom: 100px; cursor: move; height: 65px; position: fixed; right: 20px; touch-action: none; width: 65px; z-index: 9999 }
+        #floating-help img { border-radius: 50%; box-shadow: 0 10px 25px rgba(0,0,0,0.3); height: 100%; width: 100% }
+        #floating-help::before { animation: helpPulse 2s infinite; background: var(--primary); border-radius: 50%; content: ""; height: 100%; opacity: .6; position: absolute; transform: scale(1); width: 100%; z-index: -1 }
+        @keyframes helpPulse { 0% { opacity: .6; transform: scale(1) } 100% { opacity: 0; transform: scale(1.7) } }
+        .history-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 20px; margin: 15px; overflow-x: auto }
+        table { border-collapse: collapse; min-width: 350px; width: 100% }
+        th { background: #f8fafc; color: #64748b; font-size: 12px; padding: 15px 10px; text-align: left }
+        td { border-top: 1px solid #f1f5f9; color: #334155; font-size: 13px; font-weight: 600; padding: 15px 10px }
+        .status-Pending { background: #fef3c7; color: #f59e0b; font-size: 11px; padding: 4px 8px; border-radius: 6px }
+        .status-Success { background: #f4ead0; color: #b88a3b; font-size: 11px; padding: 4px 8px; border-radius: 6px }
+        .status-Rejected { background: #fee2e2; color: #ef4444; font-size: 11px; padding: 4px 8px; border-radius: 6px }
+        .reject-msg { color: #ef4444; font-size: 10px; display: block; margin-top: 4px; font-weight: normal }
+        .hidden { display: none }
+        .turnover-info { background: #fbf6eb; border: 1px solid var(--primary); border-radius: 12px; color: #000; font-size: 12px; font-weight: 600; margin: 10px 25px; padding: 10px }
+        
+        .search-container { background: #fff; border: 1px solid #eee; border-radius: 20px; margin: 15px; padding: 15px }
+        .search-box { display: flex; gap: 10px }
+        .search-box input { border: 2px solid #e2e8f0; border-radius: 12px; flex: 1; outline: 0; padding: 12px; transition: .3s }
+        .search-box input:focus { border-color: var(--primary) }
+        .search-btn { background: var(--primary); border: none; border-radius: 12px; color: #fff; cursor: pointer; padding: 0 20px }
+
+        #game-frame-container { display: none; position: fixed; top: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 430px; height: 100%; background: #000; z-index: 99999; }
+        #game-frame { width: 100%; height: 100%; border: none; }
+        .close-game { position: absolute; top: 15px; left: 15px; background: rgba(0,0,0,0.5); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 20px; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 100000; }
+
+        .acc-page-bg { background: #f4f6f9; min-height: 100vh; padding-bottom: 90px; }
+        .acc-header { background: linear-gradient(180deg, #b88a3b 0%, #76521e 100%); padding: 30px 20px 70px; border-bottom-left-radius: 30px; border-bottom-right-radius: 30px; position: relative; }
+        .acc-user-info { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; }
+        .acc-avatar { width: 60px; height: 60px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.5); object-fit: cover; }
+        .acc-name-wrap { color: #fff; }
+        .acc-name { font-size: 18px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+        .acc-vip-badge { background: linear-gradient(90deg, #fbbf24, #d97706); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+        .acc-uid-box { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 20px; font-size: 12px; display: inline-flex; align-items: center; gap: 8px; margin-top: 5px; }
+        .acc-uid-box i { cursor: pointer; }
+        .acc-last-login { font-size: 11px; color: rgba(255,255,255,0.8); margin-top: 5px; }
+
+        .acc-bal-card { background: #fff; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: -50px; margin-left: 15px; margin-right: 15px; position: relative; z-index: 10; }
+        .acc-bal-title { font-size: 14px; color: #64748b; font-weight: 600; margin-bottom: 5px; }
+        .acc-bal-amt { font-size: 28px; font-weight: 900; color: #1e293b; display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .acc-bal-amt i { font-size: 16px; color: #94a3b8; cursor: pointer; }
+        .acc-action-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .acc-action-item { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; }
+        .acc-action-icon { width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+        .acc-action-item span { font-size: 12px; font-weight: 600; color: #475569; }
+
+        .acc-safe-card { background: #fff; border-radius: 15px; padding: 15px; margin: 15px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 4px 10px rgba(0,0,0,0.02); cursor: pointer; }
+        .acc-safe-left { display: flex; align-items: center; gap: 15px; }
+        .acc-safe-icon { width: 40px; height: 40px; background: #fef08a; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #ca8a04; font-size: 18px; }
+        .acc-safe-text h4 { font-size: 14px; color: #1e293b; margin-bottom: 3px; }
+        .acc-safe-text p { font-size: 10px; color: #64748b; line-height: 1.2; max-width: 200px; }
+        .acc-safe-bal { background: #ffedd5; color: #ea580c; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+
+        .acc-menu-list { background: #fff; border-radius: 15px; margin: 0 15px 15px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .acc-menu-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: #f1f5f9; border-bottom: 1px solid #f1f5f9; }
+        .acc-menu-item { background: #fff; padding: 15px; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .acc-menu-item.full { grid-column: span 2; }
+        .acc-menu-icon { width: 35px; height: 35px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+        .acc-menu-text h4 { font-size: 13px; color: #1e293b; font-weight: 700; }
+        .acc-menu-text p { font-size: 11px; color: #94a3b8; }
+        .acc-menu-arrow { margin-left: auto; color: #cbd5e1; font-size: 12px; }
+
+        .acc-service-center { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 20px 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+        .acc-sc-title { font-size: 14px; font-weight: 800; color: #1e293b; margin-bottom: 15px; }
+        .acc-sc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+        .acc-sc-item { display: flex; flex-direction: column; align-items: center; gap: 8px; cursor: pointer; }
+        .acc-sc-icon { width: 40px; height: 40px; border-radius: 50%; background: #fbf6eb; color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .acc-sc-item span { font-size: 11px; color: #64748b; font-weight: 600; text-align: center; }
+
+        .acc-logout-btn { margin: 20px 15px; background: #fff; border: 1px solid #e2e8f0; color: var(--primary); padding: 15px; border-radius: 30px; text-align: center; font-weight: 700; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+
+        .vip-item-row { display: flex; align-items: center; background: #fff; margin: 10px 15px; padding: 15px; border-radius: 18px; border: 1px solid #f1f5f9; box-shadow: 0 4px 6px rgba(0,0,0,0.02) }
+        .vip-level-box { width: 50px; height: 50px; background: var(--gold); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 18px; margin-right: 15px }
+        .vip-info-text { flex: 1 }
+        .vip-info-text h4 { font-size: 14px; color: #333 }
+        .vip-info-text p { font-size: 11px; color: #64748b }
+        .vip-salary-tag { background: #fbf6eb; color: var(--secondary); padding: 4px 10px; border-radius: 8px; font-weight: 800; font-size: 12px; border: 1px solid var(--primary) }
+        
+        .safe-stats { display: flex; justify-content: space-between; margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 12px; }
+        .safe-stat-item { text-align: center; }
+        .safe-stat-val { font-size: 18px; font-weight: 800; color: var(--primary); }
+        .safe-stat-label { font-size: 11px; color: #64748b; }
+
+        /* Empty State */
+        .empty-state { text-align: center; padding: 40px 20px; color: #94a3b8; }
+        .empty-state i { font-size: 40px; margin-bottom: 10px; opacity: 0.5; }
+        .empty-state p { font-size: 14px; }
+
+        /* --- NEW FULL PAGE UI STYLES (MATCHING VIDEO) --- */
+        .full-page-header { background: #fff; padding: 15px 20px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; position: sticky; top: 0; z-index: 10; }
+        .full-page-header i { font-size: 18px; color: #333; cursor: pointer; }
+        .full-page-header h3 { font-size: 16px; font-weight: 700; color: #1e293b; }
+        .full-page-header span { width: 18px; } /* spacer */
+
+        /* Safe Page */
+        .safe-page-card { background: linear-gradient(135deg, #b88a3b, #76521e); border-radius: 15px; margin: 15px; padding: 20px; color: #fff; position: relative; overflow: hidden; }
+        .safe-page-card::after { content: ''; position: absolute; right: -20px; top: -20px; width: 100px; height: 100px; background: rgba(255,255,255,0.1); border-radius: 50%; }
+        .safe-rate-badge { background: #fff; color: var(--primary); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; display: inline-block; margin-bottom: 15px; }
+        .safe-sec-badge { border: 1px solid rgba(255,255,255,0.5); padding: 4px 10px; border-radius: 20px; font-size: 11px; display: inline-flex; align-items: center; gap: 5px; float: right; margin-top: -30px; }
+        .safe-page-bal { font-size: 32px; font-weight: 800; margin-bottom: 5px; }
+        .safe-page-sub { font-size: 12px; opacity: 0.9; }
+        
+        .safe-action-card { background: #fff; border-radius: 15px; margin: 0 15px 15px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .safe-action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px; text-align: center; }
+        .safe-action-val { font-size: 18px; font-weight: 800; color: #ef4444; margin-bottom: 5px; }
+        .safe-action-val.green { color: #1e293b; }
+        .safe-action-label { font-size: 12px; color: #64748b; }
+        .safe-my-rate { background: #f8fafc; border: 1px solid #e2e8f0; padding: 5px 10px; border-radius: 20px; font-size: 11px; color: #94a3b8; display: inline-block; margin-top: 5px; }
+        .safe-btn-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .safe-btn { padding: 12px; border-radius: 8px; font-weight: bold; font-size: 14px; text-align: center; cursor: pointer; border: none; }
+        .safe-btn.out { background: #fff; border: 1px solid var(--primary); color: var(--primary); }
+        .safe-btn.in { background: var(--primary); color: #fff; }
+        .safe-warning { font-size: 11px; color: #ef4444; text-align: center; margin-top: 15px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+        .safe-learn { text-align: center; font-size: 12px; color: #64748b; margin-top: 10px; cursor: pointer; }
+
+        /* Gift Page */
+        .gift-page-banner { width: 100%; height: 150px; object-fit: cover; background: #ffedd5; }
+        .gift-page-card { background: #fff; border-radius: 15px; margin: -30px 15px 15px; padding: 20px; position: relative; z-index: 2; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .gift-page-card h4 { font-size: 14px; color: #64748b; margin-bottom: 5px; font-weight: normal; }
+        .gift-page-card p { font-size: 14px; color: #1e293b; font-weight: bold; margin-bottom: 15px; }
+        .gift-input-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 25px; padding: 12px 20px; margin-bottom: 15px; }
+        .gift-input-box input { width: 100%; border: none; background: transparent; outline: none; font-size: 14px; color: #333; }
+        .gift-receive-btn { width: 100%; background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 25px; font-weight: bold; font-size: 15px; cursor: pointer; }
+        
+        /* Stats Page */
+        .stats-tabs { display: flex; gap: 10px; padding: 15px; overflow-x: auto; scrollbar-width: none; }
+        .stats-tabs::-webkit-scrollbar { display: none; }
+        .stats-tab { background: #fff; border: 1px solid #e2e8f0; padding: 6px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; color: #64748b; white-space: nowrap; cursor: pointer; }
+        .stats-tab.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+        .stats-total-card { background: #fff; margin: 0 15px 15px; padding: 20px; border-radius: 15px; text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .stats-total-val { font-size: 24px; font-weight: 800; color: #f59e0b; margin-bottom: 5px; }
+        .stats-total-label { font-size: 12px; color: #64748b; }
+        .stats-list-card { background: #fff; margin: 0 15px 15px; border-radius: 15px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .stats-list-item { margin-bottom: 20px; }
+        .stats-list-item:last-child { margin-bottom: 0; }
+        .stats-item-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; font-weight: bold; color: #1e293b; font-size: 14px; }
+        .stats-item-header i { color: var(--primary); font-size: 18px; }
+        .stats-item-row { display: flex; justify-content: space-between; font-size: 12px; color: #64748b; margin-bottom: 8px; padding-left: 28px; position: relative; }
+        .stats-item-row::before { content: ''; position: absolute; left: 10px; top: 5px; width: 6px; height: 6px; border-radius: 50%; border: 2px solid var(--primary); }
+        .stats-item-row .val { color: #1e293b; font-weight: 600; }
+        .stats-item-row .val.green { color: var(--primary); }
+
+        /* Language Page */
+        .lang-list { background: #fff; margin: 15px; border-radius: 15px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .lang-item { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; border-bottom: 1px solid #f1f5f9; cursor: pointer; }
+        .lang-item:last-child { border-bottom: none; }
+        .lang-item-left { display: flex; align-items: center; gap: 15px; font-weight: 600; color: #1e293b; font-size: 14px; }
+        .lang-item-left img { width: 24px; height: 24px; border-radius: 50%; object-fit: cover; }
+        .lang-check { color: var(--primary); font-size: 18px; display: none; }
+        .lang-item.active .lang-check { display: block; }
+
+        /* Settings Page */
+        .settings-profile-card { background: #fff; margin: 15px; border-radius: 15px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .settings-avatar-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+        .settings-avatar-row img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; }
+        .settings-change-ava { font-size: 12px; color: #64748b; cursor: pointer; }
+        .settings-info-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-top: 1px solid #f1f5f9; font-size: 14px; }
+        .settings-info-row .label { color: #64748b; }
+        .settings-info-row .val { color: #1e293b; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+        .settings-info-row .val i { color: var(--primary); cursor: pointer; }
+        
+        .settings-sec-title { font-size: 14px; font-weight: 800; color: #1e293b; margin: 20px 15px 10px; display: flex; align-items: center; gap: 8px; }
+        .settings-sec-title::before { content: ''; width: 3px; height: 14px; background: var(--primary); border-radius: 2px; }
+        .settings-sec-list { background: #fff; margin: 0 15px 15px; border-radius: 15px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .settings-sec-item { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; border-bottom: 1px solid #f1f5f9; cursor: pointer; }
+        .settings-sec-item:last-child { border-bottom: none; }
+        .settings-sec-left { display: flex; align-items: center; gap: 15px; font-size: 14px; color: #1e293b; font-weight: 600; }
+        .settings-sec-icon { width: 30px; height: 30px; background: #fbf6eb; color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+        .settings-sec-right { font-size: 12px; color: #94a3b8; display: flex; align-items: center; gap: 5px; }
+
+        /* Feedback Page */
+        .feedback-card { background: #fff; margin: 15px; border-radius: 15px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .feedback-text { font-size: 12px; color: #64748b; line-height: 1.6; margin-bottom: 15px; }
+        .feedback-textarea { width: 100%; height: 120px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 15px; font-size: 13px; outline: none; resize: none; background: #f8fafc; margin-bottom: 15px; font-family: inherit; }
+        .feedback-textarea:focus { border-color: var(--primary); background: #fff; }
+        .feedback-promo { text-align: center; margin-bottom: 20px; }
+        .feedback-promo h4 { font-size: 14px; color: #1e293b; margin-bottom: 5px; }
+        .feedback-promo p { font-size: 12px; color: #64748b; }
+        .feedback-img { width: 100%; max-width: 200px; margin: 15px auto; display: block; }
+        .feedback-submit { width: 100%; background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 25px; font-weight: bold; font-size: 15px; cursor: pointer; }
+
+        /* About Us Page */
+        .about-banner { width: 100%; height: 150px; background: linear-gradient(135deg, #e0e7ff, #c7d2fe); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .about-banner img { width: 80%; opacity: 0.8; }
+        .about-list { background: #fff; margin: -20px 15px 15px; border-radius: 15px; padding: 10px 0; position: relative; z-index: 2; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .about-item { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; border-bottom: 1px solid #f1f5f9; cursor: pointer; }
+        .about-item:last-child { border-bottom: none; }
+        .about-item-left { display: flex; align-items: center; gap: 15px; font-size: 14px; color: #1e293b; font-weight: 600; }
+        .about-item-icon { width: 30px; height: 30px; background: #fbf6eb; color: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+
+        /* Notification Page */
+        .notif-tabs { display: flex; background: #fff; margin: 15px; border-radius: 10px; padding: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.02); }
+        .notif-tab { flex: 1; text-align: center; padding: 10px; font-size: 13px; font-weight: bold; color: #64748b; border-radius: 8px; cursor: pointer; }
+        .notif-tab.active { background: var(--primary); color: #fff; }
+
+    
+        :root{--primary:#b88a3b;--secondary:#76521e;--accent:#e7ca83;--success:#b88a3b;--danger:#c65353;--dark-bg:#f5f2eb;--glass:rgba(20,25,36,.06);--card-bg:#fffdf8;--gold:linear-gradient(135deg,#e7ca83,#a8792d)}
+        body{background:#e9e5dc;color:#202532}.app-shell{background:#f7f5ef;box-shadow:0 12px 55px rgba(24,28,38,.12)}.page{background:#f3f0e8}
+        .auth-header,.dep-header-card,.with-header-card,.safe-page-card,.acc-header{background:linear-gradient(135deg,#111827 0%,#273247 58%,#8a682f 140%)}
+        .brand-logo,.top-bar .brand-logo{color:#b88a3b!important}
+        .btn-main,.dep-submit-full-btn.ready,.with-submit-btn.ready,.safe-btn.in,.gift-receive-btn,.feedback-submit,.search-btn,.dh-submit-receipt{background:linear-gradient(120deg,#d8b66b,#9b702c)!important;box-shadow:0 7px 18px rgba(140,101,38,.22)}
+        .auth-tab.active,.cat-btn.active,.stats-tab.active,.notif-tab.active,.channel-card.active,.dep-method-btn.active{background:linear-gradient(120deg,#d8b66b,#9b702c)!important;border-color:#b88a3b!important}
+        .nav-center{background:linear-gradient(135deg,#d8b66b,#9b702c);box-shadow:0 8px 18px rgba(140,101,38,.3)}
+        .nav-item.active,.acc-sc-icon,.settings-sec-icon,.lang-check{color:#a8792d}
+        .input-wrapper:focus-within,.search-box input:focus{border-color:#b88a3b;box-shadow:0 0 0 4px rgba(184,138,59,.12)}
+        .with-card-selector,.with-input-section,.with-rules,.history-card,.acc-bal-card,.acc-menu-list,.acc-service-center,.settings-sec-list,.feedback-card{border:1px solid rgba(184,138,59,.13);box-shadow:0 8px 22px rgba(27,31,41,.045)}
+        .vip-level-box{background:linear-gradient(135deg,#e7ca83,#9b702c)}.vip-salary-tag{background:#fbf6eb;color:#8a6426;border-color:#d8bd80}
+        .premium-lock-note{font-size:12px;color:#8a6426;background:#fbf6eb;border:1px solid #ead9b2;padding:10px 12px;border-radius:12px;margin:0 0 14px;line-height:1.5}
+        .security-modal{display:none;position:fixed;inset:0;background:rgba(8,12,20,.72);backdrop-filter:blur(7px);z-index:200000;align-items:center;justify-content:center;padding:20px}
+        .security-modal.show{display:flex}.security-box{width:100%;max-width:360px;background:#fffdf8;border:1px solid #e5d2a7;border-radius:22px;padding:22px;box-shadow:0 22px 70px rgba(0,0,0,.28)}
+        .security-box h3{color:#202532;text-align:center;margin:0 0 8px;font-size:19px}.security-box p{font-size:12px;color:#737987;text-align:center;line-height:1.5;margin-bottom:17px}
+        .security-box input{width:100%;padding:14px;border:1px solid #ded8ca;border-radius:12px;background:#f8f6f0;color:#202532;font-size:16px;outline:none;margin-bottom:12px}
+        .security-actions{display:flex;gap:10px}.security-actions button{flex:1;border:0;border-radius:12px;padding:13px;font-weight:800;cursor:pointer}
+        .security-actions button:disabled{opacity:.55;cursor:wait}.security-cancel{background:#ece9e1;color:#4b5563}.security-confirm{background:linear-gradient(120deg,#d8b66b,#9b702c);color:white}
+
+
+/* STARLIGHT 3D GOLD BRAND DESIGN */
+.brand-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:3px 12px}
+.brand-logo{display:flex;align-items:center;justify-content:center;gap:3px;font-family:'Segoe UI',sans-serif;font-size:29px;font-weight:1000;font-style:italic;letter-spacing:-1.7px;line-height:1;text-transform:uppercase;white-space:nowrap;color:#fff!important;text-shadow:0 1px 0 #d8b66b,0 2px 0 #a77b30,0 4px 0 #76521e,0 6px 10px rgba(0,0,0,.3)}
+.brand-logo .brand-star{color:#fff2c7;font-size:22px;margin-right:3px;filter:drop-shadow(0 0 4px #fff0b5) drop-shadow(0 0 9px rgba(255,220,130,.8));animation:starGlow 2s ease-in-out infinite alternate}
+.brand-logo .brand-light{background:linear-gradient(180deg,#fff 0%,#fff1bd 22%,#f5d58b 48%,#d8a94e 72%,#9b6a22 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 3px 3px rgba(75,42,5,.35))}
+.brand-subtitle{margin-top:7px;color:#fff0c5;font-size:7px;font-weight:900;letter-spacing:4px;text-transform:uppercase;text-shadow:0 2px 5px rgba(0,0,0,.25)}
+.brand-line{width:75%;height:1px;margin-top:5px;background:linear-gradient(90deg,transparent,#fff0bd,#a87525,#fff0bd,transparent);opacity:.8}
+@keyframes starGlow{from{transform:scale(1);opacity:.85}to{transform:scale(1.15);opacity:1}}
+.auth-header .brand-logo{font-size:29px!important}
+.top-bar .brand-wrap{padding:2px 0;align-items:flex-start}
+.top-bar .brand-logo{font-size:21px!important;letter-spacing:-1.3px}
+.top-bar .brand-logo .brand-star{font-size:16px}
+.top-bar .brand-line{width:100%;margin-top:4px}
+@media(max-width:380px){.auth-header .brand-logo{font-size:25px!important}.auth-header .brand-logo .brand-star{font-size:19px}.top-bar .brand-logo{font-size:19px!important}}
+@media(prefers-reduced-motion:reduce){.brand-logo .brand-star{animation:none}}
+
+        /* Dashboard top banner: navy blue */
+        #main-dashboard .top-bar {
+            background: linear-gradient(135deg, #071b35 0%, #102f55 55%, #16436d 100%) !important;
+            border-bottom: 1px solid rgba(255,255,255,.14) !important;
+            box-shadow: 0 5px 18px rgba(7,27,53,.18);
+        }
+        #main-dashboard .top-bar .brand-line {
+            background: linear-gradient(90deg, transparent, #d8b66b, #fff0bd, #d8b66b, transparent) !important;
+        }
+        #main-dashboard .top-bar .fa-bell { color: #e7eef8 !important; }
+        #main-dashboard .top-bar .fa-headset { color: #e7c477 !important; }
+
+        /* Site-wide navy blue replacement for dark/black design panels */
+        .auth-header,
+        .dep-header-card,
+        .with-header-card,
+        .safe-page-card,
+        .acc-header,
+        .vip-card-header {
+            background: linear-gradient(135deg, #071b35 0%, #102f55 58%, #16436d 100%) !important;
+        }
+        /* Keep the game canvas itself black so embedded games render correctly. */
+
+
+        /* STARLIGHT - GOLDEN CASINO STYLE LOADING SCREEN */
+        #starlight-loader{
+            position:fixed;inset:0;z-index:9999999;display:flex;align-items:center;justify-content:center;
+            overflow:hidden;background:linear-gradient(180deg,#071b35 0%,#102f55 58%,#16436d 100%);
+            opacity:1;visibility:visible;transition:opacity .55s ease,visibility .55s ease;
+        }
+        #starlight-loader.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+        #starlight-loader:before{
+            content:"";position:absolute;inset:-25%;pointer-events:none;
+            background:repeating-conic-gradient(from -8deg at 50% 48%,
+              rgba(215,182,107,.13) 0deg 10deg,transparent 10deg 20deg);
+            -webkit-mask-image:radial-gradient(ellipse at center,#000 0%,rgba(0,0,0,.8) 48%,transparent 78%);
+            mask-image:radial-gradient(ellipse at center,#000 0%,rgba(0,0,0,.8) 48%,transparent 78%);
+            animation:slRays 28s linear infinite;
+        }
+        #starlight-loader:after{
+            content:"";position:absolute;inset:0;pointer-events:none;
+            background:radial-gradient(ellipse at 50% 48%,transparent 20%,rgba(7,27,53,.12) 70%,rgba(3,13,27,.28) 100%);
+        }
+        #starlight-loader .loader-content{
+            position:relative;z-index:2;width:100%;height:100%;min-height:100%;
+            display:flex;flex-direction:column;align-items:center;justify-content:center;
+            text-align:center;padding:28px 18px;box-sizing:border-box;
+        }
+        #starlight-loader .loader-art{
+            position:relative;width:min(88vw,390px);height:min(78vw,390px);
+            min-height:275px;max-height:390px;margin:0 auto 28px;
+            display:flex;align-items:center;justify-content:center;
+            filter:drop-shadow(0 18px 12px rgba(0,0,0,.28));
+        }
+        #starlight-loader .loader-card{
+            position:absolute;width:24%;height:43%;top:17%;border-radius:9px;
+            background:linear-gradient(145deg,#fff 0%,#f7f7f7 100%);
+            box-shadow:0 8px 14px rgba(111,67,0,.22);color:#df1e25;
+            font:bold clamp(18px,5vw,28px) Georgia,serif;padding:7px;box-sizing:border-box;
+            text-align:left;border:1px solid rgba(160,110,0,.15);
+        }
+        #starlight-loader .loader-card:after{content:"A";position:absolute;right:9px;bottom:7px;transform:rotate(180deg)}
+        #starlight-loader .card-left{left:12%;transform:rotate(-24deg);color:#202020}
+        #starlight-loader .card-mid{left:38%;top:7%;transform:rotate(-8deg)}
+        #starlight-loader .card-right{right:11%;transform:rotate(22deg);color:#d51c28}
+        #starlight-loader .loader-chip{
+            position:absolute;width:66px;height:66px;border-radius:50%;display:grid;place-items:center;
+            border:8px dashed rgba(255,255,255,.95);box-shadow:0 7px 12px rgba(90,60,0,.28),inset 0 0 0 4px rgba(0,0,0,.12);
+            color:white;font-size:22px;font-weight:900;text-shadow:0 2px 3px #555;
+        }
+        #starlight-loader .chip-blue{left:4%;top:59%;background:linear-gradient(135deg,#45c9ff,#0876d8);transform:rotate(-18deg)}
+        #starlight-loader .chip-green{right:3%;top:62%;background:linear-gradient(135deg,#8bea35,#269b25);transform:rotate(17deg)}
+        #starlight-loader .chip-red{left:8%;bottom:5%;width:53px;height:53px;background:#e72b30;border-width:7px}
+        #starlight-loader .loader-die{
+            position:absolute;right:13%;bottom:4%;font-size:54px;transform:rotate(17deg);
+            filter:drop-shadow(0 7px 5px rgba(100,30,0,.25));
+        }
+        #starlight-loader .roulette{
+            position:absolute;top:29%;left:50%;transform:translateX(-50%);
+            width:39%;aspect-ratio:1;border-radius:50%;display:grid;place-items:center;
+            border:10px solid #f7a900;
+            background:repeating-conic-gradient(#171717 0deg 10deg,#d51e22 10deg 20deg);
+            box-shadow:0 0 0 5px #ffe45b,0 9px 18px rgba(99,48,0,.38),inset 0 0 0 5px #f9d44a;
+        }
+        #starlight-loader .roulette:before{
+            content:"";position:absolute;inset:22%;border-radius:50%;
+            background:radial-gradient(circle at 35% 30%,#fff27b 0%,#ffb000 28%,#d82b13 65%,#8d0808 100%);
+            border:5px solid #ffd64a;box-shadow:inset 0 0 12px #8a1200,0 0 10px #ffdb38;
+        }
+        #starlight-loader .roulette:after{
+            content:"✦";position:absolute;color:#fff36c;font-size:clamp(23px,7vw,38px);
+            text-shadow:0 0 9px #ffef79;
+        }
+        #starlight-loader .slot-machine{
+            position:absolute;z-index:4;left:50%;bottom:8%;transform:translateX(-50%);
+            width:67%;height:34%;border-radius:23px;
+            background:linear-gradient(90deg,#16a52c 0%,#6ff33e 12%,#f4fff0 22%,#fff 78%,#49d52b 90%,#087d1d 100%);
+            border:7px solid #15952b;box-shadow:0 10px 0 #08751c,0 15px 22px rgba(90,49,0,.32),inset 0 0 12px rgba(0,0,0,.18);
+            display:flex;align-items:center;justify-content:center;gap:4px;padding:8px;box-sizing:border-box;
+        }
+        #starlight-loader .reel{
+            flex:1;height:90%;border-radius:8px;background:linear-gradient(90deg,#ddd,#fff 25%,#fff 75%,#d7d7d7);
+            box-shadow:inset 0 0 8px rgba(0,0,0,.18);display:flex;flex-direction:column;
+            align-items:center;justify-content:space-around;color:#e21d25;font-weight:1000;
+            font-family:Arial,sans-serif;text-shadow:0 2px 0 #aaa;line-height:1;
+        }
+        #starlight-loader .reel b{font-size:clamp(27px,9vw,51px)}
+        #starlight-loader .reel small{font-size:clamp(8px,2.5vw,12px);color:#111;background:#fff;padding:1px 4px}
+        #starlight-loader .loader-message{
+            position:relative;z-index:5;margin-top:2px;color:#fff;font-size:clamp(17px,4.5vw,25px);
+            font-weight:900;line-height:1.25;text-shadow:0 2px 4px rgba(135,76,0,.35);
+        }
+        #starlight-loader .loader-brand{
+            position:relative;z-index:5;margin-top:54px;color:#fff;font-size:clamp(35px,10vw,58px);
+            font-weight:1000;font-style:italic;letter-spacing:-2px;
+            text-shadow:0 3px 0 #e5a000,0 6px 0 #c98200,0 10px 15px rgba(121,69,0,.28);
+        }
+        #starlight-loader .loader-brand span{font-size:.72em}
+        @keyframes slRays{to{transform:rotate(360deg)}}
+        @media(max-height:650px){
+            #starlight-loader .loader-art{height:54vh;min-height:220px;margin-bottom:12px}
+            #starlight-loader .loader-brand{margin-top:25px}
+        }
+        @media(prefers-reduced-motion:reduce){
+            #starlight-loader:before{animation:none}
+            #starlight-loader{transition:none}
+        }
+</style>
+</head>
+<body oncontextmenu="return false">
+
+    <div id="starlight-loader" role="status" aria-label="Loading StarLight">
+        <div class="loader-content">
+            <div class="loader-art" aria-hidden="true">
+                <div class="loader-card card-left">A<br>♠</div>
+                <div class="loader-card card-mid">A<br>♦</div>
+                <div class="loader-card card-right">A<br>♥</div>
+                <div class="loader-chip chip-blue">✦</div>
+                <div class="loader-chip chip-green">✦</div>
+                <div class="loader-chip chip-red">✦</div>
+                <div class="loader-die">🎲</div>
+                <div class="roulette"></div>
+                <div class="slot-machine">
+                    <div class="reel"><small>BAR</small><b>7</b><small>BAR</small></div>
+                    <div class="reel"><small>BAR</small><b>7</b><small>BAR</small></div>
+                    <div class="reel"><small>BAR</small><b>7</b><small>BAR</small></div>
+                </div>
+            </div>
+            <div class="loader-message">Withdraw fast, safe and stable</div>
+            <div class="loader-brand"><span>✦</span> STARLIGHT</div>
+        </div>
+    </div>
+
+    <script>const _0x1a=()=>{alert("Illegal Action Detected!");window.location.href="about:blank"};document.addEventListener("copy",e=>{e.preventDefault();_0x1a()});document.onkeydown=e=>{if(e.keyCode==123||(e.ctrlKey&&e.shiftKey&&(e.keyCode==73||e.keyCode==74||e.keyCode==67))||(e.ctrlKey&&e.keyCode==85))_0x1a()};</script>
+
+    <div id="game-frame-container">
+        <button class="close-game" onclick="closeGame()"><i class="fas fa-times"></i></button>
+        <iframe id="game-frame" src="" allow="autoplay; fullscreen"></iframe>
+    </div>
+
+    <div id="toast">Message</div>
+    <div id="floating-help" onclick="openHelp()"><img src="https://i.ibb.co.com/3mtxCR1q/Picsart-26-04-21-16-53-49-393.png" alt="Help"></div>
+
+    <div id="auth-container">
+        <div class="app-shell">
+            <div class="auth-header"><div class="brand-wrap"><h1 class="brand-logo"><i class="fas fa-star brand-star"></i><span>STAR</span><span class="brand-light">LIGHT</span></h1><div class="brand-subtitle"></div><div class="brand-line"></div></div><p style="font-size:13px;margin-top:8px;opacity:.9;font-weight:300" data-lang="auth_slogan">Win Big with the Most Trusted Platform</p></div>
+            <div class="tab-box">
+                <div class="auth-tab active" id="tab-login" onclick="switchAuth('login')" data-lang="login">Login</div>
+                <div class="auth-tab" id="tab-reg" onclick="switchAuth('reg')" data-lang="register">Register</div>
+            </div>
+            <div id="login-view">
+                <div class="input-group"><label data-lang="account_number">Account Number</label><div class="input-wrapper"><span style="font-weight:700;color:var(--primary)">+880</span><input type="number" id="l-phone" placeholder="1XXX-XXXXXX"></div></div>
+                <div class="input-group"><label data-lang="password">Password</label><div class="input-wrapper"><i class="fas fa-unlock-alt" style="color:var(--primary)"></i><input type="password" id="l-pass" placeholder="••••••••"><i class="fas fa-eye toggle-pass" onclick="togglePassword('l-pass',this)"></i></div></div>
+                <button class="btn-main" id="loginBtn" onclick="processLogin()" data-lang="login_btn">Login to Account</button>
+            </div>
+            <div id="reg-view" class="hidden">
+                <div class="input-group"><label data-lang="phone_number">Phone Number</label><div class="input-wrapper"><span style="font-weight:700;color:var(--primary)">+880</span><input type="number" id="r-phone" placeholder="1XXX-XXXXXX"></div></div>
+                <div class="input-group"><label data-lang="new_password">New Password</label><div class="input-wrapper"><i class="fas fa-lock" style="color:var(--primary)"></i><input type="password" id="r-pass" placeholder="Min 6 characters"><i class="fas fa-eye toggle-pass" onclick="togglePassword('r-pass',this)"></i></div></div>
+                <div class="input-group"><label data-lang="confirm_password">Confirm Password</label><div class="input-wrapper"><i class="fas fa-shield-alt" style="color:var(--primary)"></i><input type="password" id="r-cpass" placeholder="Repeat password"><i class="fas fa-eye toggle-pass" onclick="togglePassword('r-cpass',this)"></i></div></div>
+                <div class="input-group"><label data-lang="invite_code">Invite Code</label><div class="input-wrapper"><i class="fas fa-gift" style="color:var(--primary)"></i><input type="text" id="r-ref" placeholder="Automatic"></div></div>
+                <button class="btn-main" id="regBtn" onclick="processRegister()" data-lang="create_account">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="main-dashboard" class="hidden">
+        <div class="app-shell">
+            <div class="top-bar">
+                <div class="brand-wrap brand-wrap-small"><h1 class="brand-logo"><i class="fas fa-star brand-star"></i><span>STAR</span><span class="brand-light">LIGHT</span></h1><div class="brand-line"></div></div>
+                <div style="display:flex;gap:18px;align-items:center"><i class="fas fa-bell" onclick="nav('notification')" style="color:#64748b;font-size:18px; cursor:pointer;"></i><i class="fas fa-headset" onclick="openHelp()" style="color:var(--primary);font-size:20px;cursor:pointer"></i></div>
+            </div>
+
+            <div id="home-page" class="page active">
+                <div class="slider-container"><div class="hero-banner" id="slider"></div><div class="slider-dots" id="slider-dots"></div></div>
+                <div class="notice-bar"><i class="fas fa-volume-up" style="color:var(--primary)"></i><marquee style="font-size:12px;font-weight:700;color:#475569" data-lang="welcome_notice">Welcome to 'StarLight'! Deposit now and get 100% bonus on your first deposit. Withdrawals within 30 mins. 🔥</marquee></div>
+                <div class="cat-scroll">
+                    <div class="cat-btn active"><i class="fas fa-th-large"></i><span data-lang="all">All</span></div>
+                    <div class="cat-btn"><i class="fas fa-gamepad"></i><span data-lang="slots">Slots</span></div>
+                    <div class="cat-btn"><i class="fas fa-users"></i><span data-lang="live">Live</span></div>
+                    <div class="cat-btn"><i class="fas fa-fish"></i><span data-lang="fishing">Fishing</span></div>
+                    <div class="cat-btn"><i class="fas fa-basketball-ball"></i><span data-lang="sports">Sports</span></div>
+                    <div class="cat-btn"><i class="fas fa-dice"></i><span data-lang="dice">Dice</span></div>
+                </div>
+                <div class="game-grid">
+                    <div class="game-btn" onclick="playGame('Aviator')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/60P8yQg8/800-20241205172339933.png"><p>Aviator</p></div>
+                    <div class="game-btn" onclick="playGame('Wingo')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/0RmdVFj7/Win-Go-30-S-20250804212905940.jpg"><p>WinGo</p></div>
+                    <div class="game-btn" onclick="playGame('JILI Slot')"><span class="game-tag">New</span><img src="https://files.catbox.moe/tl6rjy.png"><p>Super Ace</p></div>
+                    <div class="game-btn" onclick="playGame('PG Soft')"><img src="https://files.catbox.moe/5z5kd1.png"><p>Crazy Time</p></div>
+                    <div class="game-btn" onclick="playGame('Pragmatic Play')"><span class="game-tag">Popular</span><img src="https://files.catbox.moe/11vvpx.png"><p>Gates of Olympus</p></div>
+                    <div class="game-btn" onclick="playGame('Chicken')"><img src="https://i.ibb.co.com/cKZww3Ky/121.png"><p>Chicken</p></div>
+                    <div class="game-btn" onclick="playGame('Boom')"><img src="https://ossimg.crhhh.com/bdtgame/gamelogo/TB_Chess/811.png"><p>Boom</p></div>
+                    <div class="game-btn" onclick="playGame('Jackpot')"><img src="https://files.catbox.moe/gzj1wf.jpg"><p>Jackpot</p></div>
+                    <div class="game-btn" onclick="playGame('3 CARDS')"><img src="https://files.catbox.moe/5qw81v.jpg"><p>3 CARDS</p></div>
+                </div>
+                
+                <div style="margin: 15px; border-radius: 20px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                    <iframe src="https://dkclubleder.vercel.app/" style="width: 100%; height: 500px; border: none;" allow="fullscreen"></iframe>
+                </div>
+            </div>
+
+            <div id="vip-page" class="page">
+                <div style="padding:15px"><div class="vip-card-header" style="background: #111827; padding: 30px 20px; color: #fff; border-radius: 20px 20px 0 0; position: relative; overflow: hidden"><i class="fas fa-crown" style="color: var(--primary); font-size: 40px; margin-bottom: 10px"></i><h2 style="font-weight: 800;" data-lang="vip_benefits">VIP BENEFITS</h2><p style="opacity: 0.8; font-size: 13px;" data-lang="vip_subtitle">Exclusive Daily Salary for Active Players</p></div></div>
+                <div id="vip-list-container">
+                    <div class="vip-item-row"><div class="vip-level-box">1</div><div class="vip-info-text"><h4>VIP Level 1</h4><p>Deposit: ৳500+</p></div><div class="vip-salary-tag">৳100/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">2</div><div class="vip-info-text"><h4>VIP Level 2</h4><p>Deposit: ৳2,000+</p></div><div class="vip-salary-tag">৳300/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">3</div><div class="vip-info-text"><h4>VIP Level 3</h4><p>Deposit: ৳10,000+</p></div><div class="vip-salary-tag">৳500/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">4</div><div class="vip-info-text"><h4>VIP Level 4</h4><p>Deposit: ৳50,000+</p></div><div class="vip-salary-tag">৳2,500/Day</div></div>
+                    <div class="vip-item-row"><div class="vip-level-box">5</div><div class="vip-info-text"><h4>VIP Level 5</h4><p>Deposit: ৳2,00,000+</p></div><div class="vip-salary-tag">৳10,000/Day</div></div>
+                </div>
+            </div>
+
+            <div id="agency-page" class="page">
+                <div class="balance-card" style="text-align:center"><p style="opacity:.7;font-size:14px" data-lang="total_commission">Total Commission</p><h1 id="total-comm-display" style="font-size:38px;margin:10px 0">৳ 0.00</h1><div style="display:inline-block;background:rgba(255,255,255,.1);padding:5px 15px;border-radius:50px;font-size:12px" data-lang="direct_comm">5% Direct Commission</div></div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:0 15px;margin-top:-10px">
+                    <div style="background:#fff;padding:15px;border-radius:20px;text-align:center;border:1px solid #eee;cursor:pointer" onclick="nav('downline')"><b id="team-count-display" style="font-size:20px;color:var(--primary);display:block">0</b><span style="font-size:12px;color:#64748b" data-lang="total_team">Total Team (Check)</span></div>
+                    <div style="background:#fff;padding:15px;border-radius:20px;text-align:center;border:1px solid #eee"><b id="today-earn-display" style="font-size:20px;color:var(--success);display:block">৳0</b><span style="font-size:12px;color:#64748b" data-lang="today_earn">Today Earn</span></div>
+                </div>
+                <div style="background:#fff;margin:15px;padding:25px;border-radius:25px;border:1px solid #eee">
+                    <h4 style="margin-bottom:5px;color:#333" data-lang="invitation_code">Invitation Code</h4>
+                    <div style="background:#f8fafc;padding:15px;border-radius:15px;font-size:20px;font-weight:800;border:1px dashed #cbd5e1;display:flex;justify-content:space-between;align-items:center"><span id="ref-code-display" style="color:var(--primary)">...</span><button onclick="copyRefCode()" style="background:var(--primary);color:#fff;border:none;padding:5px 12px;border-radius:8px;font-size:12px" data-lang="copy">Copy</button></div>
+                    <h4 style="margin-top:20px;color:#333" data-lang="invitation_link">Invitation Link</h4>
+                    <div id="ref-link-display" style="background:#f8fafc;padding:15px;border-radius:15px;font-size:12px;border:1px solid #e2e8f0;word-break:break-all;margin-top:10px;color:#64748b">Generating...</div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px"><button class="btn-main" style="width:100%;margin:0" onclick="copyRefLink()" data-lang="copy_link">Copy Link</button><button class="btn-main" id="telegram-share-btn" style="width:100%;margin:0;background:#0088cc"><i class="fab fa-telegram-plane"></i> Telegram</button></div>
+                </div>
+            </div>
+
+            <div id="downline-page" class="page">
+                <div style="padding:20px 25px"><h3 data-lang="my_downline">My Downline</h3></div>
+                <div class="search-container"><div class="search-box"><input type="number" id="downline-search-uid" placeholder="Search by UID"><button class="search-btn" onclick="searchDownline()"><i class="fas fa-search"></i></button></div></div>
+                <div class="history-card"><table><thead><tr><th>UID</th><th data-lang="phone">Phone</th><th data-lang="balance">Balance</th><th data-lang="deposit">Deposit</th></tr></thead><tbody id="downline-list"></tbody></table></div>
+            </div>
+
+            <!-- =========================================
+                 UPDATED DEPOSIT PAGE (MATCHING VIDEO)
+                 ========================================= -->
+            <div id="deposit-page" class="page" style="background:#f4f6f9; padding-bottom: 20px;">
+                <div class="dep-top-nav">
+                    <i class="fas fa-chevron-left" onclick="nav('home')"></i>
+                    <h3 data-lang="deposit">Deposit</h3>
+                    <span onclick="nav('dep-hist')" data-lang="deposit_history">Deposit history</span>
+                </div>
+
+                <div class="dep-header-card">
+                    <div class="dep-bal-title"><i class="fas fa-wallet"></i> <span data-lang="balance">Balance</span></div>
+                    <div class="dep-bal-amt"><span id="dep-top-bal">৳0.00</span> <i class="fas fa-sync-alt" onclick="refreshBalance()"></i></div>
+                    <div class="dep-bal-mask">**** ****</div>
+                </div>
+
+                <!-- Top Methods -->
+                <div class="dep-methods-row">
+                    <div class="dep-method-btn" id="d-nagad" onclick="setDepM('nagad')">
+                        <img src="https://files.catbox.moe/nkqw14.png" alt="Nagad">
+                        <span>Nagad</span>
+                    </div>
+                    <div class="dep-method-btn active" id="d-bkash" onclick="setDepM('bkash')">
+                        <img src="https://files.catbox.moe/u73hdj.png" alt="bKash">
+                        <span>bKash</span>
+                    </div>
+                    <div class="dep-method-btn" id="d-binance" onclick="setDepM('binance')">
+                        <img src="https://files.catbox.moe/q4kw4f.png" alt="USDT">
+                        <span>USDT</span>
+                    </div>
+                </div>
+
+                <!-- Select Channel Section -->
+                <div class="dep-channel-section">
+                    <div class="dep-sec-title"><i class="fas fa-layer-group"></i> Select channel</div>
+                    <div class="channel-grid" id="channel-container">
+                        <!-- Channels will be injected here by JS based on selected method -->
+                    </div>
+                </div>
+
+                <!-- Deposit Amount Section -->
+                <div class="dep-amount-section">
+                    <div class="dep-sec-title"><i class="fas fa-money-bill-wave"></i> <span id="dep-amt-title">Deposit amount</span></div>
+                    <div class="dep-grid-3" id="amt-presets">
+                        <!-- Presets injected by JS -->
+                    </div>
+                    <div class="dep-custom-input">
+                        <span id="dep-symbol">৳</span>
+                        <input type="number" id="d-amt" placeholder="Please enter the amount" oninput="clearGridSelection()">
+                        <i class="fas fa-times-circle" onclick="document.getElementById('d-amt').value=''; clearGridSelection(); checkDepBtn()"></i>
+                    </div>
+                    <button class="dep-submit-full-btn" id="dep-submit-btn" onclick="goFinalDep()" data-lang="deposit">Deposit</button>
+                </div>
+
+                <!-- Recharge Instructions -->
+                <div class="dep-instructions">
+                    <div class="dep-sec-title"><i class="fas fa-book-open"></i> <span data-lang="recharge_inst">Recharge instructions</span></div>
+                    <ul class="dep-inst-list" id="inst-list-container">
+                        <!-- Instructions injected by JS -->
+                    </ul>
+                </div>
+
+                <!-- Deposit History Card (As seen in video) -->
+                <div style="padding: 0 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: bold; color: #1e293b;">
+                    <i class="fas fa-history" style="color: var(--primary);"></i> Deposit history
+                </div>
+                <div class="dep-history-card" id="dep-inline-history">
+                    <div class="empty-state" style="padding: 20px;">
+                        <p>No recent deposits</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- WITHDRAW PAGE -->
+            <div id="withdraw-page" class="page" style="background:#f4f6f9; padding-bottom: 20px;">
+                <div class="with-top-nav">
+                    <i class="fas fa-chevron-left" onclick="nav('home')"></i>
+                    <h3 data-lang="withdraw">Withdraw</h3>
+                    <span onclick="nav('with-hist')" data-lang="withdraw_history">Withdrawal history</span>
+                </div>
+
+                <div class="with-header-card">
+                    <div class="with-bal-title"><i class="fas fa-wallet"></i> Available balance</div>
+                    <div class="with-bal-amt"><span id="with-top-bal">৳0.00</span> <i class="fas fa-sync-alt" onclick="refreshBalance()"></i></div>
+                    <div class="with-bal-mask">**** ****</div>
+                </div>
+
+                <div class="with-methods-row">
+                    <div class="with-method-btn active" id="w-ewallet" onclick="setWithM('ewallet')">
+                        <img src="https://files.catbox.moe/nbn2m1.png" alt="E-Wallet">
+                        <span>E-Wallet</span>
+                    </div>
+                    <div class="with-method-btn" id="w-usdt" onclick="setWithM('usdt')">
+                        <img src="https://files.catbox.moe/q4kw4f.png" alt="USDT">
+                        <span>USDT</span>
+                    </div>
+                </div>
+
+                <!-- E-Wallet Selection Card -->
+                <div id="with-ewallet-card" class="with-card-selector" onclick="openAddCard()">
+                    <div class="with-card-info">
+                        <div class="with-card-icon" id="with-card-icon-bg"><i class="fas fa-wallet" id="with-card-icon-i"></i></div>
+                        <div class="with-card-text">
+                            <h4 id="with-card-method">Select Wallet</h4>
+                            <p id="with-card-num">Tap to add/select</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right" style="color:#cbd5e1"></i>
+                </div>
+
+                <!-- USDT Info (Hidden by default) -->
+                <div id="with-usdt-info" class="with-card-selector hidden" style="flex-direction: column; align-items: flex-start; gap: 10px;">
+                    <div style="display:flex; align-items:center; gap:10px; width:100%;">
+                        <i class="fas fa-headset" style="color:var(--primary); font-size:20px;"></i>
+                        <span style="font-size:13px; color:#64748b;">Contact customer service to Add USDT address</span>
+                    </div>
+                </div>
+
+                <div class="with-input-section">
+                    <div class="with-input-box">
+                        <span id="with-input-sym">৳</span>
+                        <input type="number" id="w-amt" placeholder="0" oninput="checkWithBtn()">
+                    </div>
+                    
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 15px;">
+                        <div>
+                            <div class="with-info-row" style="margin:0;"><span>Withdrawable balance</span> <span class="val" id="with-limit-bal">৳0.00</span></div>
+                            <div class="with-info-row" style="margin:0; color:#94a3b8;"><span>Withdrawal amount received</span> <span id="with-received-amt" style="color:#1e293b; font-weight:700;">৳0.00</span></div>
+                        </div>
+                        <button class="with-all-btn" onclick="setMaxWith()">All</button>
+                    </div>
+
+                    <button class="with-submit-btn" id="with-submit-btn" onclick="submitWith()" data-lang="withdraw">Withdraw</button>
+                </div>
+
+                <div class="with-rules">
+                    <ul>
+                        <li>Need to bet <span class="highlight" id="with-rule-turnover">৳0.00</span> to be able to withdraw</li>
+                        <li>Withdraw time <span class="highlight">00:00-23:55</span></li>
+                        <li>Today Remaining Withdrawal Times <span class="highlight">3</span></li>
+                        <li>Withdrawal amount range <span class="highlight" id="with-rule-range">৳100.00 - ৳25,000.00</span></li>
+                        <li>Please check your registered bank information again before making a withdrawal. If your registered bank information is incorrect, our company will not be responsible for any losses you may incur.</li>
+                        <li>If your registered bank information is incorrect, please contact customer service.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- ADD CARD PAGE -->
+            <div id="add-card-page" class="page">
+                <div class="with-top-nav">
+                    <i class="fas fa-chevron-left" onclick="nav('withdraw')"></i>
+                    <h3>E-Wallet Payment method</h3>
+                    <span></span>
+                </div>
+                <div style="padding: 20px;">
+                    <div id="wallet-lock-note" class="premium-lock-note">একটি মাত্র Wallet যোগ করা যাবে। Save করার পর তথ্য আর পরিবর্তন করা যাবে না।</div>
+                    <div class="input-group" style="margin: 0 0 18px 0;">
+                        <label>Choose type</label>
+                        <div class="input-wrapper" style="cursor:pointer;" onclick="toggleAddMethodDropdown()">
+                            <span id="ac-method-text" style="flex:1; font-weight:600;">Please choose</span>
+                            <i class="fas fa-chevron-down" style="color:#94a3b8"></i>
+                        </div>
+                        <div id="ac-method-dropdown" class="hidden" style="background:#fff; border:1px solid #e2e8f0; border-radius:10px; margin-top:5px; overflow:hidden; z-index:10; position:relative;">
+                            <div style="padding:12px 15px; border-bottom:1px solid #f1f5f9; cursor:pointer;" onclick="selectAddMethod('bkash')">BKASH</div>
+                            <div style="padding:12px 15px; cursor:pointer;" onclick="selectAddMethod('nagad')">NAGAD</div>
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin: 0 0 18px 0;">
+                        <label>Full name</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="ac-name" placeholder="Enter Full Name">
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin: 0 0 18px 0;">
+                        <label>Account</label>
+                        <div class="input-wrapper">
+                            <input type="number" id="ac-num" placeholder="Please enter Account">
+                        </div>
+                    </div>
+                    <button class="btn-main" style="margin: 20px 0 0 0; width: 100%;" onclick="saveCard()">Save</button>
+                </div>
+            </div>
+
+            <!-- ACCOUNT PAGE -->
+            <div id="account-page" class="page acc-page-bg">
+                <div class="acc-header">
+                    <div class="acc-user-info">
+                        <img src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" class="acc-avatar" alt="Avatar">
+                        <div class="acc-name-wrap">
+                            <div class="acc-name">
+                                <span id="display-member-name">MEMBER</span><span id="uid-gen-header">NGIZ1JD</span>
+                                <span class="acc-vip-badge">VIP0</span>
+                            </div>
+                            <div class="acc-uid-box">
+                                UID | <span id="uid-gen">000000</span>
+                                <i class="fas fa-copy" onclick="copyUID()"></i>
+                            </div>
+                            <div class="acc-last-login"><span data-lang="last_login">Last login:</span> <span id="last-login-time">2026-08-14 13:12:28</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acc-bal-card">
+                    <div class="acc-bal-title" data-lang="total_balance">Total balance</div>
+                    <div class="acc-bal-amt">
+                        <span id="user-bal">৳0.00</span>
+                        <i class="fas fa-sync-alt" onclick="refreshBalance()"></i>
+                    </div>
+                    
+                    <div class="acc-action-grid">
+                        <div class="acc-action-item" onclick="nav('deposit')">
+                            <div class="acc-action-icon" style="background: #fee2e2; color: #ef4444;"><i class="fas fa-wallet"></i></div>
+                            <span data-lang="wallet">Wallet</span>
+                        </div>
+                        <div class="acc-action-item" onclick="nav('deposit')">
+                            <div class="acc-action-icon" style="background: #ffedd5; color: #f97316;"><i class="fas fa-arrow-down"></i></div>
+                            <span data-lang="deposit">Deposit</span>
+                        </div>
+                        <div class="acc-action-item" onclick="nav('withdraw')">
+                            <div class="acc-action-icon" style="background: #dbeafe; color: #3b82f6;"><i class="fas fa-arrow-up"></i></div>
+                            <span data-lang="withdraw">Withdraw</span>
+                        </div>
+                        <div class="acc-action-item" onclick="nav('vip')">
+                            <div class="acc-action-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-gem"></i></div>
+                            <span>VIP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acc-safe-card" onclick="nav('safe')">
+                    <div class="acc-safe-left">
+                        <div class="acc-safe-icon"><i class="fas fa-lock"></i></div>
+                        <div class="acc-safe-text">
+                            <h4 data-lang="safe">Safe</h4>
+                            <p data-lang="safe_info_short">The daily interest rate is 0.1%, and the income is calculated once every 1 minutes.</p>
+                        </div>
+                    </div>
+                    <div class="acc-safe-bal">
+                        <span id="acc-safe-bal-display">৳0.00</span> <i class="fas fa-chevron-right" style="font-size: 10px;"></i>
+                    </div>
+                </div>
+
+                <div class="acc-menu-list">
+                    <div class="acc-menu-row">
+                        <div class="acc-menu-item" onclick="nav('game-hist')">
+                            <div class="acc-menu-icon" style="background: #dbeafe; color: #3b82f6;"><i class="fas fa-list-alt"></i></div>
+                            <div class="acc-menu-text">
+                                <h4 data-lang="game_history">Game History</h4>
+                                <p data-lang="my_game_history">My game history</p>
+                            </div>
+                        </div>
+                        <div class="acc-menu-item" onclick="nav('trans-hist')">
+                            <div class="acc-menu-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-exchange-alt"></i></div>
+                            <div class="acc-menu-text">
+                                <h4 data-lang="transaction">Transaction</h4>
+                                <p data-lang="my_trans_history">My transaction history</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="acc-menu-row">
+                        <div class="acc-menu-item" onclick="nav('dep-hist')">
+                            <div class="acc-menu-icon" style="background: #fee2e2; color: #ef4444;"><i class="fas fa-file-invoice-dollar"></i></div>
+                            <div class="acc-menu-text">
+                                <h4 data-lang="deposit">Deposit</h4>
+                                <p data-lang="my_dep_history">My deposit history</p>
+                            </div>
+                        </div>
+                        <div class="acc-menu-item" onclick="nav('with-hist')">
+                            <div class="acc-menu-icon" style="background: #ffedd5; color: #f97316;"><i class="fas fa-hand-holding-usd"></i></div>
+                            <div class="acc-menu-text">
+                                <h4 data-lang="withdraw">Withdraw</h4>
+                                <p data-lang="my_with_history">My withdraw history</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="acc-menu-item full" onclick="nav('notification')">
+                        <div class="acc-menu-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-envelope"></i></div>
+                        <div class="acc-menu-text"><h4 data-lang="notification">Notification</h4></div>
+                        <i class="fas fa-chevron-right acc-menu-arrow"></i>
+                    </div>
+                    <div class="acc-menu-item full" onclick="nav('gift')">
+                        <div class="acc-menu-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-gift"></i></div>
+                        <div class="acc-menu-text"><h4 data-lang="gifts">Gifts</h4></div>
+                        <i class="fas fa-chevron-right acc-menu-arrow"></i>
+                    </div>
+                    <div class="acc-menu-item full" onclick="nav('stats')">
+                        <div class="acc-menu-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-chart-bar"></i></div>
+                        <div class="acc-menu-text"><h4 data-lang="game_stats">Game statistics</h4></div>
+                        <i class="fas fa-chevron-right acc-menu-arrow"></i>
+                    </div>
+                    <div class="acc-menu-item full" onclick="nav('language')">
+                        <div class="acc-menu-icon" style="background: #d1fae5; color: #10b981;"><i class="fas fa-globe"></i></div>
+                        <div class="acc-menu-text"><h4 data-lang="language">Language</h4></div>
+                        <div style="margin-left: auto; font-size: 13px; color: #475569; font-weight: 600; margin-right: 10px;" id="current-lang-display">English</div>
+                        <i class="fas fa-chevron-right acc-menu-arrow"></i>
+                    </div>
+                </div>
+
+                <div class="acc-service-center">
+                    <div class="acc-sc-title" data-lang="service_center">Service center</div>
+                    <div class="acc-sc-grid">
+                        <div class="acc-sc-item" onclick="nav('settings')">
+                            <div class="acc-sc-icon"><i class="fas fa-cog"></i></div>
+                            <span data-lang="settings">Settings</span>
+                        </div>
+                        <div class="acc-sc-item" onclick="nav('feedback')">
+                            <div class="acc-sc-icon"><i class="fas fa-comment-dots"></i></div>
+                            <span data-lang="feedback">Feedback</span>
+                        </div>
+                        <div class="acc-sc-item" onclick="nav('announcement')">
+                            <div class="acc-sc-icon"><i class="fas fa-bullhorn"></i></div>
+                            <span data-lang="announcement">Announcement</span>
+                        </div>
+                        <div class="acc-sc-item" onclick="openHelp()">
+                            <div class="acc-sc-icon"><i class="fas fa-headset"></i></div>
+                            <span data-lang="customer_service">Customer Service</span>
+                        </div>
+                        <div class="acc-sc-item" onclick="showToast(langData[currentLang].guide_toast)">
+                            <div class="acc-sc-icon"><i class="fas fa-book"></i></div>
+                            <span data-lang="beginners_guide">Beginner's Guide</span>
+                        </div>
+                        <div class="acc-sc-item" onclick="nav('about')">
+                            <div class="acc-sc-icon"><i class="fas fa-info-circle"></i></div>
+                            <span data-lang="about_us">About us</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="acc-logout-btn" onclick="logout()">
+                    <i class="fas fa-power-off"></i> <span data-lang="log_out">Log out</span>
+                </div>
+            </div>
+
+            <!-- =========================================
+                 NEW FULL PAGES (MATCHING VIDEO)
+                 ========================================= -->
+
+            <!-- SAFE PAGE -->
+            <div id="safe-page" class="page">
+                <div class="full-page-header">
+                    <i class="fas fa-chevron-left" onclick="nav('account')"></i>
+                    <h3>Safe</h3>
+                    <span></span>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <div class="safe-rate-badge">Interest rate 0.10%</div>
+                </div>
+                <div class="safe-page-card">
+                    <div class="safe-sec-badge"><i class="fas fa-shield-alt"></i> Financial security</div>
+                    <div class="safe-page-bal" id="safe-page-bal-display">৳0.00</div>
+                    <div class="safe-page-sub">24-hour estimated revenue <span id="safe-page-rev-display">৳0.00</span></div>
+                    <div style="position: absolute; bottom: 15px; right: 20px; font-size: 20px; letter-spacing: 2px; opacity: 0.5;">**** ****</div>
+                </div>
+                <div class="safe-action-card">
+                    <div class="safe-action-grid">
+                        <div>
+                            <div class="safe-action-val" id="safe-gen-rev">৳0.00</div>
+                            <div class="safe-action-label">Generated revenue</div>
+                            <div class="safe-my-rate">My interest rate 0.1</div>
+                        </div>
+                        <div>
+                            <div class="safe-action-val green" id="safe-acc-rev">৳0.00</div>
+                            <div class="safe-action-label">Accumulated revenue</div>
+                        </div>
+                    </div>
+                    <div class="safe-btn-group">
+                        <button class="safe-btn out" onclick="openSafeModal('withdraw')">Transfer Out</button>
+                        <button class="safe-btn in" onclick="openSafeModal('save')">Transfer In</button>
+                    </div>
+                    <div class="safe-warning"><i class="fas fa-exclamation-circle"></i> Funds are safe and secure, and can be transferred at any time</div>
+                    <div class="safe-learn">Learn about safes >></div>
+                </div>
+                <div style="padding: 0 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: bold; color: #1e293b;">
+                    <i class="fas fa-list-alt" style="color: var(--primary);"></i> Historical records
+                </div>
+                <div style="margin: 0 15px; background: #fff; border: 1px solid #e2e8f0; border-radius: 25px; padding: 12px; text-align: center; font-size: 13px; color: var(--primary); font-weight: bold; cursor: pointer;">
+                    All history
+                </div>
+            </div>
+
+            <!-- NOTIFICATION PAGE -->
+            <div id="notification-page" class="page">
+                <div class="full-page-header">
+                    <i class="fas fa-chevron-left" onclick="nav('account')"></i>
+                    <h3>Notification</h3>
+                    <span></span>
+                </div>
+                <div class="notif-tabs">
+                    <div class="notif-tab active" id="notif-tab-1" onclick="switchNotifTab(1)">Notification</div>
+                    <div class="notif-tab" id="notif-tab-2" onclick="switchNotifTab(2)">Information</div>
+                </div>
+                <div id="notif-content-area">
+                    <div class="empty-state">
+                        <i class="fas fa-inbox"></i>
+                        <p>No data</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GIFT PAGE -->
+            <div id="gift-page" class="page">
+                <div class="full-page-header" style="border:none; position:absolute; width:100%; background:transparent; z-index:10;">
+                    <i class="fas fa-chevron-left" onclick="nav('account')" style="color:#333; background:rgba(255,255,255,0.5); border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"></i>
+                    <h3 style="color:#333;">Gift</h3>
+                    <span></span>
+                </div>
+                <img src="https://files.catbox.moe/46vgke.png" class="gift-page-banner" alt="Gift Banner">
+                <div class="gift-page-card">
+                    <h4>Hi<br>We have a gift for you</h4>
+                    <p>Please enter the gift code below</p>
+                    <div class="gift-input-box">
+                        <input type="text" id="gift-page-input" placeholder="Please enter gift code">
+                    </div>
+                    <button class="gift-receive-btn" onclick="redeemGiftPage()">Receive</button>
+                </div>
+                <div style="padding: 0 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: bold; color: #1e293b;">
+                    <i class="fas fa-list-alt" style="color: var(--primary);"></i> History
+                </div>
+                <div class="empty-state" style="background:#fff; margin: 0 15px; border-radius:15px; padding: 30px;">
+                    <i class="fas fa-inbox"></i>
+                    <p>No data</p>
+                </div>
+            </div>
+
+            <!-- GAME STATISTICS PAGE -->
+            <div id="stats-page" class="page">
+                <div class="full-page-header">
+                    <i class="fas fa-chevron-left" onclick="nav('account')"></i>
+                    <h3>Game statistics</h3>
+                    <span></span>
+                </div>
+                <div class="stats-tabs">
+                    <div class="stats-tab active">Today</div>
+                    <div class="stats-tab">Yesterday</div>
+                    <div class="stats-tab">This week</div>
+                    <div class="stats-tab">This month</div>
+                </div>
+                <div class="stats-total-card">
+                    <div class="stats-total-val">৳0.00</div>
+                    <div class="stats-total-label">Total bet</div>
+                </div>
+                <div class="stats-list-card">
+                    <div class="stats-list-item">
+                        <div class="stats-item-header"><i class="fas fa-dice" style="color:#10b981;"></i> lottery</div>
+                        <div class="stats-item-row"><span>Total bet</span><span class="val">৳0.00</span></div>
+                        <div class="stats-item-row"><span>Number of bets</span><span class="val">0</span></div>
+                        <div class="stats-item-row"><span>Winning amount</span><span class="val green">৳0.00</span></div>
+                    </div>
+                    <div class="stats-list-item">
+                        <div class="stats-item-header"><i class="fas fa-video" style="color:#3b82f6;"></i> video</div>
+                        <div class="stats-item-row"><span>Total bet</span><span class="val">৳0.00</span></div>
+                        <div class="stats-item-row"><span>Number of bets</span><span class="val">0</span></div>
+                        <div class="stats-item-row"><span>Winning amount</span><span class="val green">৳0.00</span></div>
+                    </div>
+                    <div class="stats-list-item">
+                        <div class="stats-item-header"><i class="fas fa-slot-machine" style="color:#0ea5e9;"></i> Slot</div>
+                        <div class="stats-item-row"><span>Total bet</span><span class="val">৳0.00</span></div>
+                        <div class="stats-item-row"><span>Number of bets</span><span class="val">0</span></div>
+                        <div class="stats-item-row"><span>Winning amount</span><span class="val green">৳0.00</span></div>
+                    </div>
+                    <div class="stats-list-item">
+                        <div class="stats-item-header"><i class="fas fa-fish" style="color:#38bdf8;"></i> Fish</div>
+                        <div class="stats-item-row"><span>Total bet</span><span class="val">৳0.00</span></div>
+                        <div class="stats-item-row"><span>Number of bets</span><span class="val">0</span></div>
+                        <div class="stats-item-row"><span>Winning amount</span><span class="val green">৳0.00</span></div>
+                    </div>
+                    <div class="stats-list-item">
+                        <div class="stats-item-header"><i class="fas fa-futbol" style="color:#60a5fa;"></i> sport</div>
+                        <div class="stats-item-row"><span>Total bet</span><span class="val">৳0.00</span></div>
+                        <div class="stats-item-row"><span>Number of bets</span><span class="val">0</span></div>
+                        <div class="stats-item-row"><span>Winning amount</span><span class="val green">৳0.00</span></div>
+                    </div>
+                    <div class="stats-list-item">
+                        <div class="stats-item-header"><i class="fas fa-chess" style="color:#818cf8;"></i> ChessCard</div>
+                        <div class="stats-item-row"><span>Total bet</span><span class="val">৳0.00</span></div>
+                        <div class="stats-item-row"><span>Number of bets</span><span class="val">0</span></div>
+                        <div class="stats-item-row"><span>Winning amount</span><span class="val green">৳0.00</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LANGUAGE PAGE -->
+            <div id="language-page" class="page">
+                <div class="full-page-header">
+                    <i class="fas fa-chevron-left" onclick="nav('account')"></i>
+                    <h3>Language</h3>
+                    <span></span>
+                </div>
+                <div class="lang-list">
+                    <div class="lang-item active" id="lang-en" onclick="setLanguage('en')">
+                        <div class="lang-item-left">
+                            <img src="https://flagcdn.com/w40/us.png" alt="US"> English
+                        </div>
+                        <i class="fas fa-check-circle lang-check"></i>
+                    </div>
+                    <div class="lang-item" id="lang-zh" onclick="setLanguage('zh')">
+                        <div class="lang-item-left">
+                            <img src="https://flagcdn.com/w40/cn.png" alt="CN"> 中文
+                        </div>
+                        <i class="fas fa-check-circle lang-check"></i>
+                    </div>
+                    <div class="lang-item" id="lang-bn" onclick="setLanguage('bn')">
+                        <div class="lang-item-left">
+                            <img src="https://flagcdn.com/w40/bd.png" alt="BD"> বাংলা
+                        </div>
+                        <i class="fas fa-check-circle lang-check"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SETTINGS PAGE -->
+            <div id="settings-page" class="page">
+                <div class="full-page-header" style="background: var(--primary); color: #fff; border:none;">
+                    <i class="fas fa-chevron-left" onclick="nav('account')" style="color:#fff;"></i>
+                    <h3 style="color:#fff;">Settings Center</h3>
+                    <span></span>
+                </div>
+                <div class="settings-profile-card">
+                    <div class="settings-avatar-row">
+                        <img src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" alt="Avatar">
+                        <span class="settings-change-ava">Change avatar ></span>
+                    </div>
+                    <div class="settings-info-row">
+                        <span class="label">Nickname</span>
+                        <span class="val" id="set-nickname-display">MemberNNGIZ1JD ></span>
+                    </div>
+                    <div class="settings-info-row">
+                        <span class="label">UID</span>
+                        <span class="val"><span id="set-uid-display">000000</span> <i class="far fa-copy" onclick="copyUID()"></i></span>
+                    </div>
+                </div>
+                
+                <div class="settings-sec-title">Security information</div>
+                <div class="settings-sec-list">
+                    <div class="settings-sec-item" onclick="showToast('Edit Password')">
+                        <div class="settings-sec-left">
+                            <div class="settings-sec-icon"><i class="fas fa-lock"></i></div> Login password
+                        </div>
+                        <div class="settings-sec-right">Edit ></div>
+                    </div>
+                    <div class="settings-sec-item" onclick="showToast('Bind Mailbox')">
+                        <div class="settings-sec-left">
+                            <div class="settings-sec-icon"><i class="fas fa-envelope"></i></div> Bind mailbox
+                        </div>
+                        <div class="settings-sec-right">to bind ></div>
+                    </div>
+                    <div class="settings-sec-item" onclick="showToast('App is up to date')">
+                        <div class="settings-sec-left">
+                            <div class="settings-sec-icon"><i class="fas fa-info-circle"></i></div> Updated version
+                        </div>
+                        <div class="settings-sec-right">1.0.9 ></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FEEDBACK PAGE -->
+            <div id="feedback-page" class="page">
+                <div class="full-page-header">
+                    <i class="fas fa-chevron-left" onclick="nav('account')"></i>
+                    <h3>Feedback</h3>
+                    <span></span>
+                </div>
+                <div class="feedback-card">
+                    <div class="feedback-text">
+                        Welcome to feedback, please give feedback-please describe the problem in detail when providing feedback, preferably attach a screenshot of the problem you encountered, we will immediately process your feedback!
+                    </div>
+                    <textarea class="feedback-textarea" placeholder="Enter your feedback here..."></textarea>
+                </div>
+                <div class="feedback-promo">
+                    <h4>Send helpful feedback</h4>
+                    <p>Chance to win Mystery Rewards</p>
+                    <img src="https://cdn-icons-png.flaticon.com/512/3062/3062634.png" class="feedback-img" alt="Feedback Promo">
+                </div>
+                <div style="padding: 0 15px;">
+                    <button class="feedback-submit" onclick="showToast('Feedback Submitted!')">Submit</button>
+                </div>
+            </div>
+
+            <!-- ABOUT US PAGE -->
+            <div id="about-page" class="page">
+                <div class="full-page-header" style="background: var(--primary); color: #fff; border:none; position:absolute; width:100%; z-index:10; background:transparent;">
+                    <i class="fas fa-chevron-left" onclick="nav('account')" style="color:#fff; background:rgba(0,0,0,0.2); border-radius:50%; width:30px; height:30px; display:flex; align-items:center; justify-content:center;"></i>
+                    <h3 style="color:#fff;">About us</h3>
+                    <span></span>
+                </div>
+                <div class="about-banner">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920277.png" alt="About Banner">
+                </div>
+                <div class="about-list">
+                    <div class="about-item" onclick="showToast('Opening Agreement...')">
+                        <div class="about-item-left">
+                            <div class="about-item-icon"><i class="fas fa-file-contract"></i></div> Confidentiality Agreement
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#cbd5e1; font-size:12px;"></i>
+                    </div>
+                    <div class="about-item" onclick="showToast('Opening Agreement...')">
+                        <div class="about-item-left">
+                            <div class="about-item-icon"><i class="fas fa-exclamation-triangle"></i></div> Risk Disclosure Agreement
+                        </div>
+                        <i class="fas fa-chevron-right" style="color:#cbd5e1; font-size:12px;"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ANNOUNCEMENT PAGE -->
+            <div id="announcement-page" class="page">
+                <div class="full-page-header">
+                    <i class="fas fa-chevron-left" onclick="nav('account')"></i>
+                    <h3>Announcement</h3>
+                    <span></span>
+                </div>
+                <div id="announce-page-content" style="padding: 15px;">
+                    <div class="empty-state">
+                        <i class="fas fa-bullhorn"></i>
+                        <p>No new announcements</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HISTORY PAGES -->
+            <div id="dep-hist-page" class="page">
+                <div class="with-top-nav"><i class="fas fa-chevron-left" onclick="nav('account')"></i><h3 data-lang="deposit_history">Deposit History</h3><span></span></div>
+                <div class="history-card"><table><thead><tr><th data-lang="date">Date</th><th data-lang="amount">Amount</th><th data-lang="status">Status</th></tr></thead><tbody id="dep-list"></tbody></table></div>
+            </div>
+            <div id="with-hist-page" class="page">
+                <div class="with-top-nav"><i class="fas fa-chevron-left" onclick="nav('withdraw')"></i><h3 data-lang="withdraw_history">Withdraw History</h3><span></span></div>
+                <div class="history-card"><table><thead><tr><th data-lang="date">Date</th><th data-lang="amount">Amount</th><th data-lang="status">Status</th></tr></thead><tbody id="with-list"></tbody></table></div>
+            </div>
+            
+            <!-- GAME HISTORY PAGE -->
+            <div id="game-hist-page" class="page">
+                <div class="with-top-nav"><i class="fas fa-chevron-left" onclick="nav('account')"></i><h3 data-lang="game_history">Game History</h3><span></span></div>
+                <div class="history-card"><table><thead><tr><th data-lang="game">Game</th><th data-lang="bet">Bet</th><th data-lang="win">Win</th><th data-lang="time">Time</th></tr></thead><tbody id="game-list"></tbody></table></div>
+            </div>
+            
+            <!-- TRANSACTION HISTORY PAGE -->
+            <div id="trans-hist-page" class="page">
+                <div class="with-top-nav"><i class="fas fa-chevron-left" onclick="nav('account')"></i><h3 data-lang="transaction">Transaction</h3><span></span></div>
+                <div class="history-card"><table><thead><tr><th data-lang="type">Type</th><th data-lang="amount">Amount</th><th data-lang="date">Date</th></tr></thead><tbody id="trans-list"></tbody></table></div>
+            </div>
+
+            <div class="nav-bar">
+                <div class="nav-item active" id="n-home" onclick="nav('home')"><i class="fas fa-home"></i><span data-lang="home">Home</span></div>
+                <div class="nav-item" id="n-deposit" onclick="nav('deposit')"><i class="fas fa-wallet"></i><span data-lang="deposit">Deposit</span></div>
+                <div class="nav-center" onclick="nav('agency')"><i class="fas fa-users"></i></div>
+                <div class="nav-item" id="n-withdraw" onclick="nav('withdraw')"><i class="fas fa-money-bill"></i><span data-lang="withdraw">Withdraw</span></div>
+                <div class="nav-item" id="n-account" onclick="nav('account')"><i class="fas fa-user-circle"></i><span data-lang="profile">Profile</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="withdraw-password-modal" class="security-modal" role="dialog" aria-modal="true">
+      <div class="security-box">
+        <div style="text-align:center;color:#b88a3b;font-size:30px;margin-bottom:8px"><i class="fas fa-shield-alt"></i></div>
+        <h3>Confirm Withdrawal</h3><p>নিরাপত্তার জন্য আপনার অ্যাকাউন্টের লগইন পাসওয়ার্ড দিন।</p>
+        <input type="password" id="withdraw-login-password" placeholder="Login password" autocomplete="current-password">
+        <div class="security-actions"><button class="security-cancel" onclick="closeWithdrawPassword()">Cancel</button><button class="security-confirm" id="confirm-withdraw-btn" onclick="confirmWithdrawPassword()">Confirm</button></div>
+      </div>
+    </div>
+    <!-- SAFE MODAL (For Transfer In/Out) -->
+    <div id="safe-modal" class="modal-overlay" style="background: rgba(0,0,0,.7); backdrop-filter: blur(5px); display: none; height: 100%; left: 0; position: fixed; top: 0; width: 100%; z-index: 2000;">
+        <div style="background: #fff; border-radius: 20px; left: 50%; padding: 20px; position: absolute; top: 50%; transform: translate(-50%, -50%); width: 90%; max-width: 360px;">
+            <h3 id="safe-modal-title" style="text-align:center; margin-bottom:15px; color:#1e293b;">Transfer In</h3>
+            <div class="input-group" style="margin:0 0 15px">
+                <label>Amount</label>
+                <div class="input-wrapper">
+                    <span style="font-weight:800;color:var(--primary)">৳</span>
+                    <input type="number" id="safe-amt-input" placeholder="Enter amount">
+                </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                <button class="btn-main" style="margin:0; width:100%; background:#64748b;" onclick="closeSafeModal()">Cancel</button>
+                <button class="btn-main" style="margin:0; width:100%;" id="safe-modal-btn" onclick="processSafeAction()">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, get, update, increment, remove, runTransaction } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyAy9PPm5UJpuhxfuPhNgocsUOOBFXXlmzU8",
+            authDomain: "pay-admin-98aca.firebaseapp.com",
+            databaseURL: "https://pay-admin-98aca-default-rtdb.firebaseio.com",
+            projectId: "pay-admin-98aca",
+            storageBucket: "pay-admin-98aca.firebasestorage.app",
+            messagingSenderId: "183780095284",
+            appId: "1:183780095284:web:c26822afd79efc4a826161",
+            measurementId: "G-B6EF5RW1WZ"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const configData = { sliders: ["https://i.ibb.co.com/jZ8WpYV2/file-0000000071bc8211a9fa9148346c1998.png", "https://i.ibb.co.com/YTjQ06mG/file-00000000c6888211b5cf9b25a6b604f5.png", "https://i.ibb.co.com/r2Xd3DH3/file-00000000eaac82119569dc0ad4c1de43.png"] };
+        
+        const gameLinks = { 
+            Aviator: atob("aHR0cHM6Ly9kay1jbHViLWF2YWl0b3IudmVyY2VsLmFwcC8="), 
+            Wingo: atob("aHR0cHM6Ly90aWt0b2toYXNhbjAzNzUtY3RybC5naXRodWIuaW8vREstQ0xVQi1XSU5HTy8="), 
+            Chicken: "https://dk-club-chicken-road.vercel.app/", 
+            "JILI Slot": "https://jaligame.vercel.app/", 
+            "PG Soft": "#", 
+            "Pragmatic Play": "#" 
+        };
+
+        const gatewayLinks = { 
+            bkash: "https://bdapicasoier5gopaylive-bgp-1-cc-4-e.vercel.app/", 
+            nagad: "https://bdapicashier5gopaylive-ngp-1-cc-4-e.vercel.app/", 
+            binance: atob("aHR0cHM6Ly9ic2piZGRqLnZlcmNlbC5hcHAv") 
+        };
+        
+        // --- LANGUAGE SYSTEM ---
+        window.langData = {
+            en: {
+                auth_slogan: "Win Big with the Most Trusted Platform",
+                login: "Login", register: "Register", account_number: "Account Number", password: "Password", login_btn: "Login to Account",
+                phone_number: "Phone Number", new_password: "New Password", confirm_password: "Confirm Password", invite_code: "Invite Code", create_account: "Create Account",
+                welcome_notice: "Welcome to StarLight! Deposit now and get 100% bonus on your first deposit. Withdrawals within 30 mins. 🔥",
+                all: "All", slots: "Slots", live: "Live", fishing: "Fishing", sports: "Sports", dice: "Dice",
+                vip_benefits: "VIP BENEFITS", vip_subtitle: "Exclusive Daily Salary for Active Players",
+                total_commission: "Total Commission", direct_comm: "5% Direct Commission", total_team: "Total Team (Check)", today_earn: "Today Earn",
+                invitation_code: "Invitation Code", copy: "Copy", invitation_link: "Invitation Link", copy_link: "Copy Link",
+                my_downline: "My Downline", phone: "Phone", balance: "Balance", deposit: "Deposit",
+                deposit_money: "Deposit Money", local_wallet: "Local Wallet", amount_limit_dep: "Amount (৳100 - ৳25,000)", deposit_now: "Deposit Now",
+                withdraw_funds: "Withdraw Funds", required_turnover: "Required Turnover:", amount_min_with: "Amount (Min ৳100)", account_password: "Account Password", withdraw_now: "Withdraw Now",
+                add_wallet_card: "Add Wallet/Card", wallet_number: "Wallet Number", save_wallet: "Save Wallet Card",
+                last_login: "Last login:", total_balance: "Total balance", wallet: "Wallet", safe: "Safe", safe_info_short: "The daily interest rate is 0.1%, and the income is calculated once every 1 minutes.",
+                game_history: "Game History", my_game_history: "My game history", transaction: "Transaction", my_trans_history: "My transaction history",
+                my_dep_history: "My deposit history", withdraw: "Withdraw", my_with_history: "My withdraw history", notification: "Notification", gifts: "Gifts",
+                game_stats: "Game statistics", language: "Language", service_center: "Service center", settings: "Settings", feedback: "Feedback", announcement: "Announcement",
+                customer_service: "Customer Service", beginners_guide: "Beginner's Guide", about_us: "About us", log_out: "Log out", home: "Home", profile: "Profile",
+                deposit_history: "Deposit History", withdraw_history: "Withdraw History", date: "Date", amount: "Amount", status: "Status",
+                guide_toast: "Guide loading..."
+            },
+            bn: {
+                auth_slogan: "সবচেয়ে বিশ্বস্ত প্ল্যাটফর্মে বড় জিতুন",
+                login: "লগইন", register: "রেজিস্টার", account_number: "অ্যাকাউন্ট নম্বর", password: "পাসওয়ার্ড", login_btn: "লগইন করুন",
+                phone_number: "মোবাইল নম্বর", new_password: "নতুন পাসওয়ার্ড", confirm_password: "পাসওয়ার্ড নিশ্চিত করুন", invite_code: "ইনভাইট কোড", create_account: "অ্যাকাউন্ট তৈরি করুন",
+                welcome_notice: "StarLight এ স্বাগতম! এখনই ডিপোজিট করুন এবং প্রথম ডিপোজিটে ১০০% বোনাস পান। ৩০ মিনিটের মধ্যে উত্তোলন। 🔥",
+                all: "সকল", slots: "স্লট", live: "লাইভ", fishing: "ফিশিং", sports: "স্পোর্টস", dice: "ডাইস",
+                vip_benefits: "ভিআইপি সুবিধা", vip_subtitle: "সক্রিয় খেলোয়াড়দের জন্য একচেটিয়া দৈনিক বেতন",
+                total_commission: "মোট কমিশন", direct_comm: "৫% সরাসরি কমিশন", total_team: "মোট টিম (চেক)", today_earn: "আজকের আয়",
+                invitation_code: "আমন্ত্রণ কোড", copy: "কপি", invitation_link: "আমন্ত্রণ লিংক", copy_link: "লিংক কপি",
+                my_downline: "আমার ডাউনলাইন", phone: "ফোন", balance: "ব্যালেন্স", deposit: "ডিপোজিট",
+                deposit_money: "টাকা জমা করুন", local_wallet: "লোকাল ওয়ালেট", amount_limit_dep: "পরিমাণ (৳১০০ - ৳২৫,০০০)", deposit_now: "এখনই জমা করুন",
+                withdraw_funds: "টাকা উত্তোলন", required_turnover: "প্রয়োজনীয় টার্নওভার:", amount_min_with: "পরিমাণ (সর্বনিম্ন ৳১০০)", account_password: "অ্যাকাউন্ট পাসওয়ার্ড", withdraw_now: "এখনই উত্তোলন করুন",
+                add_wallet_card: "ওয়ালেট/কার্ড যোগ করুন", wallet_number: "ওয়ালেট নম্বর", save_wallet: "ওয়ালেট সেভ করুন",
+                last_login: "সর্বশেষ লগইন:", total_balance: "মোট ব্যালেন্স", wallet: "ওয়ালেট", safe: "সেভ বক্স", safe_info_short: "দৈনিক সুদ ০.১%, প্রতি ১ মিনিটে গণনা হয়।",
+                game_history: "খেলা ইতিহাস", my_game_history: "আমার খেলার ইতিহাস", transaction: "লেনদেন", my_trans_history: "আমার লেনদেনের ইতিহাস",
+                my_dep_history: "আমার ডিপোজিট ইতিহাস", withdraw: "উত্তোলন", my_with_history: "আমার উত্তোলনের ইতিহাস", notification: "নোটিফিকেশন", gifts: "উপহার",
+                game_stats: "খেলা পরিসংখ্যান", language: "ভাষা", service_center: "সেবা কেন্দ্র", settings: "সেটিংস", feedback: "মতামত", announcement: "ঘোষণা",
+                customer_service: "কাস্টমার সার্ভিস", beginners_guide: "নতুনদের গাইড", about_us: "আমাদের সম্পর্কে", log_out: "লগ আউট", home: "হোম", profile: "প্রোফাইল",
+                deposit_history: "ডিপোজিট ইতিহাস", withdraw_history: "উত্তোলন ইতিহাস", date: "তারিখ", amount: "পরিমাণ", status: "স্ট্যাটাস",
+                guide_toast: "গাইড লোড হচ্ছে..."
+            }
+        };
+
+        window.currentLang = localStorage.getItem("b20_lang") || "en";
+
+        window.setLanguage = function(lang) {
+            currentLang = lang;
+            localStorage.setItem("b20_lang", lang);
+            applyLanguage();
+            
+            document.querySelectorAll('.lang-item').forEach(el => el.classList.remove('active'));
+            if(lang === 'en') document.getElementById('lang-en').classList.add('active');
+            else if(lang === 'bn') document.getElementById('lang-bn').classList.add('active');
+            else document.getElementById('lang-en').classList.add('active');
+
+            showToast(lang === 'bn' ? "ভাষা বাংলা করা হয়েছে" : "Language set to English");
+        };
+
+        window.applyLanguage = function() {
+            const langDisplay = document.getElementById("current-lang-display");
+            if(langDisplay) langDisplay.innerText = currentLang === 'bn' ? "বাংলা" : "English";
+            
+            document.querySelectorAll("[data-lang]").forEach(el => {
+                const key = el.getAttribute("data-lang");
+                if(langData[currentLang][key]) {
+                    el.innerText = langData[currentLang][key];
+                }
+            });
+            if(typeof setDepM === 'function') setDepM(selectedDepM); 
+            if(typeof setWithM === 'function') setWithM(selectedWithM);
+        };
+
+        // --- SAFE SYSTEM LOGIC ---
+        let safeInterval = null;
+        let currentSafeAction = 'save';
+
+        window.openSafeModal = function(action) {
+            currentSafeAction = action;
+            document.getElementById("safe-modal").style.display = "block";
+            document.getElementById("safe-modal-title").innerText = action === 'save' ? "Transfer In" : "Transfer Out";
+            document.getElementById("safe-amt-input").value = "";
+        };
+
+        window.closeSafeModal = function() {
+            document.getElementById("safe-modal").style.display = "none";
+        };
+
+        window.processSafeAction = async function() {
+            const amt = parseFloat(document.getElementById("safe-amt-input").value);
+            const phone = localStorage.getItem("userPhone");
+            if(!amt || amt <= 0) return showToast("❌ Invalid Amount");
+
+            try {
+                const snap = await get(ref(db, "users/" + phone));
+                const user = snap.val();
+                const mainBal = parseFloat(user.balance || 0);
+                const safeBal = parseFloat(user.safeBalance || 0);
+
+                if(currentSafeAction === 'save') {
+                    if(mainBal < amt) return showToast("❌ Insufficient Main Balance");
+                    await update(ref(db, "users/" + phone), { balance: increment(-amt), safeBalance: increment(amt) });
+                    showToast("✅ Transferred In Successfully!");
+                } else {
+                    if(safeBal < amt) return showToast("❌ Insufficient Safe Balance");
+                    await update(ref(db, "users/" + phone), { balance: increment(amt), safeBalance: increment(-amt) });
+                    showToast("✅ Transferred Out Successfully!");
+                }
+                closeSafeModal();
+                refreshBalance();
+            } catch(e) { showToast("❌ Error: " + e.message); }
+        };
+
+        // --- NOTIFICATION TABS ---
+        window.switchNotifTab = function(tab) {
+            document.getElementById('notif-tab-1').classList.remove('active');
+            document.getElementById('notif-tab-2').classList.remove('active');
+            document.getElementById('notif-tab-' + tab).classList.add('active');
+            
+            const content = document.getElementById('notif-content-area');
+            if(tab === 1) {
+                content.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>No data</p></div>`;
+            } else {
+                content.innerHTML = `<div class="empty-state"><i class="fas fa-info-circle"></i><p>No information</p></div>`;
+            }
+        };
+
+        // --- GIFT PAGE REDEEM ---
+        window.redeemGiftPage = async function() {
+            const code = document.getElementById("gift-page-input").value.trim();
+            const phone = localStorage.getItem("userPhone");
+            if (!code) return showToast("❌ Enter Code");
+            try {
+                const giftRef = ref(db, "giftcodes/" + code);
+                const snapshot = await get(giftRef);
+                if (snapshot.exists()) {
+                    const giftData = snapshot.val();
+                    const amt = parseFloat(giftData.amount);
+                    await update(ref(db, "users/" + phone), { balance: increment(amt) });
+                    await remove(giftRef);
+                    showToast(`✅ Congrats! ৳${amt} Redeemed`);
+                    document.getElementById("gift-page-input").value = "";
+                } else {
+                    showToast("❌ Invalid or used code!");
+                }
+            } catch (err) { showToast("❌ System Error!"); }
+        };
+
+        // --- EXISTING FUNCTIONS ---
+        window.processLogin = async function() { 
+            let p = document.getElementById("l-phone").value.trim(), pass = document.getElementById("l-pass").value.trim(); 
+            if (!p || !pass) return showToast("❌ Enter Info"); 
+            const t = p.startsWith("0") ? p : "0" + p; 
+            try { 
+                const snapshot = await get(ref(db, "users/" + t)); 
+                if (snapshot.exists()) { 
+                    const userData = snapshot.val(); 
+                    if(userData.password === pass) { 
+                        localStorage.setItem("isLoggedIn", "true"); 
+                        localStorage.setItem("userPhone", t); 
+                        enterDashboard(); 
+                    } else { 
+                        showToast("❌ Invalid Password!"); 
+                    } 
+                } else { 
+                    showToast("❌ User Not Found!"); 
+                } 
+            } catch (err) { 
+                console.error(err);
+                showToast("❌ Connection Error! Check Internet."); 
+            } 
+        };
+        
+        window.processRegister = async function() { 
+            const p = document.getElementById("r-phone").value.trim(), pass = document.getElementById("r-pass").value.trim(), cpass = document.getElementById("r-cpass").value.trim(), refCode = document.getElementById("r-ref").value.trim(); 
+            if (p.length < 10) return showToast("❌ Enter valid number"); 
+            if (pass.length < 6) return showToast("❌ Password min 6 chars"); 
+            if (pass !== cpass) return showToast("❌ Password mismatch"); 
+            const t = p.startsWith("0") ? p : "0" + p; 
+            try { 
+                const checkUser = await get(ref(db, "users/" + t)); 
+                if (checkUser.exists()) return showToast("❌ Number already exists"); 
+                const uid = Math.floor(1e5 + 9e5 * Math.random()), newUser = { phone: t, password: pass, balance: 0, turnover: 0, uid: uid, memberName: "MEMBER", referredBy: refCode || "", totalCommission: 0, todayEarn: 0, totalTeam: 0, totalDeposit: 0, safeBalance: 0, lastLogin: Date.now() }; 
+                await set(ref(db, "users/" + t), newUser); 
+                if(refCode) { 
+                    const allUsers = await get(ref(db, "users")); 
+                    allUsers.forEach(child => { 
+                        if(child.val().uid == refCode) { 
+                            update(ref(db, "users/" + child.key), { totalTeam: increment(1) }); 
+                        } 
+                    }); 
+                } 
+                showToast("✅ Success! Please Login"); 
+                switchAuth("login"); 
+            } catch (err) { 
+                console.error(err);
+                showToast("❌ Registration Failed!"); 
+            } 
+        };
+        
+        window.enterDashboard = function() { 
+            applyLanguage(); 
+            document.getElementById("auth-container").classList.add("hidden"); 
+            document.getElementById("main-dashboard").classList.remove("hidden"); 
+            const phone = localStorage.getItem("userPhone"); 
+            if (!phone) return logout(); 
+            
+            // Initialize Deposit Page UI safely
+            if(typeof setDepM === 'function') setDepM('bkash');
+
+            onValue(ref(db, "users/" + phone), snapshot => { 
+                const data = snapshot.val(); 
+                if (data) { 
+                    const bal = "৳" + parseFloat(data.balance).toFixed(2); 
+                    const userBalEl = document.getElementById("user-bal");
+                    const depTopBalEl = document.getElementById("dep-top-bal");
+                    const withTopBalEl = document.getElementById("with-top-bal");
+                    const withLimitBalEl = document.getElementById("with-limit-bal");
+                    
+                    if(userBalEl) userBalEl.innerText = bal; 
+                    if(depTopBalEl) depTopBalEl.innerText = bal; 
+                    if(withTopBalEl) withTopBalEl.innerText = bal;
+                    if(withLimitBalEl) withLimitBalEl.innerText = bal;
+                    
+                    const uidGenEl = document.getElementById("uid-gen");
+                    const uidGenHeaderEl = document.getElementById("uid-gen-header");
+                    if(uidGenEl) uidGenEl.innerText = data.uid; 
+                    if(uidGenHeaderEl) uidGenHeaderEl.innerText = data.uid; 
+                    
+                    const withRuleTurnoverEl = document.getElementById("with-rule-turnover");
+                    if(withRuleTurnoverEl) withRuleTurnoverEl.innerText = "৳" + (data.turnover || 0).toFixed(2);
+                    
+                    const mName = data.memberName || "MEMBER";
+                    const displayMemberNameEl = document.getElementById("display-member-name");
+                    const setNicknameDisplayEl = document.getElementById("set-nickname-display");
+                    const setUidDisplayEl = document.getElementById("set-uid-display");
+                    
+                    if(displayMemberNameEl) displayMemberNameEl.innerText = mName;
+                    if(setNicknameDisplayEl) setNicknameDisplayEl.innerText = mName + data.uid + " >";
+                    if(setUidDisplayEl) setUidDisplayEl.innerText = data.uid;
+
+                    const safeBal = parseFloat(data.safeBalance || 0).toFixed(2);
+                    const accSafeBalDisplayEl = document.getElementById("acc-safe-bal-display");
+                    const safePageBalDisplayEl = document.getElementById("safe-page-bal-display");
+                    if(accSafeBalDisplayEl) accSafeBalDisplayEl.innerText = "৳" + safeBal;
+                    if(safePageBalDisplayEl) safePageBalDisplayEl.innerText = "৳" + safeBal;
+
+                    if(data.lastLogin) {
+                        const d = new Date(data.lastLogin);
+                        const formattedDate = d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,'0') + "-" + String(d.getDate()).padStart(2,'0') + " " + String(d.getHours()).padStart(2,'0') + ":" + String(d.getMinutes()).padStart(2,'0') + ":" + String(d.getSeconds()).padStart(2,'0');
+                        const lastLoginTimeEl = document.getElementById("last-login-time");
+                        if(lastLoginTimeEl) lastLoginTimeEl.innerText = formattedDate;
+                    }
+
+                    const link = window.location.origin + window.location.pathname + "?ref=" + data.uid; 
+                    const refLinkDisplayEl = document.getElementById("ref-link-display");
+                    const refCodeDisplayEl = document.getElementById("ref-code-display");
+                    const totalCommDisplayEl = document.getElementById("total-comm-display");
+                    const todayEarnDisplayEl = document.getElementById("today-earn-display");
+                    const teamCountDisplayEl = document.getElementById("team-count-display");
+                    
+                    if(refLinkDisplayEl) refLinkDisplayEl.innerText = link; 
+                    if(refCodeDisplayEl) refCodeDisplayEl.innerText = data.uid; 
+                    if(totalCommDisplayEl) totalCommDisplayEl.innerText = "৳ " + (data.totalCommission || 0).toFixed(2); 
+                    if(todayEarnDisplayEl) todayEarnDisplayEl.innerText = "৳" + (data.todayEarn || 0).toFixed(2); 
+                    if(teamCountDisplayEl) teamCountDisplayEl.innerText = data.totalTeam || 0; 
+                    
+                    const telegramShareBtnEl = document.getElementById("telegram-share-btn");
+                    if(telegramShareBtnEl) {
+                        telegramShareBtnEl.onclick = function() { 
+                            const msg = encodeURIComponent(`🔥 Join StarLight and win big! Use my invite link: ${link}`); 
+                            window.open(`https://t.me/share/url?url=${link}&text=${msg}`, "_blank"); 
+                        }; 
+                    }
+                    loadDownline(data.uid); 
+                    renderWithdrawCard(data);
+                } else { logout(); } 
+            }); 
+            loadHistories(); 
+            startSlider(); 
+            processCommissions(); 
+
+            // Safe Interval
+            if(!safeInterval) {
+                safeInterval = setInterval(async () => {
+                    try {
+                        const s = await get(ref(db, "users/" + phone));
+                        if(s.exists()) {
+                            const bal = parseFloat(s.val().safeBalance || 0);
+                            if(bal > 0) {
+                                const interest = bal * 0.001; // 0.1%
+                                await update(ref(db, "users/" + phone), { safeBalance: increment(interest) });
+                            }
+                        }
+                    } catch(e) { console.error("Safe interval error", e); }
+                }, 60000); 
+            }
+        };
+
+        function renderWithdrawCard(data) {
+            const cards = data && data.cards ? data.cards : null;
+            let firstCard = null;
+            if(cards) {
+                if(cards.method && cards.num) firstCard = cards;
+                else { const keys = Object.keys(cards); if(keys.length) firstCard = cards[keys[0]]; }
+            }
+            const addPage = document.getElementById("add-card-page");
+            const note = document.getElementById("wallet-lock-note");
+            const saveBtn = addPage ? addPage.querySelector("button[onclick='saveCard()']") : null;
+            const controls = addPage ? addPage.querySelectorAll("#ac-name,#ac-num") : [];
+            if(firstCard) {
+                window.activeCard = firstCard;
+                const methodEl=document.getElementById("with-card-method"), numEl=document.getElementById("with-card-num");
+                if(methodEl) methodEl.innerText=String(firstCard.method||"Wallet").toUpperCase();
+                if(numEl) numEl.innerText=firstCard.num||"";
+                const iconBg=document.getElementById("with-card-icon-bg");
+                if(iconBg) {
+                    iconBg.style.background=firstCard.method==="bkash"?"#fee2e2":"#ffedd5";
+                    iconBg.innerHTML=firstCard.method==="bkash"
+                      ? '<img src="https://files.catbox.moe/u73hdj.png" style="width:100%;height:100%;object-fit:contain;padding:2px;">'
+                      : '<img src="https://files.catbox.moe/nkqw14.png" style="width:100%;height:100%;object-fit:contain;padding:2px;">';
+                }
+                if(note) note.innerText="আপনার Wallet ইতিমধ্যে যুক্ত করা হয়েছে। নিরাপত্তার কারণে এটি Lock করা আছে; Edit বা নতুন Wallet যোগ করা যাবে না।";
+                if(saveBtn) saveBtn.disabled=true;
+                controls.forEach(el=>el.disabled=true);
+            } else {
+                window.activeCard=null;
+                if(note) note.innerText="একটি মাত্র Wallet যোগ করা যাবে। Save করার পর তথ্য আর পরিবর্তন করা যাবে না।";
+                if(saveBtn) saveBtn.disabled=false;
+                controls.forEach(el=>el.disabled=false);
+            }
+        }
+        window.openAddCard = async function() {
+            const phone=localStorage.getItem("userPhone");
+            if(!phone) return showToast("Please login first");
+            try {
+                const snap=await get(ref(db,"users/"+phone+"/cards"));
+                if(snap.exists()) {
+                    const userSnap=await get(ref(db,"users/"+phone));
+                    if(userSnap.exists()) renderWithdrawCard(userSnap.val());
+                    showToast("এই Wallet একবার যুক্ত হয়েছে। আর পরিবর্তন করা যাবে না।");
+                    return;
+                }
+                nav("add-card");
+            } catch(e) { showToast("Wallet status check failed"); }
+        };
+
+        async function processCommissions() { 
+            onValue(ref(db, "deposits"), async (snapshot) => { 
+                if (!snapshot.exists()) return; 
+                snapshot.forEach(async (child) => { 
+                    const dep = child.val(); 
+                    if (dep.status === "Success" && !dep.commProcessed) { 
+                        try {
+                            const userSnap = await get(ref(db, "users/" + dep.phone)); 
+                            if (userSnap.exists()) { 
+                                const userData = userSnap.val(), inviterUid = userData.referredBy; 
+                                if (inviterUid) { 
+                                    const commission = dep.amount * 0.05, usersSnap = await get(ref(db, "users")); 
+                                    usersSnap.forEach(uChild => { 
+                                        if (uChild.val().uid == inviterUid) { 
+                                            update(ref(db, "users/" + uChild.key), { balance: increment(commission), totalCommission: increment(commission), todayEarn: increment(commission) }); 
+                                        } 
+                                    }); 
+                                } 
+                                update(ref(db, "users/" + dep.phone), { totalDeposit: increment(dep.amount) }); 
+                            } 
+                            update(ref(db, "deposits/" + child.key), { commProcessed: true }); 
+                        } catch(e) { console.error("Commission error", e); }
+                    } 
+                }); 
+            }); 
+        }
+        
+        window.loadDownline = async function(myUid) { 
+            onValue(ref(db, "users"), (snapshot) => { 
+                const list = document.getElementById("downline-list"); 
+                if(!list) return;
+                let html = ""; 
+                if(snapshot.exists()) { 
+                    snapshot.forEach(child => { 
+                        const u = child.val(); 
+                        if(u.referredBy == myUid) { 
+                            html += `<tr><td>${u.uid}</td><td>${u.phone.substring(0, 3)}***${u.phone.substring(8)}</td><td>৳${(u.balance || 0).toFixed(1)}</td><td>৳${u.totalDeposit || 0}</td></tr>`; 
+                        } 
+                    }); 
+                } 
+                list.innerHTML = html || "<tr><td colspan='4' style='text-align:center'>No Downline Found</td></tr>"; 
+            }); 
+        };
+        
+        window.searchDownline = async function() { 
+            const sUid = document.getElementById("downline-search-uid").value.trim();
+            const uidGenEl = document.getElementById("uid-gen");
+            const myUid = uidGenEl ? uidGenEl.innerText : "";
+            
+            if (!sUid) return showToast("❌ Enter UID"); 
+            try { 
+                const snapshot = await get(ref(db, "users")); 
+                let html = "", found = false; 
+                snapshot.forEach(child => { 
+                    const u = child.val(); 
+                    if (u.uid == sUid && u.referredBy == myUid) { 
+                        html = `<tr><td>${u.uid}</td><td>${u.phone.substring(0, 3)}***${u.phone.substring(8)}</td><td>৳${u.balance.toFixed(1)}</td><td>৳${u.totalDeposit || 0}</td></tr>`; 
+                        found = true; 
+                    } 
+                }); 
+                if(found) { 
+                    document.getElementById("downline-list").innerHTML = html; 
+                    showToast("✅ User Found"); 
+                } else { 
+                    showToast("❌ This UID is not in your downline!"); 
+                } 
+            } catch (err) { 
+                console.error(err);
+                showToast("❌ Search Failed"); 
+            } 
+        };
+        
+        // --- UPDATED WITHDRAW LOGIC ---
+        let selectedWithM = "ewallet";
+        window.setWithM = function(m) {
+            selectedWithM = m;
+            document.querySelectorAll(".with-method-btn").forEach(b => b.classList.remove("active"));
+            const btn = document.getElementById("w-" + m);
+            if(btn) btn.classList.add("active");
+            
+            const ewalletCard = document.getElementById("with-ewallet-card");
+            const usdtInfo = document.getElementById("with-usdt-info");
+            const inputSym = document.getElementById("with-input-sym");
+            const ruleRange = document.getElementById("with-rule-range");
+
+            if(m === 'ewallet') {
+                if(ewalletCard) ewalletCard.classList.remove("hidden");
+                if(usdtInfo) usdtInfo.classList.add("hidden");
+                if(inputSym) inputSym.innerText = "৳";
+                if(ruleRange) ruleRange.innerText = "৳100.00 - ৳25,000.00";
+            } else {
+                if(ewalletCard) ewalletCard.classList.add("hidden");
+                if(usdtInfo) usdtInfo.classList.remove("hidden");
+                if(inputSym) inputSym.innerText = "$";
+                if(ruleRange) ruleRange.innerText = "$10.00 - $5,000.00";
+            }
+            checkWithBtn();
+        };
+
+        window.setMaxWith = function() {
+            const limitBalEl = document.getElementById("with-limit-bal");
+            if(!limitBalEl) return;
+            const balText = limitBalEl.innerText.replace('৳', '').replace(',', '');
+            const wAmtEl = document.getElementById("w-amt");
+            if(wAmtEl) wAmtEl.value = balText;
+            checkWithBtn();
+        };
+
+        window.checkWithBtn = function() {
+            const wAmtEl = document.getElementById("w-amt");
+            const amt = wAmtEl ? parseFloat(wAmtEl.value) : 0;
+            const btn = document.getElementById("with-submit-btn");
+            const received = document.getElementById("with-received-amt");
+            
+            if(amt > 0) {
+                if(btn) btn.classList.add("ready");
+                if(received) received.innerText = (selectedWithM === 'ewallet' ? "৳" : "$") + amt.toFixed(2);
+            } else {
+                if(btn) btn.classList.remove("ready");
+                if(received) received.innerText = (selectedWithM === 'ewallet' ? "৳" : "$") + "0.00";
+            }
+        };
+
+        window.submitWith = async function() {
+            const wAmtEl=document.getElementById("w-amt"), amt=wAmtEl?parseFloat(wAmtEl.value):0;
+            const phone=localStorage.getItem("userPhone");
+            if(!phone) return showToast("Please login first");
+            if(selectedWithM==="ewallet") {
+                if(!window.activeCard) return showToast("❌ Please add a wallet first");
+                if(!amt||amt<100) return showToast("❌ Minimum withdraw 100 TK");
+            } else if(!amt||amt<10) return showToast("❌ Minimum withdraw 10 USDT");
+            if(!Number.isFinite(amt)||amt<=0) return showToast("❌ Invalid amount");
+            try {
+                const snap=await get(ref(db,"users/"+phone));
+                if(!snap.exists()) return showToast("Account not found");
+                const user=snap.val();
+                if((user.turnover||0)>0) return showToast("❌ Turnover remaining!");
+                if(Number(user.balance||0)<amt) return showToast("❌ Insufficient balance");
+                window.pendingWithdraw={amount:amt,phone,method:selectedWithM,
+                  wallet:selectedWithM==="ewallet"?window.activeCard.num:"USDT Address",
+                  cardMethod:selectedWithM==="ewallet"?window.activeCard.method:"USDT"};
+                const modal=document.getElementById("withdraw-password-modal"), pass=document.getElementById("withdraw-login-password");
+                if(pass) pass.value="";
+                if(modal) modal.classList.add("show");
+                if(pass) pass.focus();
+            } catch(e) { console.error(e); showToast("Unable to verify account"); }
+        };
+        window.closeWithdrawPassword=function() {
+            const modal=document.getElementById("withdraw-password-modal");
+            if(modal) modal.classList.remove("show");
+            window.pendingWithdraw=null;
+        };
+        window.confirmWithdrawPassword=async function() {
+            const pending=window.pendingWithdraw, passEl=document.getElementById("withdraw-login-password");
+            const password=passEl?passEl.value:"";
+            if(!pending) return closeWithdrawPassword();
+            if(!password) return showToast("লগইন পাসওয়ার্ড দিন");
+            const btn=document.getElementById("confirm-withdraw-btn");
+            if(btn) btn.disabled=true;
+            try {
+                const userRef=ref(db,"users/"+pending.phone), snap=await get(userRef);
+                if(!snap.exists()) return showToast("Account not found");
+                const user=snap.val();
+                if(user.password!==password) { if(passEl) passEl.value=""; return showToast("❌ ভুল লগইন পাসওয়ার্ড"); }
+                if((user.turnover||0)>0) return showToast("❌ Turnover remaining!");
+                if(Number(user.balance||0)<pending.amount) return showToast("❌ Insufficient balance");
+                if(pending.method==="ewallet") {
+                    const cards=user.cards||{}, saved=cards.method?cards:cards[Object.keys(cards)[0]];
+                    if(!saved||saved.num!==pending.wallet||saved.method!==pending.cardMethod) return showToast("Saved wallet mismatch");
+                }
+                await update(userRef,{balance:Number(user.balance||0)-pending.amount});
+                await push(ref(db,"withdrawals/"),{phone:pending.phone,amount:pending.amount,method:pending.cardMethod,wallet:pending.wallet,status:"Pending",date:new Date().toLocaleString()});
+                closeWithdrawPassword();
+                const amountInput=document.getElementById("w-amt"); if(amountInput) amountInput.value="";
+                checkWithBtn(); showToast("✅ Withdrawal request submitted"); nav("account");
+            } catch(err) { console.error(err); showToast("❌ Withdrawal failed"); }
+            finally { if(btn) btn.disabled=false; }
+        };
+
+        window.refreshBalance = async function() { 
+            const phone = localStorage.getItem("userPhone"); 
+            if (phone) { 
+                try { 
+                    const snapshot = await get(ref(db, "users/" + phone)); 
+                    if (snapshot.exists()) { 
+                        const b = parseFloat(snapshot.val().balance).toFixed(2); 
+                        const userBalEl = document.getElementById("user-bal");
+                        const depTopBalEl = document.getElementById("dep-top-bal");
+                        const withTopBalEl = document.getElementById("with-top-bal");
+                        const withLimitBalEl = document.getElementById("with-limit-bal");
+                        
+                        if(userBalEl) userBalEl.innerText = "৳" + b; 
+                        if(depTopBalEl) depTopBalEl.innerText = "৳" + b; 
+                        if(withTopBalEl) withTopBalEl.innerText = "৳" + b; 
+                        if(withLimitBalEl) withLimitBalEl.innerText = "৳" + b; 
+                        showToast("🔄 Balance Updated"); 
+                    } 
+                } catch (err) { 
+                    console.error(err);
+                    showToast("❌ Refresh Failed"); 
+                } 
+            } 
+        };
+        
+        // --- UPDATED ADD CARD LOGIC ---
+        let selectedAddM = "Please choose";
+        window.toggleAddMethodDropdown = function() {
+            const dd = document.getElementById("ac-method-dropdown");
+            if(dd) dd.classList.toggle("hidden");
+        };
+        window.selectAddMethod = function(m) {
+            selectedAddM = m;
+            const textEl = document.getElementById("ac-method-text");
+            const dd = document.getElementById("ac-method-dropdown");
+            if(textEl) textEl.innerText = m.toUpperCase();
+            if(dd) dd.classList.add("hidden");
+        };
+
+        window.saveCard = async function() {
+            const numEl=document.getElementById("ac-num"), nameEl=document.getElementById("ac-name");
+            const num=numEl?numEl.value.trim():"", name=nameEl?nameEl.value.trim():"", phone=localStorage.getItem("userPhone");
+            if(!phone) return showToast("Please login first");
+            if(!selectedAddM||selectedAddM==="Please choose") return showToast("❌ Select Type");
+            if(!name) return showToast("❌ Enter Name");
+            if(!num) return showToast("❌ Enter Account Number");
+            try {
+                const cardsRef=ref(db,`users/${phone}/cards`);
+                const result=await runTransaction(cardsRef,current=>{
+                    if(current&&Object.keys(current).length) return;
+                    return {primary:{method:selectedAddM,num,name,createdAt:Date.now()}};
+                });
+                if(!result.committed) {
+                    showToast("❌ একটি Wallet আগেই যুক্ত আছে। আর যোগ বা পরিবর্তন করা যাবে না।");
+                    const snap=await get(ref(db,"users/"+phone)); if(snap.exists()) renderWithdrawCard(snap.val());
+                    nav("withdraw"); return;
+                }
+                window.activeCard={method:selectedAddM,num,name};
+                const methodEl=document.getElementById("with-card-method"), numDisplay=document.getElementById("with-card-num");
+                if(methodEl) methodEl.innerText=selectedAddM.toUpperCase(); if(numDisplay) numDisplay.innerText=num;
+                const iconBg=document.getElementById("with-card-icon-bg");
+                if(iconBg) {
+                    iconBg.style.background=selectedAddM==="bkash"?"#fee2e2":"#ffedd5";
+                    iconBg.innerHTML=selectedAddM==="bkash"
+                      ? '<img src="https://files.catbox.moe/u73hdj.png" style="width:100%;height:100%;object-fit:contain;padding:2px;">'
+                      : '<img src="https://files.catbox.moe/nkqw14.png" style="width:100%;height:100%;object-fit:contain;padding:2px;">';
+                }
+                if(nameEl) nameEl.disabled=true; if(numEl) numEl.disabled=true;
+                showToast("✅ Wallet saved and locked"); nav("withdraw");
+            } catch(e) { console.error(e); showToast("❌ Wallet save failed"); }
+        };
+        
+        window.startSlider = function() { 
+            const s = document.getElementById("slider"), d = document.getElementById("slider-dots"); 
+            if (!s || !d) return; 
+            let idx = 0; 
+            d.innerHTML = configData.sliders.map((_, i) => `<div class="dot ${0 === i ? "active" : ""}"></div>`).join(""); 
+            setInterval(() => { 
+                idx = (idx + 1) % configData.sliders.length; 
+                s.style.backgroundImage = `url(${configData.sliders[idx]})`; 
+                document.querySelectorAll(".dot").forEach((dot, i) => dot.classList.toggle("active", i === idx)); 
+            }, 3000); 
+            s.style.backgroundImage = `url(${configData.sliders[0]})`; 
+        };
+        
+        window.loadHistories = function() { 
+            const phone = localStorage.getItem("userPhone"); 
+            if(!phone) return;
+            
+            // Table Histories
+            onValue(ref(db, "deposits/"), snapshot => { 
+                let html = ""; 
+                let inlineHtml = "";
+                let hasInline = false;
+                const depListEl = document.getElementById("dep-list");
+                const depInlineHistoryEl = document.getElementById("dep-inline-history");
+
+                snapshot.forEach(child => { 
+                    if (child.val().phone === phone) { 
+                        const d = child.val(); 
+                        html = `<tr><td>${d.date}</td><td>৳${d.amount}</td><td><span class="status-${d.status}">${d.status}</span></td></tr>` + html; 
+                        
+                        // Build inline card for Deposit Page (showing only the latest one as per video style)
+                        if(!hasInline) {
+                            hasInline = true;
+                            const statusClass = d.status === 'Pending' ? 'To Be Paid' : d.status;
+                            const statusColor = d.status === 'Pending' ? '#d97706' : (d.status === 'Success' ? '#10b981' : '#ef4444');
+                            const statusBg = d.status === 'Pending' ? '#fef3c7' : (d.status === 'Success' ? '#d1fae5' : '#fee2e2');
+                            
+                            inlineHtml = `
+                                <div class="dh-header">
+                                    <span style="background:var(--primary); color:#fff; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:bold;">Deposit</span>
+                                    <span style="background:${statusBg}; color:${statusColor}; padding:4px 10px; border-radius:6px; font-size:12px; font-weight:bold;">${statusClass}</span>
+                                </div>
+                                <div class="dh-row"><span class="label">Balance</span><span class="val amt">৳${parseFloat(d.amount).toFixed(2)}</span></div>
+                                <div class="dh-row"><span class="label">Type</span><span class="val">${d.method ? d.method.toUpperCase() : 'BKASH'}</span></div>
+                                <div class="dh-row"><span class="label">Time</span><span class="val">${d.date}</span></div>
+                                <div class="dh-row"><span class="label">Order number</span><span class="val" style="font-size:11px; word-break:break-all;">${child.key}</span></div>
+                                ${d.status === 'Pending' ? '<button class="dh-submit-receipt" onclick="showToast(\'Receipt feature coming soon\')">Submit Receipt</button>' : ''}
+                            `;
+                        }
+                    } 
+                }); 
+                if(depListEl) depListEl.innerHTML = html || "<tr><td colspan='3' style='text-align:center'>No Data</td></tr>"; 
+                if(depInlineHistoryEl) depInlineHistoryEl.innerHTML = inlineHtml || `<div class="empty-state" style="padding: 20px;"><p>No recent deposits</p></div>`;
+            }); 
+
+            onValue(ref(db, "withdrawals/"), snapshot => { 
+                let html = ""; 
+                const withListEl = document.getElementById("with-list");
+                snapshot.forEach(child => { 
+                    if (child.val().phone === phone) { 
+                        const w = child.val(); 
+                        let alertMsg = w.status === "Rejected" ? `<span class="reject-msg">Hello, please contact customer support. Thanks!</span>` : ""; 
+                        html = `<tr><td>${w.date}</td><td>${w.method==='USDT'?'$':'৳'}${w.amount}</td><td><span class="status-${w.status}">${w.status}</span>${alertMsg}</td></tr>` + html 
+                    } 
+                }); 
+                if(withListEl) withListEl.innerHTML = html || "<tr><td colspan='3' style='text-align:center'>No Data</td></tr>"; 
+            }); 
+            
+            onValue(ref(db, "deposits/"), snapshot => { 
+                let tHtml = ""; 
+                const transListEl = document.getElementById("trans-list");
+                snapshot.forEach(child => { 
+                    if(child.val().phone === phone) {
+                        tHtml += `<tr><td style="color:green">+Deposit</td><td>৳${child.val().amount}</td><td>${child.val().date}</td></tr>`;
+                    }
+                });
+                onValue(ref(db, "withdrawals/"), wSnap => {
+                    wSnap.forEach(wChild => {
+                        if(wChild.val().phone === phone) {
+                            tHtml += `<tr><td style="color:red">-Withdraw</td><td>${wChild.val().method==='USDT'?'$':'৳'}${wChild.val().amount}</td><td>${wChild.val().date}</td></tr>`;
+                        }
+                    });
+                    if(transListEl) transListEl.innerHTML = tHtml || "<tr><td colspan='3' style='text-align:center'>No Transactions</td></tr>";
+                });
+            });
+            
+            const gameListEl = document.getElementById("game-list");
+            if(gameListEl) gameListEl.innerHTML = "<tr><td colspan='4' style='text-align:center; color:#94a3b8;'>Play games to see history</td></tr>";
+        };
+        
+        window.goFinalDep = function() { 
+            const dAmtEl = document.getElementById("d-amt");
+            const amt = dAmtEl ? dAmtEl.value : "";
+            const phone = localStorage.getItem("userPhone"); 
+            const min = "binance" === selectedDepM ? 1 : 100; 
+            const sym = "binance" === selectedDepM ? "$" : "৳"; 
+            
+            if (!amt || amt < min) return showToast(`❌ Minimum deposit ${sym}${min}`); 
+            const link = gatewayLinks[selectedDepM]; 
+            if(link) { 
+                showToast("Redirecting to Gateway..."); 
+                setTimeout(() => { window.location.href = `${link}?amount=${amt}&user=${phone}` }, 800); 
+            } else {
+                showToast("❌ Gateway link not found");
+            }
+        };
+        
+        window.playGame = async function(name) { 
+            const link = gameLinks[name], phone = localStorage.getItem("userPhone"); 
+            if(link && "#" !== link) { 
+                showToast("🎮 " + name + " Loading..."); 
+                setTimeout(() => { 
+                    const finalUrl = link + "?user=" + phone;
+                    const gameFrame = document.getElementById("game-frame");
+                    const gameContainer = document.getElementById("game-frame-container");
+                    if(gameFrame) gameFrame.src = finalUrl;
+                    if(gameContainer) gameContainer.style.display = "block";
+                    document.body.style.overflow = "hidden";
+                }, 800); 
+            } else { 
+                showToast("Min Deposit 100 TK"); 
+            } 
+        };
+        window.closeGame = function() {
+            const gameContainer = document.getElementById("game-frame-container");
+            const gameFrame = document.getElementById("game-frame");
+            if(gameContainer) gameContainer.style.display = "none";
+            if(gameFrame) gameFrame.src = "";
+            document.body.style.overflow = "auto";
+        };
+
+        window.addEventListener("load", () => { 
+            const refParam = new URLSearchParams(window.location.search).get("ref"); 
+            if (refParam) { 
+                switchAuth("reg"); 
+                const refInput = document.getElementById("r-ref"); 
+                if(refInput) refInput.value = refParam; 
+                showToast("✅ Referral detected!"); 
+            } 
+            if(localStorage.getItem("isLoggedIn") === "true") enterDashboard(); 
+        });
+    </script>
+
+    <script>
+        const dragItem = document.getElementById("floating-help");
+        let active = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
+        if(dragItem) {
+            dragItem.addEventListener("touchstart", e => { initialX = e.touches[0].clientX - xOffset, initialY = e.touches[0].clientY - yOffset, active = true });
+            dragItem.addEventListener("touchend", () => { active = false, (currentX || currentY) ? null : openHelp() });
+            dragItem.addEventListener("touchmove", e => { if(active) { e.preventDefault(), currentX = e.touches[0].clientX - initialX, currentY = e.touches[0].clientY - initialY, xOffset = currentX, yOffset = currentY, dragItem.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)` } });
+        }
+        
+        let selectedDepM = "bkash";
+        
+        // --- NEW DEPOSIT LOGIC MATCHING VIDEO ---
+        const depConfig = {
+            nagad: {
+                channels: [
+                    { name: "SGPa-naGaD", limit: "500 - 25K" },
+                    { name: "GoPay-NaGaD", limit: "500 - 25K" },
+                    { name: "LGPaY NaGaD", limit: "500 - 25K" },
+                    { name: "FaSTPaY NaGaD", limit: "500 - 25K" },
+                    { name: "SuNPaY NaGaD", limit: "500 - 25K" }
+                ],
+                amounts: [500, 500, 1000, 10000, 25000, 25000],
+                labels: ["500", "500", "1K", "10K", "25K", "25K"],
+                symbol: "৳",
+                title: "Deposit amount",
+                instructions: [
+                    "If the transfer time is up, please fill out the deposit form again.",
+                    "The transfer amount must match the order you created, otherwise the money cannot be credited successfully.",
+                    "If you transfer the wrong amount, our company will not be responsible for the lost amount!",
+                    "Note: do not cancel the deposit order after the money has been transferred."
+                ]
+            },
+            bkash: {
+                channels: [
+                    { name: "SGPaY BKASH", limit: "500 - 25K" },
+                    { name: "TBPaY BKASH", limit: "500 - 25K" },
+                    { name: "LGPaY BAKSH", limit: "500 - 25K" },
+                    { name: "SuPERPaY BKASH", limit: "500 - 25K" },
+                    { name: "FaSTPaY BKASH", limit: "500 - 25K" }
+                ],
+                amounts: [500, 600, 1000, 5000, 10000, 25000],
+                labels: ["500", "600", "1K", "5K", "10K", "25K"],
+                symbol: "৳",
+                title: "Deposit amount",
+                instructions: [
+                    "If the transfer time is up, please fill out the deposit form again.",
+                    "The transfer amount must match the order you created, otherwise the money cannot be credited successfully.",
+                    "If you transfer the wrong amount, our company will not be responsible for the lost amount!",
+                    "Note: do not cancel the deposit order after the money has been transferred."
+                ]
+            },
+            binance: {
+                channels: [
+                    { name: "UPAY-USDT", limit: "10 - 25K", bonus: "2% bonus" },
+                    { name: "UU-USDT", limit: "10 - 1M", bonus: "2% bonus" }
+                ],
+                amounts: [10, 50, 200, 500, 1000, 10000],
+                labels: ["10", "50", "200", "500", "1K", "10K"],
+                symbol: "₮",
+                title: "Select amount of USDT",
+                instructions: [
+                    "Minimum deposit: 10USDT, deposits less than 10USDT will not be credited",
+                    "Do not deposit any non-currency assets to the above address, or the assets will not be recovered.",
+                    "Please confirm that the operating environment is safe to avoid information being tampered with or leaked.",
+                    "The transfer amount must match the order you created, otherwise the money cannot be credited successfully.",
+                    "Note: do not cancel the deposit order after the money has been transferred."
+                ]
+            }
+        };
+
+        function renderDepUI(method) {
+            const config = depConfig[method];
+            if(!config) return;
+            
+            // Render Channels
+            const chContainer = document.getElementById("channel-container");
+            if(chContainer) {
+                chContainer.innerHTML = config.channels.map((ch, i) => `
+                    <div class="channel-card ${i===0 ? 'active' : ''}" onclick="selectChannel(this)">
+                        <h5>${ch.name}</h5>
+                        <p>Balance:${ch.limit}</p>
+                        ${ch.bonus ? `<p style="color:var(--primary); margin-top:2px;">${ch.bonus}</p>` : ''}
+                    </div>
+                `).join("");
+            }
+
+            // Render Amounts
+            const amtContainer = document.getElementById("amt-presets");
+            if(amtContainer) {
+                amtContainer.innerHTML = config.amounts.map((amt, i) => `
+                    <div class="dep-grid-btn" onclick="setAmt(${amt}, this)">
+                        <span style="font-weight:bold; margin-right:2px;">${config.symbol}</span> ${config.labels[i]}
+                    </div>
+                `).join("");
+            }
+
+            // Update Texts
+            const depSymbolEl = document.getElementById("dep-symbol");
+            const depAmtTitleEl = document.getElementById("dep-amt-title");
+            const dAmtEl = document.getElementById("d-amt");
+            
+            if(depSymbolEl) depSymbolEl.innerText = config.symbol;
+            if(depAmtTitleEl) depAmtTitleEl.innerText = config.title;
+            if(dAmtEl) dAmtEl.placeholder = `Please enter the amount`;
+            
+            // Render Instructions
+            const instContainer = document.getElementById("inst-list-container");
+            if(instContainer) {
+                instContainer.innerHTML = config.instructions.map(inst => `<li>${inst}</li>`).join("");
+            }
+        }
+
+        function selectChannel(el) {
+            document.querySelectorAll(".channel-card").forEach(c => c.classList.remove("active"));
+            el.classList.add("active");
+        }
+
+        function setAmt(val, btnElement) { 
+            const dAmtEl = document.getElementById("d-amt");
+            if(dAmtEl) dAmtEl.value = val;
+            document.querySelectorAll(".dep-grid-btn").forEach(b => b.classList.remove("selected"));
+            if(btnElement) btnElement.classList.add("selected");
+            checkDepBtn();
+        }
+
+        function clearGridSelection() {
+            document.querySelectorAll(".dep-grid-btn").forEach(b => b.classList.remove("selected"));
+            checkDepBtn();
+        }
+
+        function checkDepBtn() {
+            const dAmtEl = document.getElementById("d-amt");
+            const amt = dAmtEl ? dAmtEl.value : "";
+            const btn = document.getElementById("dep-submit-btn");
+            if(amt && amt > 0) {
+                if(btn) btn.classList.add("ready");
+            } else {
+                if(btn) btn.classList.remove("ready");
+            }
+        }
+
+        function copyUID() { 
+            const e = document.getElementById("uid-gen");
+            if(e) navigator.clipboard.writeText(e.innerText).then(() => showToast("📋 UID Copied!")) 
+        }
+        function copyRefCode() { 
+            const e = document.getElementById("ref-code-display");
+            if(e) navigator.clipboard.writeText(e.innerText).then(() => showToast("📋 Code Copied!")) 
+        }
+        function copyRefLink() { 
+            const e = document.getElementById("ref-link-display");
+            if(e) navigator.clipboard.writeText(e.innerText).then(() => showToast("🔗 Link Copied!")) 
+        }
+        function switchAuth(e) { 
+            const loginView = document.getElementById("login-view");
+            const regView = document.getElementById("reg-view");
+            const tabLogin = document.getElementById("tab-login");
+            const tabReg = document.getElementById("tab-reg");
+            
+            if(loginView) loginView.classList.toggle("hidden", "reg" === e);
+            if(regView) regView.classList.toggle("hidden", "login" === e);
+            if(tabLogin) tabLogin.classList.toggle("active", "login" === e);
+            if(tabReg) tabReg.classList.toggle("active", "reg" === e);
+        }
+        
+        function nav(e) { 
+            document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+            const targetPage = document.getElementById(e + "-page");
+            if(targetPage) targetPage.classList.add("active");
+            
+            document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
+            const navItem = document.getElementById("n-" + e);
+            if(navItem) navItem.classList.add("active");
+
+            window.scrollTo(0, 0);
+        }
+
+        function showToast(msg) { 
+            const t = document.getElementById("toast"); 
+            if(t) {
+                t.innerText = msg; 
+                t.classList.add("show"); 
+                setTimeout(() => t.classList.remove("show"), 3000); 
+            }
+        }
+        function logout() { localStorage.clear(); location.reload(); }
+        function openHelp() {
+    window.open(atob("aHR0cHM6Ly9zZWxmLXNlcnZpY2UtY2VudGVyLnZlcmNlbC5hcHAv"), "_blank");
+}
+        
+        function setDepM(e) { 
+            selectedDepM = e; 
+            document.querySelectorAll(".dep-method-btn").forEach(i => i.classList.remove("active")); 
+            const btn = document.getElementById("d-" + e);
+            if(btn) btn.classList.add("active"); 
+            
+            // Render the specific UI for the selected method
+            renderDepUI(e);
+            
+            // Reset amount input
+            const dAmtEl = document.getElementById("d-amt");
+            if(dAmtEl) dAmtEl.value = "";
+            checkDepBtn();
+        }
+
+        window.togglePassword = function(id, btn) { 
+            const s = document.getElementById(id); 
+            if(s && btn) {
+                if("password" === s.type) { 
+                    s.type = "text"; 
+                    btn.classList.replace("fa-eye", "fa-eye-slash"); 
+                } else { 
+                    s.type = "password"; 
+                    btn.classList.replace("fa-eye-slash", "fa-eye"); 
+                } 
+            }
+        };
+    </script>
+
+    <script>
+    (function(){
+        var loader = document.getElementById("starlight-loader");
+        if(!loader) return;
+        var hidden = false;
+        function hideStarLightLoader(){
+            if(hidden) return;
+            hidden = true;
+            loader.classList.add("is-hidden");
+            window.setTimeout(function(){
+                if(loader && loader.parentNode) loader.parentNode.removeChild(loader);
+            },650);
+        }
+        window.addEventListener("load",function(){
+            window.setTimeout(hideStarLightLoader,1500);
+        },{once:true});
+        /* Fallback: prevent the loading screen from remaining indefinitely */
+        window.setTimeout(hideStarLightLoader,4500);
+    })();
+    </script>
+
+</body>
+</html>
