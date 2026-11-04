@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -566,6 +566,404 @@
             #starlight-loader:before{animation:none}
             #starlight-loader{transition:none}
         }
+
+/* VIDEO-INSPIRED VIP PAGE ONLY */
+#vip-page{background:#090909!important;color:#f7f7f7}
+#vip-page .vip-screen{min-height:100vh;background:#090909;padding-bottom:100px;overflow:hidden}
+#vip-page .vip-topline{height:48px;background:#c9002d;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:#fff;font-size:15px;font-weight:800;position:sticky;top:0;z-index:30}
+#vip-page .vip-back{border:0;background:transparent;color:#fff;font-size:16px;width:28px;text-align:left;padding:5px}
+#vip-page .vip-top-spacer{width:28px}
+#vip-page .vip-member-panel{background:linear-gradient(120deg,#bd002b,#8e001f);padding:15px 14px 10px}
+#vip-page .vip-member-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+#vip-page .vip-avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(145deg,#fff,#d5d5d5);border:2px solid rgba(255,255,255,.75);display:flex;align-items:center;justify-content:center;color:#a90028;font-size:23px;box-shadow:0 3px 12px #500018}
+#vip-page .vip-member-meta{display:flex;flex-direction:column;gap:3px;color:#fff}
+#vip-page .vip-member-meta strong{font-size:13px;letter-spacing:.2px}
+#vip-page .vip-member-tag{font-size:8px;color:#fff;background:rgba(255,255,255,.2);padding:3px 7px;border-radius:20px;width:max-content}
+#vip-page .vip-progress-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+#vip-page .vip-progress-box{background:#050505;border-radius:5px;text-align:center;padding:7px 5px 6px;display:flex;flex-direction:column;gap:3px}
+#vip-page .vip-progress-box strong{font-size:13px;color:#fff}
+#vip-page .vip-progress-box strong small{font-size:9px;color:#ddd}
+#vip-page .vip-progress-box span{font-size:9px;color:#ddd}
+#vip-page .vip-cycle-note{font-size:9px;color:#f7dce3;margin:9px 0 0;white-space:normal}
+#vip-page .vip-level-slider-wrap{position:relative;padding:10px 9px 12px}
+#vip-page .vip-level-track{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:1px 3px 5px}
+#vip-page .vip-level-track::-webkit-scrollbar{display:none}
+#vip-page .vip-level-card{position:relative;flex:0 0 82%;height:116px;border:1px solid rgba(255,255,255,.25);border-radius:5px;padding:10px 12px;text-align:left;color:#fff;overflow:hidden;scroll-snap-align:center;box-shadow:0 4px 10px rgba(0,0,0,.28);transition:transform .2s,filter .2s}
+#vip-page .vip-level-card:after{content:"";position:absolute;width:115px;height:115px;border:1px solid rgba(255,255,255,.2);border-radius:50%;right:-26px;top:13px;box-shadow:0 0 0 8px rgba(255,255,255,.07),0 0 0 17px rgba(255,255,255,.05)}
+#vip-page .vip-level-card:active{transform:scale(.98)}
+#vip-page .vip-lv1{background:linear-gradient(120deg,#8198b5,#536d91)}
+#vip-page .vip-lv2{background:linear-gradient(120deg,#f3b36b,#d77b35)}
+#vip-page .vip-lv3{background:linear-gradient(120deg,#ff8c83,#e65e69)}
+#vip-page .vip-lv4{background:linear-gradient(120deg,#68d8ef,#269bc9)}
+#vip-page .vip-lv5{background:linear-gradient(120deg,#e889ed,#bd52d5)}
+#vip-page .vip-card-kicker{position:relative;z-index:2;font-size:13px;font-weight:900}
+#vip-page .vip-card-kicker small{font-size:8px;font-weight:600}
+#vip-page .vip-card-emblem{position:absolute;right:16px;top:28px;z-index:2;width:42px;height:42px;border:2px solid rgba(255,255,255,.8);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:23px;text-shadow:0 2px 3px #555}
+#vip-page .vip-card-require{position:absolute;left:12px;bottom:31px;font-size:10px;font-weight:700;z-index:2}
+#vip-page .vip-card-bottom{position:absolute;left:12px;right:12px;bottom:8px;border-top:1px solid rgba(255,255,255,.45);padding-top:4px;display:flex;justify-content:space-between;z-index:2;font-size:10px}
+#vip-page .vip-card-bottom small{font-size:9px}
+#vip-page .vip-slide-arrow{position:absolute;top:48px;z-index:5;width:25px;height:36px;border:0;border-radius:5px;background:rgba(0,0,0,.42);color:#fff}
+#vip-page .vip-slide-arrow.left{left:0}
+#vip-page .vip-slide-arrow.right{right:0}
+#vip-page .vip-benefits-panel{margin:0 9px 12px;background:#050505;border:1px solid #191919;border-radius:5px;padding:12px 10px}
+#vip-page .vip-benefit-title{display:flex;align-items:center;gap:7px;font-size:12px;margin-bottom:11px;color:#fff}
+#vip-page .vip-benefit-title i{color:#ff1744}
+#vip-page .vip-benefit-row{display:flex;align-items:center;gap:8px;min-height:48px;border-bottom:1px solid #242424;padding:6px 0}
+#vip-page .vip-benefit-row:last-child{border-bottom:0}
+#vip-page .vip-benefit-icon{width:34px;height:34px;flex:0 0 34px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:17px;color:#fff}
+#vip-page .vip-benefit-icon.gift{background:linear-gradient(135deg,#f6d45c,#b98716)}
+#vip-page .vip-benefit-icon.coin{background:linear-gradient(135deg,#ffda62,#d68b18);color:#8a4d00}
+#vip-page .vip-benefit-icon.rate{background:#171717;border:1px solid #555;color:#ddd}
+#vip-page .vip-benefit-copy{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
+#vip-page .vip-benefit-copy strong{font-size:10px;color:#f4f4f4}
+#vip-page .vip-benefit-copy small{font-size:8px;color:#a7a7a7;line-height:1.3}
+#vip-page .vip-benefit-value{min-width:54px;text-align:center;padding:5px 6px;border:1px solid #3d2027;border-radius:5px;color:#ffcf39;font-size:10px;background:#13090c}
+#vip-page .vip-history-panel{margin:0 9px;background:#050505;border-radius:5px;padding:0 0 12px}
+#vip-page .vip-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #242424}
+#vip-page .vip-tab{background:transparent;border:0;color:#eee;padding:12px;font-size:11px}
+#vip-page .vip-tab.active{color:#ff1744;border-bottom:2px solid #ff1744}
+#vip-page .vip-empty-state{height:105px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#858585;font-size:10px}
+#vip-page .vip-empty-state i{font-size:27px;opacity:.25}
+#vip-page .vip-rules-content{padding:14px 12px;color:#bbb;font-size:10px;line-height:1.6;min-height:105px}
+#vip-page .vip-rules-content p{margin-bottom:8px}
+#vip-page .vip-view-all{display:block;width:88%;margin:0 auto;border:0;border-radius:22px;background:linear-gradient(90deg,#e50035,#b8002b);color:#fff;padding:10px;font-size:11px;font-weight:700}
+@media(min-width:431px){#vip-page .vip-level-card{flex-basis:78%}}
+
+
+
+/* STARLIGHT PREMIUM NAVY + GOLD VIP SKIN — VIP PAGE ONLY */
+#vip-page{background:#07152b!important;color:#f7f2df}
+#vip-page .vip-screen{background:radial-gradient(ellipse at 50% -10%,#1b3960 0%,#0b1d37 42%,#061226 100%);color:#f8f3e5}
+#vip-page .vip-topline{height:54px;background:linear-gradient(105deg,#07152b 0%,#142d4d 52%,#07152b 100%);border-bottom:1px solid rgba(225,190,104,.55);box-shadow:0 5px 18px rgba(0,0,0,.3);letter-spacing:1.5px;font-size:16px;color:#f4d78b}
+#vip-page .vip-topline:after{content:"✦";position:absolute;left:50%;transform:translateX(-50%);top:16px;color:#e7c477;font-size:10px;text-shadow:0 0 10px rgba(235,195,105,.8)}
+#vip-page .vip-back{color:#e8cc8c;font-size:17px}
+#vip-page .vip-member-panel{position:relative;overflow:hidden;padding:18px 15px 13px;background:linear-gradient(125deg,#17385f 0%,#0d2442 48%,#08172e 100%);border-bottom:1px solid rgba(220,184,99,.5);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 9px 22px rgba(0,0,0,.2)}
+#vip-page .vip-member-panel:before{content:"";position:absolute;width:190px;height:190px;right:-65px;top:-100px;border:1px solid rgba(231,198,125,.25);border-radius:50%;box-shadow:0 0 0 12px rgba(231,198,125,.035),0 0 0 27px rgba(231,198,125,.025),0 0 35px rgba(231,198,125,.12)}
+#vip-page .vip-member-panel:after{content:"✦";position:absolute;right:27px;top:20px;font-size:42px;color:rgba(235,202,131,.22);text-shadow:0 0 20px rgba(235,202,131,.2)}
+#vip-page .vip-member-row,#vip-page .vip-progress-row,#vip-page .vip-cycle-note{position:relative;z-index:1}
+#vip-page .vip-avatar{width:52px;height:52px;background:linear-gradient(145deg,#fff6d9,#d5b66e 48%,#8d682a);border:2px solid #f2d58f;color:#122746;box-shadow:0 0 0 4px rgba(220,184,99,.13),0 6px 16px rgba(0,0,0,.35);font-size:22px}
+#vip-page .vip-member-meta strong{font-size:14px;color:#fff6df;letter-spacing:.4px}
+#vip-page .vip-member-tag{background:linear-gradient(90deg,#e8cf91,#b58b43);color:#142744;font-weight:900;letter-spacing:.8px;padding:4px 9px;box-shadow:0 2px 8px rgba(0,0,0,.18)}
+#vip-page .vip-progress-box{background:linear-gradient(145deg,rgba(5,18,37,.95),rgba(17,43,72,.92));border:1px solid rgba(220,184,99,.32);border-radius:10px;padding:9px 5px 8px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 5px 12px rgba(0,0,0,.18)}
+#vip-page .vip-progress-box strong{font-size:15px;color:#f3d58e}
+#vip-page .vip-progress-box strong small{color:#d5bd83}
+#vip-page .vip-progress-box span{color:#c5d0df;font-size:9px;letter-spacing:.3px}
+#vip-page .vip-cycle-note{color:#e8d6ad;font-size:9px;letter-spacing:.1px}
+#vip-page .vip-level-slider-wrap{padding:14px 9px 15px}
+#vip-page .vip-level-track{gap:11px;padding:3px 5px 10px;scroll-padding:5px}
+#vip-page .vip-level-card{height:142px;flex-basis:84%;border:1px solid rgba(231,198,125,.7);border-radius:13px;padding:13px 14px;background:linear-gradient(125deg,#24466d 0%,#122b4b 48%,#081a32 100%);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),inset 0 -18px 28px rgba(0,0,0,.2),0 8px 18px rgba(0,0,0,.35);}
+#vip-page .vip-level-card:before{content:"";position:absolute;inset:7px;border:1px solid rgba(239,211,151,.2);border-radius:9px;pointer-events:none}
+#vip-page .vip-level-card:after{width:142px;height:142px;right:-23px;top:8px;border:1px solid rgba(240,211,145,.45);box-shadow:0 0 0 8px rgba(240,211,145,.07),0 0 0 17px rgba(240,211,145,.045),0 0 28px rgba(240,211,145,.13)}
+#vip-page .vip-level-card:active{transform:scale(.985);filter:brightness(1.12)}
+#vip-page .vip-lv1{background:linear-gradient(125deg,#385a7f,#1c385a 52%,#0a1b32)}
+#vip-page .vip-lv2{background:linear-gradient(125deg,#52617a,#263d5c 52%,#0b1d36)}
+#vip-page .vip-lv3{background:linear-gradient(125deg,#806d4b,#3c4560 48%,#102440)}
+#vip-page .vip-lv4{background:linear-gradient(125deg,#9a7942,#4a4a50 48%,#122744)}
+#vip-page .vip-lv5{background:linear-gradient(125deg,#c49b4e,#5d503c 45%,#102744)}
+#vip-page .vip-card-kicker{font-size:16px;color:#ffedbd;letter-spacing:1px;text-shadow:0 2px 7px rgba(0,0,0,.55)}
+#vip-page .vip-card-kicker small{color:#e2d3ad;font-size:9px;letter-spacing:.2px}
+#vip-page .vip-card-emblem{right:22px;top:36px;width:57px;height:57px;border:1px solid #f2d48c;background:radial-gradient(circle at 35% 25%,#fff5cf 0%,#d8b365 34%,#876027 72%,#493314 100%);color:#172d4b;font-size:27px;box-shadow:0 0 0 5px rgba(225,190,112,.12),0 6px 15px rgba(0,0,0,.4),inset 0 2px 4px rgba(255,255,255,.6);text-shadow:0 1px 0 rgba(255,255,255,.35)}
+#vip-page .vip-card-require{bottom:38px;font-size:11px;color:#f8edcf;text-shadow:0 1px 4px #061226}
+#vip-page .vip-card-bottom{left:13px;right:13px;bottom:10px;border-top:1px solid rgba(231,202,142,.45);padding-top:6px;color:#f4d58c;font-size:12px}
+#vip-page .vip-card-bottom small{color:#e9d9b4;font-size:9px;letter-spacing:1px}
+#vip-page .vip-slide-arrow{top:61px;width:27px;height:39px;border:1px solid rgba(232,199,125,.5);border-radius:8px;background:rgba(5,20,39,.88);color:#f1d28a;box-shadow:0 3px 10px rgba(0,0,0,.3)}
+#vip-page .vip-benefits-panel,#vip-page .vip-history-panel{background:linear-gradient(145deg,#142b49,#091a31 75%);border:1px solid rgba(222,188,112,.42);border-radius:13px;box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 8px 20px rgba(0,0,0,.22)}
+#vip-page .vip-benefits-panel{margin:0 10px 14px;padding:14px 12px}
+#vip-page .vip-benefit-title{font-size:13px;color:#f5d995;letter-spacing:.3px}
+#vip-page .vip-benefit-title i{color:#e7c477;text-shadow:0 0 10px rgba(231,196,119,.4)}
+#vip-page .vip-benefit-row{border-bottom:1px solid rgba(206,185,140,.16);min-height:54px}
+#vip-page .vip-benefit-icon{width:37px;height:37px;flex-basis:37px;border-radius:10px;font-size:16px;box-shadow:0 4px 10px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.25)}
+#vip-page .vip-benefit-icon.gift,#vip-page .vip-benefit-icon.coin{background:linear-gradient(145deg,#fff0b8,#d7ad58 48%,#8c6429);color:#172b47}
+#vip-page .vip-benefit-icon.rate{background:linear-gradient(145deg,#294766,#112843);border:1px solid rgba(231,198,125,.55);color:#f0d28d}
+#vip-page .vip-benefit-copy strong{font-size:11px;color:#f5edda}
+#vip-page .vip-benefit-copy small{font-size:9px;color:#aebed0}
+#vip-page .vip-benefit-value{border:1px solid rgba(227,192,112,.55);border-radius:8px;color:#f4d48b;font-size:11px;background:linear-gradient(145deg,#10233e,#07162b);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+#vip-page .vip-history-panel{margin:0 10px;padding-bottom:13px;overflow:hidden}
+#vip-page .vip-tabs{border-bottom:1px solid rgba(206,185,140,.2)}
+#vip-page .vip-tab{color:#b9c7d8;padding:14px;font-size:12px;font-weight:700;letter-spacing:.3px}
+#vip-page .vip-tab.active{color:#f2d48d;border-bottom:2px solid #d7b66e;text-shadow:0 0 10px rgba(231,196,119,.25)}
+#vip-page .vip-empty-state{color:#9aabc0;height:115px}
+#vip-page .vip-empty-state i{color:#d8b66c;opacity:.5}
+#vip-page .vip-rules-content{color:#c2cede;font-size:11px;padding:15px;line-height:1.75}
+#vip-page .vip-rules-content p{margin-bottom:9px}
+#vip-page .vip-view-all{width:88%;border:1px solid #f0d28d;border-radius:10px;background:linear-gradient(105deg,#f0d28d 0%,#c49a4e 48%,#8f672b 100%);color:#102542;padding:11px;font-size:12px;font-weight:900;letter-spacing:.5px;box-shadow:0 5px 13px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.55)}
+@media(min-width:431px){#vip-page .vip-level-card{flex-basis:78%}}
+@media(prefers-reduced-motion:no-preference){#vip-page .vip-level-card{transition:transform .22s ease,filter .22s ease,box-shadow .22s ease}#vip-page .vip-level-card:focus-visible{outline:2px solid #f1d28a;outline-offset:3px}}
+
+
+
+/* STARLIGHT VIP — UNIFIED NAVY/GOLD LUXURY CARD UPGRADE */
+#vip-page .vip-screen{
+  background:radial-gradient(ellipse at 50% 0%,#1c3d67 0%,#0c2240 38%,#061328 78%,#040d1b 100%);
+}
+#vip-page .vip-topline{
+  height:58px;background:linear-gradient(110deg,#06152b 0%,#18385d 48%,#07162c 100%);
+  border-bottom:1px solid rgba(244,211,137,.72);box-shadow:0 7px 22px rgba(0,0,0,.38);
+}
+#vip-page .vip-member-panel{
+  background:linear-gradient(135deg,#1c416b 0%,#102c4d 48%,#081a32 100%);
+  border-bottom:1px solid rgba(234,199,119,.55);
+}
+#vip-page .vip-level-slider-wrap{padding:17px 8px 19px;}
+#vip-page .vip-level-track{gap:13px;padding:5px 7px 14px;scroll-padding:7px;}
+#vip-page .vip-level-card,
+#vip-page .vip-level-card.vip-lv1,
+#vip-page .vip-level-card.vip-lv2,
+#vip-page .vip-level-card.vip-lv3,
+#vip-page .vip-level-card.vip-lv4,
+#vip-page .vip-level-card.vip-lv5{
+  flex:0 0 88%;height:174px;position:relative;isolation:isolate;overflow:hidden;
+  border:1px solid #e5c477;border-radius:19px;padding:17px 17px 14px;text-align:left;color:#fff5d9;
+  background:linear-gradient(132deg,#294d75 0%,#183858 34%,#102946 68%,#071a32 100%);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.32),inset 0 -22px 35px rgba(0,0,0,.24),
+             0 12px 25px rgba(0,0,0,.38),0 0 0 1px rgba(242,211,143,.12);
+  scroll-snap-align:center;transition:transform .25s ease,box-shadow .25s ease,filter .25s ease;
+}
+#vip-page .vip-level-card:before{
+  content:"";position:absolute;inset:7px;border:1px solid rgba(247,220,157,.38);border-radius:13px;
+  background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 34%,transparent 72%,rgba(255,220,150,.06));
+  pointer-events:none;z-index:0;
+}
+#vip-page .vip-level-card:after{
+  content:"";position:absolute;width:158px;height:158px;right:-29px;top:9px;border-radius:50%;
+  border:1px solid rgba(255,222,153,.62);
+  box-shadow:0 0 0 7px rgba(255,218,143,.09),0 0 0 16px rgba(255,218,143,.055),
+             0 0 0 27px rgba(255,218,143,.035),0 0 35px rgba(235,190,99,.18);
+  pointer-events:none;z-index:0;
+}
+#vip-page .vip-level-card.selected{
+  border:1.5px solid #ffe5a2;filter:brightness(1.13);
+  transform:translateY(-3px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4),0 0 0 2px rgba(235,197,115,.2),
+             0 14px 30px rgba(0,0,0,.45),0 0 23px rgba(225,183,91,.22);
+}
+#vip-page .vip-card-kicker{font-size:19px;letter-spacing:1.4px;color:#ffedbd;text-shadow:0 2px 7px rgba(0,0,0,.65);}
+#vip-page .vip-card-kicker small{display:inline-block;margin-left:4px;font-size:9px;letter-spacing:.5px;color:#e7d4a5;}
+#vip-page .vip-card-emblem{
+  right:24px;top:38px;width:67px;height:67px;border:2px solid #f8dfa0;border-radius:50%;
+  background:radial-gradient(circle at 32% 22%,#fff9df 0%,#f1d58d 24%,#c69b4d 55%,#795522 82%,#3c2b16 100%);
+  color:#17304d;font-size:30px;text-shadow:0 1px 0 rgba(255,255,255,.6);
+  box-shadow:0 0 0 5px rgba(236,197,112,.16),0 8px 18px rgba(0,0,0,.42),inset 0 2px 5px rgba(255,255,255,.72);
+}
+#vip-page .vip-card-require{bottom:48px;font-size:12px;color:#fff3d0;letter-spacing:.2px;text-shadow:0 2px 5px #06152a;}
+#vip-page .vip-card-bottom{
+  left:15px;right:15px;bottom:13px;border-top:1px solid rgba(244,213,147,.52);
+  padding-top:8px;color:#ffe4a2;font-size:14px;text-shadow:0 1px 4px rgba(0,0,0,.45);
+}
+#vip-page .vip-card-bottom b{font-weight:900;}
+#vip-page .vip-card-bottom small{color:#f2dfb7;font-size:9px;letter-spacing:1.4px;}
+#vip-page .vip-slide-arrow{top:77px;width:30px;height:42px;border:1px solid rgba(244,214,148,.72);border-radius:10px;background:linear-gradient(145deg,#173657,#07172d);color:#ffe3a0;box-shadow:0 5px 13px rgba(0,0,0,.4);}
+#vip-page .vip-benefits-panel,#vip-page .vip-history-panel{
+  background:linear-gradient(145deg,rgba(24,52,82,.98),rgba(7,23,43,.99));
+  border:1px solid rgba(230,194,112,.5);border-radius:16px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 10px 25px rgba(0,0,0,.28);
+}
+#vip-page .vip-benefits-panel{margin:0 10px 15px;padding:16px 13px;}
+#vip-page .vip-benefit-title{font-size:14px;color:#ffe2a0;letter-spacing:.4px;margin-bottom:13px;}
+#vip-page .vip-benefit-row{min-height:59px;border-bottom:1px solid rgba(237,207,145,.18);}
+#vip-page .vip-benefit-icon{width:40px;height:40px;flex-basis:40px;border-radius:12px;}
+#vip-page .vip-benefit-copy strong{font-size:12px;color:#fff4d8;}
+#vip-page .vip-benefit-copy small{font-size:9px;color:#bdcadd;}
+#vip-page .vip-benefit-value{min-width:66px;padding:7px 8px;border-radius:9px;font-size:12px;border-color:rgba(244,211,133,.7);}
+#vip-page .vip-history-panel{margin:0 10px 16px;}
+#vip-page .vip-tab{font-size:12px;padding:15px;font-weight:800;}
+#vip-page .vip-tab.active{color:#ffe2a0;border-color:#e4c174;}
+#vip-page .vip-view-all{border-radius:12px;}
+@media(min-width:431px){#vip-page .vip-level-card{flex-basis:82%;}}
+@media(prefers-reduced-motion:reduce){#vip-page .vip-level-card{transition:none;}}
+
+
+
+/* VIP LEVEL COLORS — MATCH THE REFERENCE VIDEO; NO OTHER UI CHANGES */
+#vip-page .vip-level-card.vip-lv1{
+  background:linear-gradient(132deg,#79d9f5 0%,#319fcf 42%,#17628f 100%) !important;
+  border-color:#9cecff;
+}
+#vip-page .vip-level-card.vip-lv2{
+  background:linear-gradient(132deg,#ffe0a0 0%,#f4b65f 43%,#d88738 100%) !important;
+  border-color:#ffe0a0;
+}
+#vip-page .vip-level-card.vip-lv3{
+  background:linear-gradient(132deg,#ffb6a6 0%,#f17f80 45%,#d94d68 100%) !important;
+  border-color:#ffd0bd;
+}
+#vip-page .vip-level-card.vip-lv4{
+  background:linear-gradient(132deg,#9aeeff 0%,#55c9eb 45%,#2696c9 100%) !important;
+  border-color:#b8f4ff;
+}
+#vip-page .vip-level-card.vip-lv5{
+  background:linear-gradient(132deg,#f5a5ed 0%,#df78d5 45%,#bd55b9 100%) !important;
+  border-color:#ffd0f8;
+}
+#vip-page .vip-level-card.vip-lv1 .vip-card-kicker,
+#vip-page .vip-level-card.vip-lv2 .vip-card-kicker,
+#vip-page .vip-level-card.vip-lv3 .vip-card-kicker,
+#vip-page .vip-level-card.vip-lv4 .vip-card-kicker,
+#vip-page .vip-level-card.vip-lv5 .vip-card-kicker{
+  color:#fffdf4;text-shadow:0 2px 5px rgba(35,25,15,.28);
+}
+
+/* STARLIGHT AUTH SCREEN — video-inspired layout; original navy & gold palette retained */
+#auth-container{background:#f3f1eb;min-height:100vh}
+#auth-container .auth-shell{background:#f3f1eb;box-shadow:none;max-width:430px;min-height:100vh}
+#auth-container .auth-header{background:linear-gradient(135deg,#071b35 0%,#102f55 58%,#16436d 100%)!important;border-radius:0;padding:16px 22px 30px;box-shadow:0 5px 18px rgba(7,27,53,.16);text-align:left}
+.auth-brand-row{display:grid;grid-template-columns:32px 1fr 42px;align-items:center;min-height:48px}
+.auth-brand-row .brand-wrap{justify-self:center;align-items:center;padding:0}
+.auth-brand-row .brand-logo{font-size:25px!important}
+.auth-brand-row .brand-logo .brand-star{font-size:19px}
+.auth-brand-row .brand-subtitle,.auth-brand-row .brand-line{display:none}
+.auth-back-mark{color:#fff;font-size:17px;padding:8px 0}
+.auth-lang-mark{color:#f4d58c;font-size:11px;font-weight:800;text-align:right;white-space:nowrap}
+.auth-lang-mark i{margin-left:4px}
+.auth-heading{padding:26px 0 4px}
+.auth-heading h2{font-size:22px;color:#fff;font-weight:800;margin:0 0 12px}
+.auth-heading p{font-size:13px;line-height:1.65;color:rgba(255,255,255,.88);font-weight:400}
+.auth-hidden-tabs{display:none!important}
+.auth-form-area{padding:28px 22px 110px;background:#f3f1eb}
+.auth-section-label{display:flex;align-items:center;gap:10px;color:#102f55;font-size:18px;font-weight:800;padding:0 2px 16px;margin-bottom:20px;border-bottom:2px solid #d8b66b}
+.auth-section-label i{color:#c59a48;font-size:21px}
+#auth-container .input-group{margin:0 0 22px}
+#auth-container .input-group label{font-size:14px;color:#102f55;font-weight:700;margin:0 0 10px;display:flex;align-items:center;gap:9px}
+#auth-container .input-group label:before{content:"";width:7px;height:7px;border-radius:2px;background:#d8b66b;box-shadow:0 0 0 3px rgba(216,182,107,.16)}
+#auth-container .input-wrapper{min-height:58px;background:#fff;border:1px solid #e7e5df;border-radius:14px;padding:0 15px;box-shadow:0 3px 10px rgba(17,37,62,.035)}
+#auth-container .input-wrapper:focus-within{background:#fff;border-color:#c49a4c;box-shadow:0 0 0 3px rgba(196,154,76,.13)}
+#auth-container .input-wrapper input{font-size:14px;color:#172b45;padding:17px 0;margin-left:10px;min-width:0}
+#auth-container .input-wrapper input::placeholder{color:#a6adba}
+#auth-container .auth-country{font-size:14px;font-weight:800;color:#7b8291;border-right:1px solid #e7e9ee;padding-right:13px}
+#auth-container .auth-field-icon{font-size:17px;color:#c49a4c}
+#auth-container .toggle-pass{color:#a5adba}
+.auth-remember-row{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:2px 2px 28px;color:#858c9b;font-size:12px}
+.auth-remember{display:flex;align-items:center;gap:8px}
+.auth-remember input{accent-color:#c49a4c;width:16px;height:16px}
+.auth-forgot{color:#b88a3b;font-weight:700}
+#auth-container .auth-submit{width:100%;margin:0 0 15px;border-radius:30px;min-height:56px;font-size:17px;letter-spacing:1.5px;background:linear-gradient(110deg,#e4c477,#b88a3b)!important;box-shadow:0 7px 16px rgba(140,101,38,.2)}
+.auth-switch-btn{width:100%;min-height:54px;border:1px solid #d8b66b;border-radius:30px;background:transparent;color:#7c8494;font-size:13px;letter-spacing:1px;font-weight:600}
+.auth-switch-btn b{color:#b88a3b;font-size:16px;margin-left:8px;letter-spacing:1.2px}
+.auth-agreement{display:flex;align-items:center;gap:8px;color:#858c9b;font-size:12px;margin:2px 0 25px}
+.auth-agreement i{font-size:19px;color:#c49a4c}
+.auth-agreement b{color:#c65c5c;font-size:12px;font-weight:600;margin-left:2px}
+@media(max-width:360px){.auth-form-area{padding-left:16px;padding-right:16px}.auth-heading h2{font-size:20px}}
+
+
+/* Auth screen rebuilt to match the supplied reference video; only brand palette/name differ */
+#auth-container{background:#f2f3f1!important;min-height:100vh}
+#auth-container .auth-shell{width:100%;max-width:430px;min-height:100vh;background:#f2f3f1;box-shadow:none;border-radius:0}
+#auth-container .auth-header{background:linear-gradient(135deg,#102b4c,#173d67)!important;padding:10px 14px 22px;border-radius:0;box-shadow:none;text-align:left;min-height:154px}
+#auth-container .auth-brand-row{display:grid;grid-template-columns:32px 1fr 58px;align-items:center;height:42px}
+#auth-container .auth-back-mark{color:#fff;font-size:16px;padding:5px;cursor:pointer}
+#auth-container .auth-brand-row .brand-wrap{justify-self:center;padding:0}
+#auth-container .auth-brand-row .brand-logo{font-size:23px!important;letter-spacing:.5px;color:#fff}
+#auth-container .auth-brand-row .brand-star{font-size:18px;color:#e7ca83}
+#auth-container .auth-brand-row .brand-light{color:#e7ca83}
+.auth-language-wrap{position:relative;justify-self:end}
+.auth-lang-mark{border:0;background:transparent;color:#f5d991;font-size:11px;font-weight:700;padding:7px 0;cursor:pointer}
+.auth-language-menu{position:absolute;z-index:30;right:0;top:32px;width:190px;background:#fff;border-radius:8px;box-shadow:0 5px 18px #0003;overflow:hidden}
+.auth-language-menu button{display:block;width:100%;border:0;background:#fff;text-align:left;padding:12px;color:#24364a;font-size:12px}
+.auth-language-menu button+button{border-top:1px solid #eee}
+#auth-container .auth-heading{padding:15px 0 0}
+#auth-container .auth-heading h2{font-size:17px;color:#fff;font-weight:700;margin:0 0 7px}
+#auth-container .auth-heading p{font-size:10px;line-height:1.45;color:#f8f5eb;margin:0;white-space:pre-line}
+#auth-container .auth-form-area{padding:0 12px 40px;background:#f2f3f1;min-height:calc(100vh - 154px)}
+.auth-method-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid #e0e2df;margin:0 0 17px;height:48px}
+.auth-method-tab{position:relative;border:0;background:transparent;color:#7b8490;font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
+.auth-method-tab i{font-size:13px}
+.auth-method-tab.active{color:#b88a3b}
+.auth-method-tab.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:#b88a3b}
+.auth-field-title{display:flex;align-items:center;gap:7px;color:#24364a;font-size:11px;margin:0 2px 7px;font-weight:500}
+.auth-field-title i,.auth-register-title i{color:#b88a3b;font-size:12px}
+.auth-input-row{height:40px;display:flex;align-items:center;background:#fff;border-radius:8px;margin:0 0 16px;overflow:hidden}
+.auth-input-row input{border:0!important;outline:0!important;background:transparent!important;box-shadow:none!important;width:100%;height:100%;padding:0 9px;font-size:11px;color:#24364a;min-width:0}
+.auth-input-row input::placeholder{color:#aab2bd}
+.auth-country{height:100%;min-width:58px;border:0;border-right:1px solid #eee;background:#fff;color:#748093;font-size:10px;padding:0 7px}
+.auth-country i{font-size:8px;margin-left:3px}
+.auth-eye{height:100%;width:36px;flex:0 0 36px;border:0;background:#fff;color:#9ba3ad}
+.auth-remember-row{display:flex;align-items:center;justify-content:space-between;margin:0 1px 17px;font-size:9px;color:#9aa2ac}
+.auth-remember{display:flex;align-items:center;gap:5px}
+.auth-remember input,.auth-agreement input{accent-color:#b88a3b;width:12px;height:12px}
+.auth-forgot{border:0;background:none;color:#b88a3b;font-size:9px}
+#auth-container .auth-submit{width:90%;height:40px;margin:0 auto 10px;display:block;border-radius:24px;background:linear-gradient(135deg,#b88a3b,#e7ca83)!important;color:#fff;font-size:12px;font-weight:800;letter-spacing:1px;box-shadow:none}
+#auth-container .auth-switch-btn{width:90%;height:39px;margin:0 auto 10px;display:block;border:1px solid #e7ca83;border-radius:24px;background:transparent;color:#b88a3b;font-size:11px;font-weight:700}
+.auth-register-title{display:flex;align-items:center;justify-content:center;gap:7px;height:43px;border-bottom:1px solid #e1d5b6;color:#b88a3b;font-size:11px;font-weight:700}
+.auth-register-tabs{margin-bottom:14px}
+.auth-register-tabs .auth-method-tab{flex-direction:row}
+.auth-agreement{display:flex;align-items:center;gap:5px;color:#9aa2ac;font-size:9px;margin:4px 2px 17px}
+.auth-agreement b{color:#b85d58;font-weight:500}
+#auth-container .hidden{display:none!important}
+@media(max-width:360px){#auth-container .auth-header{padding-left:12px;padding-right:12px}.auth-input-row{height:38px}}
+
+
+/* Premium Bangladesh dial-code chip — visual-only refinement */
+#auth-container .auth-input-row{gap:0;min-height:48px;height:48px;border:1px solid #e6e2d8;border-radius:13px;box-shadow:0 5px 16px rgba(16,43,76,.055);transition:border-color .2s ease,box-shadow .2s ease;}
+#auth-container .auth-input-row:focus-within{border-color:#c9a45d;box-shadow:0 0 0 3px rgba(201,164,93,.13),0 7px 18px rgba(16,43,76,.07)}
+#auth-container .auth-country{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:7px;flex:0 0 auto;min-width:104px;height:34px;margin:0 8px 0 7px;padding:0 10px;border:1px solid rgba(190,151,75,.28);border-radius:9px;background:linear-gradient(135deg,#fffdf8 0%,#f7f0df 100%);color:#183657;font-size:13px;font-weight:800;letter-spacing:.25px;box-shadow:inset 0 1px 0 #fff,0 2px 5px rgba(27,48,72,.06);white-space:nowrap;}
+#auth-container .auth-country:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(110deg,transparent 25%,rgba(255,255,255,.72) 48%,transparent 70%);opacity:.55;pointer-events:none;z-index:-1}
+#auth-container .auth-country-flag{width:21px;height:15px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;line-height:1;border-radius:3px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.12));}
+#auth-container .auth-country-code{font-size:13px;font-weight:900;color:#17395d;letter-spacing:.35px}
+#auth-container .auth-country i{font-size:9px;margin-left:1px;color:#b58b42}
+#auth-container .auth-input-row input{font-size:12px;padding-left:10px;}
+@media(max-width:360px){#auth-container .auth-country{min-width:96px;gap:5px;padding:0 8px;margin-left:6px;margin-right:5px}#auth-container .auth-country-code{font-size:12px}}
+
+
+/* STARLIGHT REFERRAL / AGENCY - VIDEO STRUCTURE, BRAND COLORS */
+.referral-page{background:#f2f0e9!important;padding-bottom:105px!important;color:#17243a}
+.ref-topbar{height:54px;background:linear-gradient(135deg,#071b35,#102f55);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 18px;position:sticky;top:0;z-index:30;box-shadow:0 5px 16px rgba(7,27,53,.16)}
+.ref-topbar strong{font-size:16px;font-weight:800;letter-spacing:.2px}
+.ref-topbar button{border:0;background:transparent;color:#f4d998;font-size:17px;width:30px;height:34px}
+.ref-tabs{display:flex;gap:8px;padding:13px 14px 9px;background:#fff}
+.ref-tab{flex:1;border:0;border-radius:10px;padding:11px 5px;font-size:11px;font-weight:800;color:#6d7480;background:#f0eee8}
+.ref-tab.active{background:linear-gradient(120deg,#d8b66b,#9b702c);color:#fff;box-shadow:0 5px 12px rgba(155,112,44,.22)}
+.ref-hero{margin:12px 14px 10px;padding:18px 20px 17px;border-radius:17px;color:#fff;position:relative;overflow:hidden;background:linear-gradient(125deg,#071b35 0%,#102f55 62%,#8a682f 150%);box-shadow:0 9px 22px rgba(7,27,53,.2)}
+.ref-hero-label{font-size:12px;color:#f4dfae;display:flex;align-items:center;gap:8px;font-weight:700}
+.ref-hero-amount{font-size:32px;font-weight:900;margin:9px 0 8px;letter-spacing:.2px}
+.ref-hero-pill{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(245,220,164,.55);background:rgba(255,255,255,.1);padding:6px 11px;border-radius:30px;font-size:11px;font-weight:800;color:#ffe6ae}
+.ref-hero-shine{position:absolute;width:150px;height:150px;border-radius:50%;right:-50px;top:-70px;border:1px solid rgba(255,255,255,.14);box-shadow:0 0 0 18px rgba(255,255,255,.035),0 0 0 38px rgba(255,255,255,.025)}
+.ref-stats-grid{margin:0 14px 12px;background:#fff;border-radius:14px;display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border:1px solid #e8e0cf;box-shadow:0 5px 16px rgba(23,36,58,.045)}
+.ref-stat{min-height:70px;padding:12px 13px;border-right:1px solid #eee9df;border-bottom:1px solid #eee9df;display:flex;flex-direction:column;justify-content:center;gap:7px}
+.ref-stat:nth-child(2n){border-right:0}.ref-stat:nth-last-child(-n+2){border-bottom:0}
+.ref-stat span{font-size:10px;line-height:1.35;color:#7c8491;font-weight:600}
+.ref-stat b{font-size:17px;color:#172f50;font-weight:900}
+.ref-primary-btn,.ref-secondary-btn{width:calc(100% - 28px);margin:5px 14px;border:0;border-radius:11px;min-height:45px;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer}
+.ref-primary-btn{color:#fff;background:linear-gradient(120deg,#d8b66b,#9b702c);box-shadow:0 6px 14px rgba(155,112,44,.2)}
+.ref-secondary-btn{color:#8a6426;background:#fff;border:1px solid #dfc78f}
+.ref-action-list{margin:11px 14px;background:#fff;border-radius:14px;overflow:hidden;border:1px solid #e8e0cf;box-shadow:0 5px 16px rgba(23,36,58,.045)}
+.ref-action{width:100%;display:flex;align-items:center;gap:11px;text-align:left;padding:12px 12px;background:#fff;border:0;border-bottom:1px solid #f0ede6;min-height:58px}
+.ref-action:last-child{border-bottom:0}
+.ref-action-icon{width:31px;height:31px;flex:0 0 31px;border-radius:9px;background:#f8f0dc;color:#9b702c;display:grid;place-items:center;font-size:13px}
+.ref-action>span:nth-child(2){display:flex;flex-direction:column;gap:4px;flex:1;min-width:0}
+.ref-action b{font-size:12px;color:#25334a;font-weight:800}
+.ref-action small{font-size:10px;color:#9299a4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ref-arrow{font-size:12px;color:#b9a16e}
+.ref-bottom-stats{margin:0 14px 16px;background:#fff;border-radius:13px;border:1px solid #e8e0cf;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
+.ref-bottom-stats>div{padding:13px;border-bottom:1px solid #f0ede6;border-right:1px solid #f0ede6;display:flex;flex-direction:column;gap:5px}
+.ref-bottom-stats>div:nth-child(2n){border-right:0}.ref-bottom-stats>div:nth-last-child(-n+2){border-bottom:0}
+.ref-bottom-stats b{font-size:16px;color:#9b702c}.ref-bottom-stats small{font-size:10px;color:#89919c}
+.invite-promo-card{margin:14px;border-radius:17px;min-height:190px;padding:17px;color:#fff;position:relative;overflow:hidden;background:linear-gradient(130deg,#071b35 0%,#153d66 70%,#a17a37 150%);box-shadow:0 9px 20px rgba(7,27,53,.2)}
+.invite-promo-card:after{content:"";position:absolute;width:180px;height:180px;border:1px solid rgba(255,224,164,.25);border-radius:50%;right:-65px;bottom:-90px;box-shadow:0 0 0 18px rgba(255,255,255,.04),0 0 0 38px rgba(255,255,255,.03)}
+.invite-promo-tag{font-size:9px;letter-spacing:2px;color:#f3d99f;font-weight:900}
+.invite-promo-card h2{font-size:21px;line-height:1.2;margin:14px 0;color:#fff;font-weight:900}
+.invite-promo-features{display:flex;flex-wrap:wrap;gap:7px;max-width:260px}
+.invite-promo-features span{font-size:9px;color:#f8e7c0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.14);padding:6px 8px;border-radius:20px}
+.invite-coin-art{position:absolute;right:18px;bottom:20px;width:95px;height:95px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#f7e4b2,#b88a3b 65%,#76521e);color:#fff;font-size:35px;box-shadow:0 8px 20px rgba(0,0,0,.25)}
+.invite-coin-art i:last-child{position:absolute;font-size:22px;right:-3px;bottom:2px;color:#fff1c8}
+.invite-caption{margin:16px 18px 10px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.invite-caption b{font-size:14px;color:#1a2c45}.invite-caption span{font-size:10px;color:#8a909a;text-align:right}
+.invite-qr-card{margin:0 14px 14px;background:#fff;border-radius:16px;padding:18px 16px 13px;text-align:center;border:1px solid #e7ddc7;box-shadow:0 6px 18px rgba(23,36,58,.05)}
+.invite-qr-wrap{width:220px;height:220px;margin:0 auto 8px;background:#fff;padding:5px;border:1px solid #eee8dc;border-radius:12px;display:grid;place-items:center}
+#ref-qr-wrap canvas,#ref-qr-wrap img,.invite-qr-wrap canvas,.invite-qr-wrap img{max-width:210px;max-height:210px}
+.invite-qr-label{font-size:11px;color:#9a702e;font-weight:800;margin:7px 0 14px}
+.invite-code-row{border-top:1px dashed #e6dfd1;padding-top:12px;display:flex;align-items:center;gap:8px;text-align:left}
+.invite-code-row span{font-size:11px;color:#87909d;flex:1}.invite-code-row b{font-size:15px;color:#1a2c45;letter-spacing:1px}.invite-code-row button{border:0;background:#f7f0df;color:#9b702c;border-radius:8px;padding:8px 10px}
+.invite-link-label{margin:14px 17px 7px;display:flex;justify-content:space-between;font-size:12px;font-weight:800;color:#24344b}
+.invite-link-label b{color:#9b702c}.invite-link-box{margin:0 14px 8px;padding:13px;border:1px dashed #d8c18c;background:#fff;border-radius:11px;font-size:11px;color:#5e6877;word-break:break-all;line-height:1.5}
+.invite-download{margin-top:12px}.invite-footnote{margin:14px 22px 25px;text-align:center;font-size:10px;color:#9299a4;line-height:1.5}
+.ref-detail-card{margin:16px 14px;padding:22px 18px;background:linear-gradient(130deg,#071b35,#153d66);color:#fff;border-radius:16px;display:flex;flex-direction:column;gap:8px;box-shadow:0 8px 20px rgba(7,27,53,.16)}
+.ref-detail-card small{color:#f2dca7;font-size:12px}.ref-detail-card strong{font-size:30px;color:#ffe0a0}.ref-detail-card span{font-size:11px;color:#dce4ef}
+.ref-info-panel,.ref-rules-card{margin:14px;padding:17px;background:#fff;border:1px solid #e8e0cf;border-radius:14px;box-shadow:0 5px 15px rgba(23,36,58,.04)}
+.ref-info-panel{display:flex;gap:12px;color:#9b702c}.ref-info-panel i{font-size:20px;margin-top:2px}.ref-info-panel b{font-size:13px;color:#26364d}.ref-info-panel p{font-size:11px;color:#737e8c;line-height:1.6;margin-top:6px}
+.ref-rules-card h3{font-size:15px;color:#213550;margin-bottom:14px}.ref-rules-card h3 i{color:#a8792d;margin-right:7px}
+.ref-rules-card ol{padding-left:20px}.ref-rules-card li{font-size:12px;color:#647080;line-height:1.65;margin:0 0 10px}
+@media(max-width:360px){.ref-stat{padding:10px}.ref-stat span{font-size:9px}.ref-stat b{font-size:15px}.invite-promo-card h2{font-size:19px}.invite-coin-art{width:78px;height:78px;font-size:29px}}
+
 </style>
 </head>
 <body oncontextmenu="return false">
@@ -600,26 +998,73 @@
     </div>
 
     <div id="toast">Message</div>
-    <div id="floating-help" onclick="openHelp()"><img src="https://i.ibb.co.com/3mtxCR1q/Picsart-26-04-21-16-53-49-393.png" alt="Help"></div>
+    <div id="floating-help" onclick="openHelp()"><img src="https://i.ibb.co.com/5WMjZ7xW/icon-sevice-33277940.png" alt="Help"></div>
 
     <div id="auth-container">
-        <div class="app-shell">
-            <div class="auth-header"><div class="brand-wrap"><h1 class="brand-logo"><i class="fas fa-star brand-star"></i><span>STAR</span><span class="brand-light">LIGHT</span></h1><div class="brand-subtitle"></div><div class="brand-line"></div></div><p style="font-size:13px;margin-top:8px;opacity:.9;font-weight:300" data-lang="auth_slogan">Win Big with the Most Trusted Platform</p></div>
-            <div class="tab-box">
-                <div class="auth-tab active" id="tab-login" onclick="switchAuth('login')" data-lang="login">Login</div>
-                <div class="auth-tab" id="tab-reg" onclick="switchAuth('reg')" data-lang="register">Register</div>
+        <div class="app-shell auth-shell">
+            <div class="auth-header">
+                <div class="auth-brand-row">
+                    <span class="auth-back-mark" onclick="showAuthBack()"><i class="fas fa-chevron-left"></i></span>
+                    <div class="brand-wrap"><h1 class="brand-logo"><i class="fas fa-star brand-star"></i><span>STAR</span><span class="brand-light">LIGHT</span></h1></div>
+                    <div class="auth-language-wrap">
+                        <button type="button" class="auth-lang-mark" onclick="toggleAuthLanguage()"><span id="auth-lang-label">EN</span> <i class="fas fa-globe"></i></button>
+                        <div id="auth-language-menu" class="auth-language-menu hidden">
+                            <button type="button" onclick="setLanguage('en');toggleAuthLanguage(false)">🇺🇸 &nbsp; English</button>
+                            <button type="button" onclick="setLanguage('bn');toggleAuthLanguage(false)">🇧🇩 &nbsp; বাংলা (বাংলাদেশ)</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="auth-heading">
+                    <h2 data-lang="auth_login_title">Log in</h2>
+                    <p data-lang="auth_login_desc">Please log in with your phone number or email<br>If you forget your password, please contact customer service</p>
+                </div>
             </div>
-            <div id="login-view">
-                <div class="input-group"><label data-lang="account_number">Account Number</label><div class="input-wrapper"><span style="font-weight:700;color:var(--primary)">+880</span><input type="number" id="l-phone" placeholder="1XXX-XXXXXX"></div></div>
-                <div class="input-group"><label data-lang="password">Password</label><div class="input-wrapper"><i class="fas fa-unlock-alt" style="color:var(--primary)"></i><input type="password" id="l-pass" placeholder="••••••••"><i class="fas fa-eye toggle-pass" onclick="togglePassword('l-pass',this)"></i></div></div>
-                <button class="btn-main" id="loginBtn" onclick="processLogin()" data-lang="login_btn">Login to Account</button>
-            </div>
-            <div id="reg-view" class="hidden">
-                <div class="input-group"><label data-lang="phone_number">Phone Number</label><div class="input-wrapper"><span style="font-weight:700;color:var(--primary)">+880</span><input type="number" id="r-phone" placeholder="1XXX-XXXXXX"></div></div>
-                <div class="input-group"><label data-lang="new_password">New Password</label><div class="input-wrapper"><i class="fas fa-lock" style="color:var(--primary)"></i><input type="password" id="r-pass" placeholder="Min 6 characters"><i class="fas fa-eye toggle-pass" onclick="togglePassword('r-pass',this)"></i></div></div>
-                <div class="input-group"><label data-lang="confirm_password">Confirm Password</label><div class="input-wrapper"><i class="fas fa-shield-alt" style="color:var(--primary)"></i><input type="password" id="r-cpass" placeholder="Repeat password"><i class="fas fa-eye toggle-pass" onclick="togglePassword('r-cpass',this)"></i></div></div>
-                <div class="input-group"><label data-lang="invite_code">Invite Code</label><div class="input-wrapper"><i class="fas fa-gift" style="color:var(--primary)"></i><input type="text" id="r-ref" placeholder="Automatic"></div></div>
-                <button class="btn-main" id="regBtn" onclick="processRegister()" data-lang="create_account">Create Account</button>
+
+            <div class="auth-form-area">
+                <div id="login-view">
+                    <div class="auth-method-tabs">
+                        <button type="button" id="login-phone-tab" class="auth-method-tab active" onclick="setAuthMethod('login','phone')"><i class="fas fa-mobile-alt"></i><span data-lang="phone_number">Phone Number</span></button>
+                        <button type="button" id="login-email-tab" class="auth-method-tab" onclick="setAuthMethod('login','email')"><i class="fas fa-envelope"></i><span data-lang="email">Email</span></button>
+                    </div>
+                    <div id="login-phone-panel" class="auth-method-panel">
+                        <div class="auth-field-title"><i class="fas fa-mobile-alt"></i><span data-lang="phone_number">Phone number</span></div>
+                        <div class="auth-input-row"><button class="auth-country" type="button" onclick="toggleCountryList()" aria-label="Bangladesh country code +880"><span class="auth-country-flag" aria-hidden="true">🇧🇩</span><span class="auth-country-code">+880</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><input type="tel" id="l-phone" placeholder="Please enter the phone number" autocomplete="tel"></div>
+                    </div>
+                    <div id="login-email-panel" class="auth-method-panel hidden">
+                        <div class="auth-field-title"><i class="fas fa-envelope"></i><span data-lang="email">Email</span></div>
+                        <div class="auth-input-row"><input type="email" id="l-email" placeholder="Please input your email" autocomplete="email"></div>
+                    </div>
+                    <div class="auth-field-title"><i class="fas fa-lock"></i><span data-lang="password">Password</span></div>
+                    <div class="auth-input-row"><input type="password" id="l-pass" placeholder="Password" autocomplete="current-password"><button type="button" class="auth-eye" onclick="togglePassword('l-pass',this)"><i class="far fa-eye"></i></button></div>
+                    <div class="auth-remember-row"><label class="auth-remember"><input type="checkbox" id="remember-login"><span data-lang="remember_password">Remember password</span></label><button type="button" class="auth-forgot" onclick="showToast(langData[currentLang].forgot_password_help)"><span data-lang="forgot_password">Forgot password?</span></button></div>
+                    <button class="btn-main auth-submit" id="loginBtn" onclick="processLogin()" data-lang="login_btn">Log in</button>
+                    <button class="auth-switch-btn" onclick="switchAuth('reg')" data-lang="register_prompt">Register</button>
+                </div>
+
+                <div id="reg-view" class="hidden">
+                    <div class="auth-register-title"><i class="fas fa-mobile-alt"></i><span data-lang="register_your_phone">Register your phone</span></div>
+                    <div class="auth-method-tabs auth-register-tabs">
+                        <button type="button" id="reg-phone-tab" class="auth-method-tab active" onclick="setAuthMethod('reg','phone')"><i class="fas fa-mobile-alt"></i><span data-lang="phone_number">Phone Number</span></button>
+                        <button type="button" id="reg-email-tab" class="auth-method-tab" onclick="setAuthMethod('reg','email')"><i class="fas fa-envelope"></i><span data-lang="email">Email</span></button>
+                    </div>
+                    <div id="reg-phone-panel" class="auth-method-panel">
+                        <div class="auth-field-title"><i class="fas fa-mobile-alt"></i><span data-lang="phone_number">Phone number</span></div>
+                        <div class="auth-input-row"><button class="auth-country" type="button" onclick="toggleCountryList()" aria-label="Bangladesh country code +880"><span class="auth-country-flag" aria-hidden="true">🇧🇩</span><span class="auth-country-code">+880</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><input type="tel" id="r-phone" placeholder="Please enter the phone number" autocomplete="tel"></div>
+                    </div>
+                    <div id="reg-email-panel" class="auth-method-panel hidden">
+                        <div class="auth-field-title"><i class="fas fa-envelope"></i><span data-lang="email">Email</span></div>
+                        <div class="auth-input-row"><input type="email" id="r-email" placeholder="Please input your email" autocomplete="email"></div>
+                    </div>
+                    <div class="auth-field-title"><i class="fas fa-lock"></i><span data-lang="set_password">Set password</span></div>
+                    <div class="auth-input-row"><input type="password" id="r-pass" placeholder="Set password" autocomplete="new-password"><button type="button" class="auth-eye" onclick="togglePassword('r-pass',this)"><i class="far fa-eye"></i></button></div>
+                    <div class="auth-field-title"><i class="fas fa-lock"></i><span data-lang="confirm_password">Confirm password</span></div>
+                    <div class="auth-input-row"><input type="password" id="r-cpass" placeholder="Confirm password" autocomplete="new-password"><button type="button" class="auth-eye" onclick="togglePassword('r-cpass',this)"><i class="far fa-eye"></i></button></div>
+                    <div class="auth-field-title"><i class="fas fa-gift"></i><span data-lang="invite_code">Invite code</span></div>
+                    <div class="auth-input-row"><input type="text" id="r-ref" placeholder="Please enter the invitation code"></div>
+                    <label class="auth-agreement"><input type="checkbox" id="auth-agree" checked><span data-lang="privacy_agreement">I have read and agree</span> <b data-lang="privacy_title">[Privacy Agreement]</b></label>
+                    <button class="btn-main auth-submit" id="regBtn" onclick="processRegister()" data-lang="create_account">Register</button>
+                    <button class="auth-switch-btn" onclick="switchAuth('login')" data-lang="login_prompt">I have an account · Log in</button>
+                </div>
             </div>
         </div>
     </div>
@@ -660,31 +1105,169 @@
             </div>
 
             <div id="vip-page" class="page">
-                <div style="padding:15px"><div class="vip-card-header" style="background: #111827; padding: 30px 20px; color: #fff; border-radius: 20px 20px 0 0; position: relative; overflow: hidden"><i class="fas fa-crown" style="color: var(--primary); font-size: 40px; margin-bottom: 10px"></i><h2 style="font-weight: 800;" data-lang="vip_benefits">VIP BENEFITS</h2><p style="opacity: 0.8; font-size: 13px;" data-lang="vip_subtitle">Exclusive Daily Salary for Active Players</p></div></div>
-                <div id="vip-list-container">
-                    <div class="vip-item-row"><div class="vip-level-box">1</div><div class="vip-info-text"><h4>VIP Level 1</h4><p>Deposit: ৳500+</p></div><div class="vip-salary-tag">৳100/Day</div></div>
-                    <div class="vip-item-row"><div class="vip-level-box">2</div><div class="vip-info-text"><h4>VIP Level 2</h4><p>Deposit: ৳2,000+</p></div><div class="vip-salary-tag">৳300/Day</div></div>
-                    <div class="vip-item-row"><div class="vip-level-box">3</div><div class="vip-info-text"><h4>VIP Level 3</h4><p>Deposit: ৳10,000+</p></div><div class="vip-salary-tag">৳500/Day</div></div>
-                    <div class="vip-item-row"><div class="vip-level-box">4</div><div class="vip-info-text"><h4>VIP Level 4</h4><p>Deposit: ৳50,000+</p></div><div class="vip-salary-tag">৳2,500/Day</div></div>
-                    <div class="vip-item-row"><div class="vip-level-box">5</div><div class="vip-info-text"><h4>VIP Level 5</h4><p>Deposit: ৳2,00,000+</p></div><div class="vip-salary-tag">৳10,000/Day</div></div>
+                <div class="vip-screen">
+                    <div class="vip-topline">
+                        <button class="vip-back" onclick="nav('main-dashboard')" aria-label="Back"><i class="fas fa-chevron-left"></i></button>
+                        <span>VIP</span><span class="vip-top-spacer"></span>
+                    </div>
+
+                    <section class="vip-member-panel">
+                        <div class="vip-member-row">
+                            <div class="vip-avatar"><i class="fas fa-user"></i></div>
+                            <div class="vip-member-meta">
+                                <span class="vip-member-tag"><i class="fas fa-gem"></i> MEMBER</span>
+                                <strong id="vip-member-name">Member</strong>
+                            </div>
+                        </div>
+                        <div class="vip-progress-row">
+                            <div class="vip-progress-box"><strong>0 <small>EXP</small></strong><span>My experience</span></div>
+                            <div class="vip-progress-box"><strong>20 <small>Days</small></strong><span>Payout time</span></div>
+                        </div>
+                        <p class="vip-cycle-note">VIP level rewards are settled at 2:00 am on the 1st of every month</p>
+                    </section>
+
+                    <div class="vip-level-slider-wrap">
+                        <button class="vip-slide-arrow left" onclick="changeVipLevel(-1)" aria-label="Previous VIP"><i class="fas fa-chevron-left"></i></button>
+                        <div class="vip-level-track" id="vip-level-track">
+                            <button class="vip-level-card vip-lv1" onclick="selectVipLevel(1)">
+                                <span class="vip-card-kicker">♢ VIP1 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
+                                <span class="vip-card-require">Deposit ৳500+</span><span class="vip-card-bottom"><b>৳100/Day</b><small>VIP1</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv2" onclick="selectVipLevel(2)">
+                                <span class="vip-card-kicker">♢ VIP2 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
+                                <span class="vip-card-require">Deposit ৳2,000+</span><span class="vip-card-bottom"><b>৳300/Day</b><small>VIP2</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv3" onclick="selectVipLevel(3)">
+                                <span class="vip-card-kicker">♢ VIP3 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
+                                <span class="vip-card-require">Deposit ৳10,000+</span><span class="vip-card-bottom"><b>৳500/Day</b><small>VIP3</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv4" onclick="selectVipLevel(4)">
+                                <span class="vip-card-kicker">♢ VIP4 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
+                                <span class="vip-card-require">Deposit ৳50,000+</span><span class="vip-card-bottom"><b>৳2,500/Day</b><small>VIP4</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv5" onclick="selectVipLevel(5)">
+                                <span class="vip-card-kicker">♢ VIP5 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
+                                <span class="vip-card-require">Deposit ৳2,00,000+</span><span class="vip-card-bottom"><b>৳10,000/Day</b><small>VIP5</small></span>
+                            </button>
+                        </div>
+                        <button class="vip-slide-arrow right" onclick="changeVipLevel(1)" aria-label="Next VIP"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <section class="vip-benefits-panel">
+                        <div class="vip-benefit-title"><i class="fas fa-gem"></i><strong id="vip-benefit-heading">VIP1 Benefits level</strong></div>
+                        <div class="vip-benefit-row">
+                            <span class="vip-benefit-icon gift"><i class="fas fa-gift"></i></span>
+                            <div class="vip-benefit-copy"><strong>Level up rewards</strong><small>Each account can only receive 1 time</small></div>
+                            <b class="vip-benefit-value" id="vip-level-reward">৳100</b>
+                        </div>
+                        <div class="vip-benefit-row">
+                            <span class="vip-benefit-icon coin"><i class="fas fa-coins"></i></span>
+                            <div class="vip-benefit-copy"><strong>Daily salary</strong><small>Daily reward for eligible members</small></div>
+                            <b class="vip-benefit-value" id="vip-daily-reward">৳100</b>
+                        </div>
+                        <div class="vip-benefit-row">
+                            <span class="vip-benefit-icon rate"><i class="fas fa-percent"></i></span>
+                            <div class="vip-benefit-copy"><strong>Deposit requirement</strong><small>Required deposit to reach this level</small></div>
+                            <b class="vip-benefit-value" id="vip-deposit-requirement">৳500+</b>
+                        </div>
+                    </section>
+
+                    <section class="vip-history-panel">
+                        <div class="vip-tabs">
+                            <button class="vip-tab active" id="vip-history-tab" onclick="switchVipTab('history')">History</button>
+                            <button class="vip-tab" id="vip-rules-tab" onclick="switchVipTab('rules')">Rules</button>
+                        </div>
+                        <div id="vip-history-content" class="vip-empty-state"><i class="fas fa-inbox"></i><span>No data</span></div>
+                        <div id="vip-rules-content" class="vip-rules-content" style="display:none">
+                            <p>VIP level is determined by the deposit requirement shown on each level card.</p>
+                            <p>Daily salary and level benefits are displayed for reference. Existing account commission and referral calculations remain unchanged.</p>
+                            <p>VIP rewards are settled at 2:00 am on the 1st of every month.</p>
+                        </div>
+                        <button class="vip-view-all" onclick="switchVipTab('history')">View All</button>
+                    </section>
                 </div>
             </div>
 
-            <div id="agency-page" class="page">
-                <div class="balance-card" style="text-align:center"><p style="opacity:.7;font-size:14px" data-lang="total_commission">Total Commission</p><h1 id="total-comm-display" style="font-size:38px;margin:10px 0">৳ 0.00</h1><div style="display:inline-block;background:rgba(255,255,255,.1);padding:5px 15px;border-radius:50px;font-size:12px" data-lang="direct_comm">5% Direct Commission</div></div>
-                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;padding:0 15px;margin-top:-10px">
-                    <div style="background:#fff;padding:15px;border-radius:20px;text-align:center;border:1px solid #eee;cursor:pointer" onclick="nav('downline')"><b id="team-count-display" style="font-size:20px;color:var(--primary);display:block">0</b><span style="font-size:12px;color:#64748b" data-lang="total_team">Total Team (Check)</span></div>
-                    <div style="background:#fff;padding:15px;border-radius:20px;text-align:center;border:1px solid #eee"><b id="today-earn-display" style="font-size:20px;color:var(--success);display:block">৳0</b><span style="font-size:12px;color:#64748b" data-lang="today_earn">Today Earn</span></div>
+            <div id="agency-page" class="page referral-page">
+                <div class="ref-topbar">
+                    <button onclick="nav('home')" aria-label="Back"><i class="fas fa-chevron-left"></i></button>
+                    <strong>Agency</strong>
+                    <button onclick="nav('invite')" aria-label="Invite"><i class="fas fa-share-nodes"></i></button>
                 </div>
-                <div style="background:#fff;margin:15px;padding:25px;border-radius:25px;border:1px solid #eee">
-                    <h4 style="margin-bottom:5px;color:#333" data-lang="invitation_code">Invitation Code</h4>
-                    <div style="background:#f8fafc;padding:15px;border-radius:15px;font-size:20px;font-weight:800;border:1px dashed #cbd5e1;display:flex;justify-content:space-between;align-items:center"><span id="ref-code-display" style="color:var(--primary)">...</span><button onclick="copyRefCode()" style="background:var(--primary);color:#fff;border:none;padding:5px 12px;border-radius:8px;font-size:12px" data-lang="copy">Copy</button></div>
-                    <h4 style="margin-top:20px;color:#333" data-lang="invitation_link">Invitation Link</h4>
-                    <div id="ref-link-display" style="background:#f8fafc;padding:15px;border-radius:15px;font-size:12px;border:1px solid #e2e8f0;word-break:break-all;margin-top:10px;color:#64748b">Generating...</div>
-                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px"><button class="btn-main" style="width:100%;margin:0" onclick="copyRefLink()" data-lang="copy_link">Copy Link</button><button class="btn-main" id="telegram-share-btn" style="width:100%;margin:0;background:#0088cc"><i class="fab fa-telegram-plane"></i> Telegram</button></div>
+                <div class="ref-tabs">
+                    <button class="ref-tab active" id="ref-direct-tab" onclick="setReferralTab('direct')">Direct subordinates</button>
+                    <button class="ref-tab" id="ref-team-tab" onclick="setReferralTab('team')">Team subordinates</button>
                 </div>
+                <section class="ref-hero">
+                    <div class="ref-hero-label"><i class="fas fa-coins"></i> Total commission</div>
+                    <div class="ref-hero-amount" id="total-comm-display">৳ 0.00</div>
+                    <div class="ref-hero-pill"><i class="fas fa-percent"></i> 5% Direct Commission</div>
+                    <div class="ref-hero-shine"></div>
+                </section>
+                <section class="ref-stats-grid">
+                    <div class="ref-stat"><span>Number of register</span><b id="ref-register-count">0</b></div>
+                    <div class="ref-stat"><span>Deposit number</span><b id="ref-deposit-count">0</b></div>
+                    <div class="ref-stat"><span>Deposit amount</span><b id="ref-deposit-amount">৳0</b></div>
+                    <div class="ref-stat"><span>Number of people making first deposit</span><b id="ref-first-deposit-count">0</b></div>
+                    <div class="ref-stat"><span>Total team deposit</span><b id="ref-first-deposit-amount">৳0</b></div>
+                    <div class="ref-stat"><span>Today commission</span><b id="today-earn-display">৳0.00</b></div>
+                </section>
+                <button class="ref-primary-btn" onclick="nav('invite')"><i class="fas fa-qrcode"></i> Download QR Code</button>
+                <div class="ref-action-list">
+                    <button class="ref-action" onclick="copyRefCode()"><span class="ref-action-icon"><i class="fas fa-copy"></i></span><span><b>Copy invitation code</b><small id="ref-code-short">Loading...</small></span><i class="fas fa-copy ref-arrow"></i></button>
+                    <button class="ref-action" onclick="nav('downline')"><span class="ref-action-icon"><i class="fas fa-users"></i></span><span><b>Subordinate data</b><small>View your invited members</small></span><i class="fas fa-chevron-right ref-arrow"></i></button>
+                    <button class="ref-action" onclick="nav('commission')"><span class="ref-action-icon"><i class="fas fa-sack-dollar"></i></span><span><b>Commission detail</b><small>5% from successful referred deposits</small></span><i class="fas fa-chevron-right ref-arrow"></i></button>
+                    <button class="ref-action" onclick="nav('invitation-rules')"><span class="ref-action-icon"><i class="fas fa-book-open"></i></span><span><b>Invitation rules</b><small>How referral commission works</small></span><i class="fas fa-chevron-right ref-arrow"></i></button>
+                    <button class="ref-action" onclick="openHelp()"><span class="ref-action-icon"><i class="fas fa-headset"></i></span><span><b>Agent line customer service</b><small>Contact support</small></span><i class="fas fa-chevron-right ref-arrow"></i></button>
+                    <button class="ref-action" onclick="nav('rebate')"><span class="ref-action-icon"><i class="fas fa-chart-pie"></i></span><span><b>Rebate ratio</b><small>Current referral rate: 5%</small></span><i class="fas fa-chevron-right ref-arrow"></i></button>
+                </div>
+                <section class="ref-bottom-stats">
+                    <div><b id="ref-week-register">0</b><small>This Week register</small></div>
+                    <div><b id="ref-total-team-bottom">0</b><small>Total number of subordinates</small></div>
+                    <div><b id="ref-week-commission">৳0.00</b><small>This Week commission</small></div>
+                    <div><b id="ref-total-commission-bottom">৳0.00</b><small>Total commission</small></div>
+                </section>
             </div>
 
+            <div id="invite-page" class="page referral-page">
+                <div class="ref-topbar"><button onclick="nav('agency')"><i class="fas fa-chevron-left"></i></button><strong>Invite</strong><button onclick="nav('agency')"><i class="fas fa-ellipsis-h"></i></button></div>
+                <div class="invite-promo-card">
+                    <div class="invite-promo-tag">STARLIGHT INVITATION</div>
+                    <h2>Fair and justice<br>Open and transparent</h2>
+                    <div class="invite-promo-features"><span><i class="fas fa-shield-alt"></i> Fair commission</span><span><i class="fas fa-gift"></i> Invite friends</span><span><i class="fas fa-chart-line"></i> 5% direct commission</span></div>
+                    <div class="invite-coin-art"><i class="fas fa-coins"></i><i class="fas fa-user-friends"></i></div>
+                </div>
+                <div class="invite-caption"><b>Invite friends</b><span>Income from successful referred deposits</span></div>
+                <div class="invite-qr-card">
+                    <div class="invite-qr-wrap"><div id="ref-qr-canvas"></div><div id="ref-qr-fallback" class="hidden">QR</div></div>
+                    <div class="invite-qr-label"><i class="fas fa-check-circle"></i> Scan to join StarLight</div>
+                    <div class="invite-code-row"><span>Invitation code</span><b id="invite-code-display">...</b><button onclick="copyRefCode()"><i class="fas fa-copy"></i></button></div>
+                </div>
+                <div class="invite-link-label"><span>Invitation link</span><b>5% Commission</b></div>
+                <div id="ref-link-display" class="invite-link-box">Generating invitation link...</div>
+                <button class="ref-primary-btn invite-download" onclick="downloadReferralQR()"><i class="fas fa-download"></i> Download QR Code</button>
+                <button class="ref-secondary-btn" onclick="copyRefLink()"><i class="fas fa-link"></i> Copy invitation link</button>
+                <button class="ref-secondary-btn" id="telegram-share-btn"><i class="fab fa-telegram-plane"></i> Share on Telegram</button>
+                <p class="invite-footnote">Referral commission is credited automatically after a referred member's deposit is approved successfully.</p>
+            </div>
+
+            <div id="commission-page" class="page referral-page">
+                <div class="ref-topbar"><button onclick="nav('agency')"><i class="fas fa-chevron-left"></i></button><strong>Commission detail</strong><span></span></div>
+                <div class="ref-detail-card"><small>Total commission</small><strong id="commission-detail-total">৳0.00</strong><span>5% direct commission on successful referred deposits</span></div>
+                <div class="ref-info-panel"><i class="fas fa-circle-info"></i><div><b>Automatic commission</b><p>When a member registered with your invitation code makes a deposit and that deposit is marked Success, 5% of the approved deposit amount is added to your balance and commission totals.</p></div></div>
+                <button class="ref-primary-btn" onclick="nav('downline')">View subordinate data</button>
+            </div>
+
+            <div id="invitation-rules-page" class="page referral-page">
+                <div class="ref-topbar"><button onclick="nav('agency')"><i class="fas fa-chevron-left"></i></button><strong>Invitation rules</strong><span></span></div>
+                <div class="ref-rules-card"><h3><i class="fas fa-book-open"></i> StarLight referral rules</h3><ol><li>Share your personal invitation link or QR code with friends.</li><li>When a new member registers using your invitation code, they are linked to your account.</li><li>You receive 5% direct commission from that member's deposit after the deposit status becomes Success.</li><li>Commission is credited automatically to your balance and total commission.</li><li>No signup bonus or extra referral bonus is offered on this page.</li></ol></div>
+            </div>
+
+            <div id="rebate-page" class="page referral-page">
+                <div class="ref-topbar"><button onclick="nav('agency')"><i class="fas fa-chevron-left"></i></button><strong>Rebate ratio</strong><span></span></div>
+                <div class="ref-detail-card"><small>Direct commission ratio</small><strong>5%</strong><span>Calculated from successful referred deposits only</span></div>
+                <div class="ref-info-panel"><i class="fas fa-info-circle"></i><div><b>No extra bonus</b><p>StarLight does not display or add a separate signup/referral bonus. Only the existing 5% direct commission applies.</p></div></div>
+            </div>
             <div id="downline-page" class="page">
                 <div style="padding:20px 25px"><h3 data-lang="my_downline">My Downline</h3></div>
                 <div class="search-container"><div class="search-box"><input type="number" id="downline-search-uid" placeholder="Search by UID"><button class="search-btn" onclick="searchDownline()"><i class="fas fa-search"></i></button></div></div>
@@ -1409,6 +1992,7 @@
         window.langData = {
             en: {
                 auth_slogan: "Win Big with the Most Trusted Platform",
+                auth_login_title: "Log in", auth_login_desc: "Please log in with your phone number or email\nIf you forget your password, please contact customer service", email: "Email", remember_password: "Remember password", forgot_password: "Forgot password?", forgot_password_help: "Please contact customer service to reset your password.", register_your_phone: "Register your phone", set_password: "Set password", privacy_agreement: "I have read and agree", privacy_title: "[Privacy Agreement]", register_prompt: "Register", login_prompt: "I have an account · Log in",
                 login: "Login", register: "Register", account_number: "Account Number", password: "Password", login_btn: "Login to Account",
                 phone_number: "Phone Number", new_password: "New Password", confirm_password: "Confirm Password", invite_code: "Invite Code", create_account: "Create Account",
                 welcome_notice: "Welcome to StarLight! Deposit now and get 100% bonus on your first deposit. Withdrawals within 30 mins. 🔥",
@@ -1430,6 +2014,7 @@
             },
             bn: {
                 auth_slogan: "সবচেয়ে বিশ্বস্ত প্ল্যাটফর্মে বড় জিতুন",
+                auth_login_title: "লগইন", auth_login_desc: "আপনার ফোন নম্বর অথবা ইমেইল দিয়ে লগইন করুন\nপাসওয়ার্ড ভুলে গেলে কাস্টমার সার্ভিসে যোগাযোগ করুন", email: "ইমেইল", remember_password: "পাসওয়ার্ড মনে রাখুন", forgot_password: "পাসওয়ার্ড ভুলে গেছেন?", forgot_password_help: "পাসওয়ার্ড রিসেট করতে কাস্টমার সার্ভিসে যোগাযোগ করুন।", register_your_phone: "আপনার ফোন রেজিস্টার করুন", set_password: "পাসওয়ার্ড সেট করুন", privacy_agreement: "আমি পড়েছি এবং সম্মত আছি", privacy_title: "[গোপনীয়তা নীতি]", register_prompt: "রেজিস্টার", login_prompt: "অ্যাকাউন্ট আছে · লগইন করুন",
                 login: "লগইন", register: "রেজিস্টার", account_number: "অ্যাকাউন্ট নম্বর", password: "পাসওয়ার্ড", login_btn: "লগইন করুন",
                 phone_number: "মোবাইল নম্বর", new_password: "নতুন পাসওয়ার্ড", confirm_password: "পাসওয়ার্ড নিশ্চিত করুন", invite_code: "ইনভাইট কোড", create_account: "অ্যাকাউন্ট তৈরি করুন",
                 welcome_notice: "StarLight এ স্বাগতম! এখনই ডিপোজিট করুন এবং প্রথম ডিপোজিটে ১০০% বোনাস পান। ৩০ মিনিটের মধ্যে উত্তোলন। 🔥",
@@ -1452,17 +2037,19 @@
         };
 
         window.currentLang = localStorage.getItem("b20_lang") || "en";
+        if (!window.langData[window.currentLang]) window.currentLang = "en";
 
         window.setLanguage = function(lang) {
+            if (!langData[lang]) lang = 'en';
             currentLang = lang;
             localStorage.setItem("b20_lang", lang);
             applyLanguage();
             
             document.querySelectorAll('.lang-item').forEach(el => el.classList.remove('active'));
-            if(lang === 'en') document.getElementById('lang-en').classList.add('active');
-            else if(lang === 'bn') document.getElementById('lang-bn').classList.add('active');
-            else document.getElementById('lang-en').classList.add('active');
-
+            const selectedLang = document.getElementById(lang === 'bn' ? 'lang-bn' : 'lang-en');
+            if(selectedLang) selectedLang.classList.add('active');
+            const authLangLabel = document.getElementById('auth-lang-label');
+            if(authLangLabel) authLangLabel.innerText = lang === 'bn' ? 'বাংলা' : 'EN';
             showToast(lang === 'bn' ? "ভাষা বাংলা করা হয়েছে" : "Language set to English");
         };
 
@@ -1472,12 +2059,53 @@
             
             document.querySelectorAll("[data-lang]").forEach(el => {
                 const key = el.getAttribute("data-lang");
-                if(langData[currentLang][key]) {
-                    el.innerText = langData[currentLang][key];
-                }
+                if(langData[currentLang] && langData[currentLang][key]) el.innerText = langData[currentLang][key];
             });
+            const authLangLabel = document.getElementById('auth-lang-label');
+            if(authLangLabel) authLangLabel.innerText = currentLang === 'bn' ? 'বাংলা' : 'EN';
+            const placeholders = currentLang === 'bn' ? {
+                'l-phone':'ফোন নম্বর লিখুন','r-phone':'ফোন নম্বর লিখুন','l-email':'আপনার ইমেইল লিখুন','r-email':'আপনার ইমেইল লিখুন',
+                'l-pass':'পাসওয়ার্ড','r-pass':'পাসওয়ার্ড সেট করুন','r-cpass':'পাসওয়ার্ড নিশ্চিত করুন','r-ref':'ইনভাইট কোড লিখুন'
+            } : {
+                'l-phone':'Please enter the phone number','r-phone':'Please enter the phone number','l-email':'Please input your email','r-email':'Please input your email',
+                'l-pass':'Password','r-pass':'Set password','r-cpass':'Confirm password','r-ref':'Please enter the invitation code'
+            };
+            Object.keys(placeholders).forEach(id => { const field = document.getElementById(id); if(field) field.placeholder = placeholders[id]; });
             if(typeof setDepM === 'function') setDepM(selectedDepM); 
             if(typeof setWithM === 'function') setWithM(selectedWithM);
+        };
+        applyLanguage();
+
+        // --- AUTH METHOD + LANGUAGE CONTROLS ---
+        window.authMethods = { login: 'phone', reg: 'phone' };
+        window.setAuthMethod = function(view, method) {
+            authMethods[view] = method;
+            ['phone','email'].forEach(type => {
+                const panel = document.getElementById(view + '-' + type + '-panel');
+                const tab = document.getElementById(view + '-' + type + '-tab');
+                if(panel) panel.classList.toggle('hidden', type !== method);
+                if(tab) tab.classList.toggle('active', type === method);
+            });
+            const title = document.querySelector('#auth-container .auth-heading h2');
+            if(title && view === 'reg') title.innerText = currentLang === 'bn' ? 'রেজিস্টার' : 'Register';
+            else if(title) title.innerText = langData[currentLang].auth_login_title;
+        };
+        window.toggleAuthLanguage = function(force) {
+            const menu = document.getElementById('auth-language-menu');
+            if(!menu) return;
+            if(force === false) menu.classList.add('hidden');
+            else menu.classList.toggle('hidden');
+        };
+        window.showAuthBack = function() {
+            if(!document.getElementById('reg-view').classList.contains('hidden')) switchAuth('login');
+            else showToast(currentLang === 'bn' ? 'লগইন পেজ' : 'Login page');
+        };
+        window.toggleCountryList = function() { showToast(currentLang === 'bn' ? 'দেশের কোড: +880' : 'Country code: +880'); };
+        window.authUserKey = function(method, value) {
+            if(method === 'email') return 'email_' + btoa(value.trim().toLowerCase()).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
+            let phone = value.trim().replace(/[^0-9]/g,'');
+            if(phone.startsWith('880')) phone = '0' + phone.slice(3);
+            return phone.startsWith('0') ? phone : '0' + phone;
         };
 
         // --- SAFE SYSTEM LOGIC ---
@@ -1556,57 +2184,60 @@
         };
 
         // --- EXISTING FUNCTIONS ---
-        window.processLogin = async function() { 
-            let p = document.getElementById("l-phone").value.trim(), pass = document.getElementById("l-pass").value.trim(); 
-            if (!p || !pass) return showToast("❌ Enter Info"); 
-            const t = p.startsWith("0") ? p : "0" + p; 
-            try { 
-                const snapshot = await get(ref(db, "users/" + t)); 
-                if (snapshot.exists()) { 
-                    const userData = snapshot.val(); 
-                    if(userData.password === pass) { 
-                        localStorage.setItem("isLoggedIn", "true"); 
-                        localStorage.setItem("userPhone", t); 
-                        enterDashboard(); 
-                    } else { 
-                        showToast("❌ Invalid Password!"); 
-                    } 
-                } else { 
-                    showToast("❌ User Not Found!"); 
-                } 
-            } catch (err) { 
-                console.error(err);
-                showToast("❌ Connection Error! Check Internet."); 
-            } 
+        window.processLogin = async function() {
+            const method = authMethods.login || 'phone';
+            const value = (method === 'email' ? document.getElementById('l-email').value : document.getElementById('l-phone').value).trim();
+            const pass = document.getElementById('l-pass').value.trim();
+            if (!value || !pass) return showToast(currentLang === 'bn' ? '❌ তথ্য দিন' : '❌ Enter Info');
+            if (method === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return showToast(currentLang === 'bn' ? '❌ সঠিক ইমেইল দিন' : '❌ Enter a valid email');
+            if (method === 'phone' && value.replace(/\D/g,'').length < 10) return showToast(currentLang === 'bn' ? '❌ সঠিক ফোন নম্বর দিন' : '❌ Enter valid number');
+            const key = authUserKey(method, value);
+            try {
+                const snapshot = await get(ref(db, 'users/' + key));
+                if (snapshot.exists()) {
+                    const userData = snapshot.val();
+                    if (userData.password === pass) {
+                        localStorage.setItem('isLoggedIn', 'true');
+                        localStorage.setItem('userPhone', key);
+                        if (method === 'email') localStorage.setItem('userEmail', value.trim().toLowerCase());
+                        else localStorage.removeItem('userEmail');
+                        enterDashboard();
+                    } else showToast(currentLang === 'bn' ? '❌ পাসওয়ার্ড ভুল!' : '❌ Invalid Password!');
+                } else showToast(currentLang === 'bn' ? '❌ অ্যাকাউন্ট পাওয়া যায়নি!' : '❌ User Not Found!');
+            } catch (err) { console.error(err); showToast('❌ Connection Error! Check Internet.'); }
         };
-        
-        window.processRegister = async function() { 
-            const p = document.getElementById("r-phone").value.trim(), pass = document.getElementById("r-pass").value.trim(), cpass = document.getElementById("r-cpass").value.trim(), refCode = document.getElementById("r-ref").value.trim(); 
-            if (p.length < 10) return showToast("❌ Enter valid number"); 
-            if (pass.length < 6) return showToast("❌ Password min 6 chars"); 
-            if (pass !== cpass) return showToast("❌ Password mismatch"); 
-            const t = p.startsWith("0") ? p : "0" + p; 
-            try { 
-                const checkUser = await get(ref(db, "users/" + t)); 
-                if (checkUser.exists()) return showToast("❌ Number already exists"); 
-                const uid = Math.floor(1e5 + 9e5 * Math.random()), newUser = { phone: t, password: pass, balance: 0, turnover: 0, uid: uid, memberName: "MEMBER", referredBy: refCode || "", totalCommission: 0, todayEarn: 0, totalTeam: 0, totalDeposit: 0, safeBalance: 0, lastLogin: Date.now() }; 
-                await set(ref(db, "users/" + t), newUser); 
-                if(refCode) { 
-                    const allUsers = await get(ref(db, "users")); 
-                    allUsers.forEach(child => { 
-                        if(child.val().uid == refCode) { 
-                            update(ref(db, "users/" + child.key), { totalTeam: increment(1) }); 
-                        } 
-                    }); 
-                } 
-                showToast("✅ Success! Please Login"); 
-                switchAuth("login"); 
-            } catch (err) { 
-                console.error(err);
-                showToast("❌ Registration Failed!"); 
-            } 
+
+        window.processRegister = async function() {
+            const method = authMethods.reg || 'phone';
+            const value = (method === 'email' ? document.getElementById('r-email').value : document.getElementById('r-phone').value).trim();
+            const pass = document.getElementById('r-pass').value.trim();
+            const cpass = document.getElementById('r-cpass').value.trim();
+            const refCode = document.getElementById('r-ref').value.trim();
+            if (method === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return showToast(currentLang === 'bn' ? '❌ সঠিক ইমেইল দিন' : '❌ Enter valid email');
+            if (method === 'phone' && value.replace(/\D/g,'').length < 10) return showToast(currentLang === 'bn' ? '❌ সঠিক ফোন নম্বর দিন' : '❌ Enter valid number');
+            if (pass.length < 6) return showToast(currentLang === 'bn' ? '❌ পাসওয়ার্ড কমপক্ষে ৬ অক্ষর' : '❌ Password min 6 chars');
+            if (pass !== cpass) return showToast(currentLang === 'bn' ? '❌ পাসওয়ার্ড মিলছে না' : '❌ Password mismatch');
+            const agree = document.getElementById('auth-agree');
+            if (agree && !agree.checked) return showToast(currentLang === 'bn' ? '❌ গোপনীয়তা নীতিতে সম্মতি দিন' : '❌ Please accept the Privacy Agreement');
+            const key = authUserKey(method, value);
+            try {
+                const checkUser = await get(ref(db, 'users/' + key));
+                if (checkUser.exists()) return showToast(method === 'email' ? '❌ Email already exists' : '❌ Number already exists');
+                const uid = Math.floor(1e5 + 9e5 * Math.random());
+                const newUser = { phone: method === 'phone' ? key : '', email: method === 'email' ? value.trim().toLowerCase() : '', loginType: method, password: pass, balance: 0, turnover: 0, uid: uid, memberName: 'MEMBER', referredBy: refCode || '', totalCommission: 0, todayEarn: 0, totalTeam: 0, totalDeposit: 0, safeBalance: 0, lastLogin: Date.now() };
+                await set(ref(db, 'users/' + key), newUser);
+                if(refCode) {
+                    const allUsers = await get(ref(db, 'users'));
+                    allUsers.forEach(child => { if(child.val().uid == refCode) update(ref(db, 'users/' + child.key), { totalTeam: increment(1) }); });
+                }
+                showToast(currentLang === 'bn' ? '✅ সফল! এখন লগইন করুন' : '✅ Success! Please Login');
+                switchAuth('login');
+                setAuthMethod('login', method);
+                if(method === 'email') document.getElementById('l-email').value = value.trim().toLowerCase();
+                else document.getElementById('l-phone').value = value;
+            } catch (err) { console.error(err); showToast('❌ Registration Failed!'); }
         };
-        
+
         window.enterDashboard = function() { 
             applyLanguage(); 
             document.getElementById("auth-container").classList.add("hidden"); 
@@ -1668,12 +2299,23 @@
                     const todayEarnDisplayEl = document.getElementById("today-earn-display");
                     const teamCountDisplayEl = document.getElementById("team-count-display");
                     
-                    if(refLinkDisplayEl) refLinkDisplayEl.innerText = link; 
-                    if(refCodeDisplayEl) refCodeDisplayEl.innerText = data.uid; 
-                    if(totalCommDisplayEl) totalCommDisplayEl.innerText = "৳ " + (data.totalCommission || 0).toFixed(2); 
-                    if(todayEarnDisplayEl) todayEarnDisplayEl.innerText = "৳" + (data.todayEarn || 0).toFixed(2); 
-                    if(teamCountDisplayEl) teamCountDisplayEl.innerText = data.totalTeam || 0; 
-                    
+                    window.currentReferralLink = link;
+                    if(refLinkDisplayEl) refLinkDisplayEl.innerText = link;
+                    if(refCodeDisplayEl) refCodeDisplayEl.innerText = data.uid;
+                    const inviteCodeDisplayEl = document.getElementById("invite-code-display");
+                    if(inviteCodeDisplayEl) inviteCodeDisplayEl.innerText = data.uid;
+                    const refCodeShortEl = document.getElementById("ref-code-short");
+                    if(refCodeShortEl) refCodeShortEl.innerText = data.uid;
+                    if(totalCommDisplayEl) totalCommDisplayEl.innerText = "৳ " + Number(data.totalCommission || 0).toFixed(2);
+                    if(todayEarnDisplayEl) todayEarnDisplayEl.innerText = "৳" + Number(data.todayEarn || 0).toFixed(2);
+                    if(teamCountDisplayEl) teamCountDisplayEl.innerText = data.totalTeam || 0;
+                    generateReferralQR(link);
+                    refreshReferralStats(data.uid, "direct");
+                    const commissionDetailTotalEl = document.getElementById("commission-detail-total");
+                    if(commissionDetailTotalEl) commissionDetailTotalEl.innerText = "৳" + Number(data.totalCommission || 0).toFixed(2);
+                    const bottomCommEl = document.getElementById("ref-total-commission-bottom");
+                    if(bottomCommEl) bottomCommEl.innerText = "৳" + Number(data.totalCommission || 0).toFixed(2);
+
                     const telegramShareBtnEl = document.getElementById("telegram-share-btn");
                     if(telegramShareBtnEl) {
                         telegramShareBtnEl.onclick = function() { 
@@ -1754,33 +2396,64 @@
             } catch(e) { showToast("Wallet status check failed"); }
         };
 
-        async function processCommissions() { 
-            onValue(ref(db, "deposits"), async (snapshot) => { 
-                if (!snapshot.exists()) return; 
-                snapshot.forEach(async (child) => { 
-                    const dep = child.val(); 
-                    if (dep.status === "Success" && !dep.commProcessed) { 
-                        try {
-                            const userSnap = await get(ref(db, "users/" + dep.phone)); 
-                            if (userSnap.exists()) { 
-                                const userData = userSnap.val(), inviterUid = userData.referredBy; 
-                                if (inviterUid) { 
-                                    const commission = dep.amount * 0.05, usersSnap = await get(ref(db, "users")); 
-                                    usersSnap.forEach(uChild => { 
-                                        if (uChild.val().uid == inviterUid) { 
-                                            update(ref(db, "users/" + uChild.key), { balance: increment(commission), totalCommission: increment(commission), todayEarn: increment(commission) }); 
-                                        } 
-                                    }); 
-                                } 
-                                update(ref(db, "users/" + dep.phone), { totalDeposit: increment(dep.amount) }); 
-                            } 
-                            update(ref(db, "deposits/" + child.key), { commProcessed: true }); 
-                        } catch(e) { console.error("Commission error", e); }
-                    } 
-                }); 
-            }); 
+        let commissionListenerStarted = false;
+        const commissionProcessing = new Set();
+        async function processCommissions() {
+            if(commissionListenerStarted) return;
+            commissionListenerStarted = true;
+            onValue(ref(db, "deposits"), async (snapshot) => {
+                if(!snapshot.exists()) return;
+                const jobs=[];
+                snapshot.forEach(child => {
+                    const dep=child.val();
+                    if(dep && dep.status==="Success" && !dep.commProcessed) jobs.push({key:child.key,dep});
+                });
+                for(const job of jobs) {
+                    const depositKey=job.key, dep=job.dep;
+                    if(commissionProcessing.has(depositKey)) continue;
+                    commissionProcessing.add(depositKey);
+                    try {
+                        const userSnap=await get(ref(db,"users/"+dep.phone));
+                        if(userSnap.exists()) {
+                            const userData=userSnap.val();
+                            const inviterUid=userData.referredBy;
+                            if(inviterUid) {
+                                const usersSnap=await get(ref(db,"users"));
+                                let inviterKey=null;
+                                usersSnap.forEach(uChild=>{ if(String(uChild.val().uid)===String(inviterUid)) inviterKey=uChild.key; });
+                                if(inviterKey) {
+                                    const commission=Number(dep.amount||0)*0.05;
+                                    await runTransaction(ref(db,"users/"+inviterKey), current=>{
+                                        if(!current) return current;
+                                        const receipts=current.commissionReceipts||{};
+                                        if(receipts[depositKey]) return current;
+                                        current.balance=Number(current.balance||0)+commission;
+                                        current.totalCommission=Number(current.totalCommission||0)+commission;
+                                        current.todayEarn=Number(current.todayEarn||0)+commission;
+                                        current.commissionReceipts={...receipts,[depositKey]:true};
+                                        return current;
+                                    });
+                                }
+                            }
+                            await runTransaction(ref(db,"users/"+dep.phone), current=>{
+                                if(!current) return current;
+                                const receipts=current.depositReceipts||{};
+                                if(receipts[depositKey]) return current;
+                                current.totalDeposit=Number(current.totalDeposit||0)+Number(dep.amount||0);
+                                current.depositReceipts={...receipts,[depositKey]:true};
+                                return current;
+                            });
+                        }
+                        await update(ref(db,"deposits/"+depositKey),{commProcessed:true});
+                    } catch(e) {
+                        console.error("Commission processing error:",e);
+                    } finally {
+                        commissionProcessing.delete(depositKey);
+                    }
+                }
+            });
         }
-        
+
         window.loadDownline = async function(myUid) { 
             onValue(ref(db, "users"), (snapshot) => { 
                 const list = document.getElementById("downline-list"); 
@@ -2293,24 +2966,127 @@
             const e = document.getElementById("uid-gen");
             if(e) navigator.clipboard.writeText(e.innerText).then(() => showToast("📋 UID Copied!")) 
         }
-        function copyRefCode() { 
-            const e = document.getElementById("ref-code-display");
-            if(e) navigator.clipboard.writeText(e.innerText).then(() => showToast("📋 Code Copied!")) 
+        window.currentReferralLink = "";
+        function copyReferralText(value, successMessage) {
+            if(!value) return showToast("Referral information is not ready yet");
+            if(navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(() => showToast(successMessage)).catch(() => fallbackCopyReferral(value, successMessage));
+            } else fallbackCopyReferral(value, successMessage);
         }
-        function copyRefLink() { 
-            const e = document.getElementById("ref-link-display");
-            if(e) navigator.clipboard.writeText(e.innerText).then(() => showToast("🔗 Link Copied!")) 
+        function fallbackCopyReferral(value, successMessage) {
+            const input=document.createElement("textarea"); input.value=value; input.style.position="fixed"; input.style.opacity="0";
+            document.body.appendChild(input); input.select();
+            try { document.execCommand("copy"); showToast(successMessage); } catch(e) { showToast("Copy failed. Please copy manually."); }
+            input.remove();
         }
-        function switchAuth(e) { 
+        function copyRefCode() {
+            const e=document.getElementById("ref-code-display");
+            const code=e ? e.innerText.trim() : (document.getElementById("invite-code-display")?.innerText || "").trim();
+            copyReferralText(code, "Invitation code copied!");
+        }
+        function copyRefLink() {
+            const e=document.getElementById("ref-link-display");
+            copyReferralText(window.currentReferralLink || (e ? e.innerText.trim() : ""), "Invitation link copied!");
+        }
+        function generateReferralQR(link) {
+            const holder=document.getElementById("ref-qr-canvas");
+            if(!holder || !link) return;
+            holder.innerHTML="";
+            if(window.QRCode) {
+                new QRCode(holder,{text:link,width:210,height:210,colorDark:"#102f55",colorLight:"#ffffff",correctLevel:QRCode.CorrectLevel.H});
+            } else {
+                const img=document.createElement("img");
+                img.alt="StarLight referral QR code";
+                img.width=210; img.height=210;
+                img.src="https://api.qrserver.com/v1/create-qr-code/?size=210x210&data="+encodeURIComponent(link);
+                holder.appendChild(img);
+            }
+        }
+        function downloadReferralQR() {
+            const holder=document.getElementById("ref-qr-canvas");
+            if(!holder) return showToast("QR code is not ready yet");
+            const canvas=holder.querySelector("canvas");
+            const img=holder.querySelector("img");
+            let url="";
+            if(canvas) url=canvas.toDataURL("image/png");
+            else if(img && img.src.startsWith("data:")) url=img.src;
+            else if(img) {
+                const a=document.createElement("a"); a.href=img.src; a.target="_blank"; a.rel="noopener"; a.click();
+                return showToast("QR opened. Save it from the image.");
+            }
+            if(!url) return showToast("QR code is not ready yet");
+            const a=document.createElement("a"); a.href=url; a.download="StarLight-Referral-QR.png"; document.body.appendChild(a); a.click(); a.remove();
+            showToast("QR code downloaded");
+        }
+        window.setReferralTab = function(tab) {
+            const direct=document.getElementById("ref-direct-tab"), team=document.getElementById("ref-team-tab");
+            if(direct) direct.classList.toggle("active",tab==="direct");
+            if(team) team.classList.toggle("active",tab==="team");
+            const uid=document.getElementById("ref-code-display");
+            if(uid) refreshReferralStats(uid.innerText.trim(),tab);
+        };
+        async function refreshReferralStats(myUid, tab="direct") {
+            if(!myUid) return;
+            try {
+                const [usersSnap, depositsSnap]=await Promise.all([get(ref(db,"users")),get(ref(db,"deposits"))]);
+                const users=[];
+                if(usersSnap.exists()) usersSnap.forEach(child=>users.push({key:child.key,...child.val()}));
+                const direct=users.filter(u=>String(u.referredBy||"")===String(myUid));
+                const directKeys=new Set(direct.map(u=>String(u.key)));
+                let team=direct.slice(), known=new Set(direct.map(u=>String(u.key))), frontier=direct;
+                while(frontier.length) {
+                    const next=users.filter(u=>frontier.some(parent=>String(u.referredBy||"")===String(parent.uid)) && !known.has(String(u.key)));
+                    next.forEach(u=>known.add(String(u.key)));
+                    team=team.concat(next); frontier=next;
+                    if(known.size>users.length) break;
+                }
+                const selected=tab==="team"?team:direct;
+                const memberKeys=new Set(selected.map(u=>String(u.key)));
+                const teamDeposit=selected.reduce((sum,u)=>sum+Number(u.totalDeposit||0),0);
+                let successfulCount=0, successfulAmount=0;
+                if(depositsSnap.exists()) depositsSnap.forEach(child=>{
+                    const d=child.val(), depKey=String(d.phone||"");
+                    if(memberKeys.has(depKey) && d.status==="Success") { successfulCount++; successfulAmount+=Number(d.amount||0); }
+                });
+                const registerEl=document.getElementById("ref-register-count");
+                const depCountEl=document.getElementById("ref-deposit-count");
+                const depAmountEl=document.getElementById("ref-deposit-amount");
+                const firstCountEl=document.getElementById("ref-first-deposit-count");
+                const firstAmountEl=document.getElementById("ref-first-deposit-amount");
+                const totalTeamEl=document.getElementById("team-count-display");
+                if(registerEl) registerEl.textContent=selected.length;
+                if(depCountEl) depCountEl.textContent=successfulCount;
+                if(depAmountEl) depAmountEl.textContent="৳"+successfulAmount.toFixed(2);
+                if(firstCountEl) firstCountEl.textContent=selected.filter(u=>Number(u.totalDeposit||0)>0).length;
+                if(firstAmountEl) firstAmountEl.textContent="৳"+teamDeposit.toFixed(2);
+                if(totalTeamEl) totalTeamEl.textContent=direct.length;
+                const bottomTeam=document.getElementById("ref-total-team-bottom");
+                if(bottomTeam) bottomTeam.textContent=team.length;
+                const totalComm=document.getElementById("total-comm-display");
+                const detailComm=document.getElementById("commission-detail-total");
+                const bottomComm=document.getElementById("ref-total-commission-bottom");
+                const amount=Number(document.getElementById("total-comm-display")?.textContent.replace(/[^0-9.]/g,"")||0);
+                if(detailComm) detailComm.textContent="৳"+amount.toFixed(2);
+                if(bottomComm) bottomComm.textContent="৳"+amount.toFixed(2);
+                const weekReg=document.getElementById("ref-week-register");
+                const weekComm=document.getElementById("ref-week-commission");
+                if(weekReg) weekReg.textContent="—";
+                if(weekComm) weekComm.textContent="—";
+            } catch(err) { console.error("Referral stats error",err); }
+        }
+        function switchAuth(e) {
             const loginView = document.getElementById("login-view");
             const regView = document.getElementById("reg-view");
             const tabLogin = document.getElementById("tab-login");
             const tabReg = document.getElementById("tab-reg");
-            
-            if(loginView) loginView.classList.toggle("hidden", "reg" === e);
-            if(regView) regView.classList.toggle("hidden", "login" === e);
-            if(tabLogin) tabLogin.classList.toggle("active", "login" === e);
-            if(tabReg) tabReg.classList.toggle("active", "reg" === e);
+            if(loginView) loginView.classList.toggle("hidden", e === "reg");
+            if(regView) regView.classList.toggle("hidden", e === "login");
+            if(tabLogin) tabLogin.classList.toggle("active", e === "login");
+            if(tabReg) tabReg.classList.toggle("active", e === "reg");
+            const title = document.querySelector('#auth-container .auth-heading h2');
+            const desc = document.querySelector('#auth-container .auth-heading p');
+            if(title) title.innerText = e === 'reg' ? (currentLang === 'bn' ? 'রেজিস্টার' : 'Register') : langData[currentLang].auth_login_title;
+            if(desc) desc.innerText = e === 'reg' ? (currentLang === 'bn' ? 'ফোন নম্বর অথবা ইমেইল দিয়ে রেজিস্টার করুন' : 'Please register by phone number or email') : langData[currentLang].auth_login_desc;
         }
         
         function nav(e) { 
@@ -2388,5 +3164,47 @@
     })();
     </script>
 
+
+<script>
+(function(){
+    const vipData = [
+        {level:1,deposit:"৳500+",salary:"৳100",reward:"৳100"},
+        {level:2,deposit:"৳2,000+",salary:"৳300",reward:"৳300"},
+        {level:3,deposit:"৳10,000+",salary:"৳500",reward:"৳500"},
+        {level:4,deposit:"৳50,000+",salary:"৳2,500",reward:"৳2,500"},
+        {level:5,deposit:"৳2,00,000+",salary:"৳10,000",reward:"৳10,000"}
+    ];
+    let activeVipLevel = 1;
+    window.selectVipLevel = function(level){
+        const item = vipData.find(x=>x.level===Number(level));
+        if(!item) return;
+        activeVipLevel = item.level;
+        document.getElementById("vip-benefit-heading").textContent = "VIP"+item.level+" Benefits level";
+        document.getElementById("vip-level-reward").textContent = item.reward;
+        document.getElementById("vip-daily-reward").textContent = item.salary;
+        document.getElementById("vip-deposit-requirement").textContent = item.deposit;
+        const cards = document.querySelectorAll("#vip-level-track .vip-level-card");
+        cards.forEach((card,index)=>card.classList.toggle("selected",index===item.level-1));
+        const track = document.getElementById("vip-level-track");
+        const card = cards[item.level-1];
+        if(track && card) track.scrollTo({left:card.offsetLeft-track.offsetLeft-(track.clientWidth-card.clientWidth)/2,behavior:"smooth"});
+    };
+    window.changeVipLevel = function(step){
+        const next = Math.max(1,Math.min(5,activeVipLevel+Number(step)));
+        window.selectVipLevel(next);
+    };
+    window.switchVipTab = function(tab){
+        const history = tab==="history";
+        document.getElementById("vip-history-content").style.display = history?"flex":"none";
+        document.getElementById("vip-rules-content").style.display = history?"none":"block";
+        document.getElementById("vip-history-tab").classList.toggle("active",history);
+        document.getElementById("vip-rules-tab").classList.toggle("active",!history);
+        document.querySelector("#vip-page .vip-view-all").style.display = history?"block":"none";
+    };
+    window.selectVipLevel(1);
+})();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </body>
 </html>
