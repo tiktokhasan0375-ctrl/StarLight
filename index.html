@@ -964,6 +964,316 @@
 .ref-rules-card ol{padding-left:20px}.ref-rules-card li{font-size:12px;color:#647080;line-height:1.65;margin:0 0 10px}
 @media(max-width:360px){.ref-stat{padding:10px}.ref-stat span{font-size:9px}.ref-stat b{font-size:15px}.invite-promo-card h2{font-size:19px}.invite-coin-art{width:78px;height:78px;font-size:29px}}
 
+
+        /* STARLIGHT DASHBOARD - VIDEO-INSPIRED CATALOGUE */
+        #main-dashboard #home-page {
+            background: #080b12 !important;
+            color: #f7f7f7 !important;
+            padding-bottom: 105px;
+        }
+        #main-dashboard #home-page .slider-container {
+            background: #080b12 !important;
+            padding: 10px 10px 7px !important;
+        }
+        #main-dashboard #home-page .hero-banner {
+            height: 142px !important;
+            border: 1px solid rgba(216,182,107,.35) !important;
+            border-radius: 8px !important;
+            box-shadow: 0 5px 18px rgba(0,0,0,.38) !important;
+        }
+        #main-dashboard #home-page .slider-dots { margin-top: 7px; }
+        #main-dashboard #home-page .notice-bar {
+            margin: 3px 10px 10px !important;
+            padding: 8px 10px !important;
+            background: #151923 !important;
+            border-left: 3px solid #d8b66b !important;
+            border-radius: 6px !important;
+            box-shadow: none !important;
+        }
+        #main-dashboard #home-page .notice-bar marquee { color: #e8eaf0 !important; }
+        .sl-category-strip {
+            display:flex; gap:15px; overflow-x:auto; padding:8px 12px 13px;
+            background:#080b12; scrollbar-width:none; -webkit-overflow-scrolling:touch;
+        }
+        .sl-category-strip::-webkit-scrollbar,.sl-game-row::-webkit-scrollbar {display:none}
+        .sl-category {
+            flex:0 0 58px; min-width:58px; border:0; padding:0; background:transparent;
+            color:#e9eaf0; display:flex; flex-direction:column; align-items:center; gap:6px;
+            font-size:10px; font-weight:700; cursor:pointer;
+        }
+        .sl-category-icon {
+            width:47px;height:47px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+            color:#f4d58e;font-size:20px;
+            background:radial-gradient(circle at 35% 25%,#34445b 0%,#182234 58%,#101722 100%);
+            border:1px solid rgba(216,182,107,.48);
+            box-shadow:0 3px 9px rgba(0,0,0,.35),inset 0 1px 5px rgba(255,255,255,.08);
+        }
+        .sl-category.active .sl-category-icon {
+            background:linear-gradient(145deg,#d8b66b,#8f6427);
+            color:#101827;border-color:#f3d99d;
+            box-shadow:0 0 12px rgba(216,182,107,.28);
+        }
+        .sl-game-section {padding:7px 0 12px; scroll-margin-top:70px;}
+        .sl-section-heading {
+            display:flex;align-items:center;justify-content:space-between;
+            padding:0 11px 9px;gap:8px;
+        }
+        .sl-section-heading h3 {
+            color:#f7f7f8;font-size:14px;font-weight:800;line-height:1.25;
+            display:flex;align-items:center;gap:6px;margin:0;
+        }
+        .sl-section-heading h3 i {color:#d8b66b;font-size:13px}
+        .sl-section-heading p {color:#9da4b2;font-size:9px;margin-top:4px;line-height:1.3}
+        .sl-section-arrows {display:flex;gap:7px;color:#ef3655;font-size:13px}
+        .sl-more {color:#ef3655;font-size:10px;font-weight:800;white-space:nowrap}
+        .sl-game-row {
+            display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 24px)/3);
+            gap:8px;overflow-x:auto;padding:0 10px 3px;scrollbar-width:none;
+            -webkit-overflow-scrolling:touch;
+        }
+        .sl-game-row.sl-single-row {grid-auto-columns:calc((100% - 24px)/3)}
+        .sl-game-card {
+            min-width:0;position:relative;overflow:hidden;cursor:pointer;
+            border-radius:5px;background:#121722;border:1px solid rgba(216,182,107,.18);
+            box-shadow:0 3px 10px rgba(0,0,0,.35);aspect-ratio: .78 / 1;
+            transition:transform .18s ease,border-color .18s ease;
+        }
+        .sl-game-card:active {transform:scale(.96);border-color:#d8b66b}
+        .sl-game-card img {display:block;width:100%;height:100%;object-fit:cover;background:#171c27}
+        .sl-game-caption {
+            position:absolute;left:0;right:0;bottom:0;padding:15px 3px 6px;
+            text-align:center;font-size:9px;font-weight:900;letter-spacing:.25px;color:#fff;
+            background:linear-gradient(transparent,rgba(0,0,0,.86));
+            text-shadow:0 1px 3px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+        }
+        #main-dashboard #home-page > div[style*="margin: 15px"] {
+            margin:12px 10px !important;border:1px solid rgba(216,182,107,.22) !important;
+            border-radius:8px !important;overflow:hidden;
+        }
+        #main-dashboard .nav-bar {
+            background:rgba(7,11,18,.97) !important;
+            border-top:1px solid rgba(216,182,107,.24) !important;
+            box-shadow:0 -5px 18px rgba(0,0,0,.38) !important;
+        }
+        #main-dashboard .nav-item {color:#aeb4c0 !important}
+        #main-dashboard .nav-item.active {color:#e2bd70 !important}
+        #main-dashboard .nav-center {
+            border-color:#080b12 !important;
+            background:linear-gradient(135deg,#e7ca83,#9b702c) !important;
+            color:#101827 !important;
+        }
+        @media(max-width:360px) {
+            .sl-category-strip{gap:11px;padding-left:9px;padding-right:9px}
+            .sl-game-row{grid-auto-columns:calc((100% - 16px)/3);gap:7px;padding-left:8px;padding-right:8px}
+            .sl-section-heading h3{font-size:13px}
+        }
+
+
+        /* White background for the previously black dashboard areas */
+        #main-dashboard #home-page,
+        #main-dashboard #home-page .slider-container,
+        #main-dashboard #home-page .sl-category-strip {
+            background: #ffffff !important;
+            color: #202532 !important;
+        }
+        #main-dashboard #home-page .notice-bar {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+        #main-dashboard #home-page .notice-bar marquee,
+        #main-dashboard #home-page .sl-category,
+        #main-dashboard #home-page .sl-section-heading h3 {
+            color: #202532 !important;
+        }
+        #main-dashboard #home-page .sl-section-heading p {
+            color: #64748b !important;
+        }
+
+        /* Updated bottom navigation: navy blue */
+        #main-dashboard .nav-bar{
+            background:linear-gradient(135deg,#071b35,#102f55,#16436d) !important;
+            border-top:1px solid rgba(255,255,255,.15) !important;
+        }
+        #main-dashboard .nav-item{
+            color:#cbd5e1 !important;
+        }
+        #main-dashboard .nav-item.active{
+            color:#e7c477 !important;
+        }
+        #main-dashboard .nav-center{
+            border-color:#102f55 !important;
+        }
+
+
+        /* Category button image slots: add each image URL in data-image-url below */
+        .sl-category-icon { position:relative; overflow:hidden; }
+        .sl-category-image { display:none; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:inherit; }
+        .sl-category-icon.has-image .sl-category-image { display:block; }
+        .sl-category-icon.has-image > i { display:none; }
+        .sl-category.active .sl-category-icon.has-image { background:transparent; }
+
+
+        /* STARLIGHT PREMIUM FINISH: clear typography, refined 3D depth and gentle motion */
+        :root {
+            --sl-navy:#071b35;
+            --sl-navy-2:#102f55;
+            --sl-blue:#16436d;
+            --sl-gold:#d8b66b;
+            --sl-gold-light:#f4dfaa;
+            --sl-ink:#172235;
+            --sl-muted:#586579;
+        }
+        html { scroll-behavior:smooth; }
+        body { color:var(--sl-ink); background:linear-gradient(145deg,#eef3f9 0%,#f8f6ef 55%,#e9eff7 100%); }
+        #main-dashboard .app-shell {
+            background:#fff;
+            box-shadow:0 18px 60px rgba(7,27,53,.14),0 2px 10px rgba(7,27,53,.06);
+        }
+        #main-dashboard .top-bar {
+            position:sticky;
+            background:linear-gradient(120deg,var(--sl-navy),var(--sl-navy-2) 58%,var(--sl-blue)) !important;
+            box-shadow:0 7px 22px rgba(7,27,53,.2) !important;
+        }
+        #main-dashboard #home-page,
+        #main-dashboard #home-page .slider-container { background:#fff !important; }
+        #main-dashboard #home-page .hero-banner {
+            border:1px solid rgba(184,138,59,.28);
+            border-radius:18px;
+            box-shadow:0 12px 28px rgba(7,27,53,.12),inset 0 1px 0 rgba(255,255,255,.7);
+            animation:slBannerFloat 6s ease-in-out infinite;
+        }
+        #main-dashboard #home-page .notice-bar {
+            background:linear-gradient(105deg,#fffaf0,#f3f7fc) !important;
+            border:1px solid rgba(184,138,59,.3) !important;
+            border-left:4px solid var(--sl-gold) !important;
+            border-radius:12px !important;
+            box-shadow:0 5px 16px rgba(7,27,53,.06) !important;
+        }
+        #main-dashboard #home-page .notice-bar marquee { color:#26364d !important; }
+        #main-dashboard #home-page .sl-category-strip {
+            background:linear-gradient(180deg,#fff 0%,#f5f8fc 100%) !important;
+            padding:13px 12px 16px !important;
+            gap:13px;
+            border-top:1px solid #edf1f6;
+            border-bottom:1px solid #e7edf4;
+        }
+        #main-dashboard #home-page .sl-category {
+            color:#26364d !important;
+            font-size:11px !important;
+            font-weight:800;
+            letter-spacing:.05px;
+            gap:8px;
+            text-shadow:none;
+            transition:transform .28s ease,filter .28s ease;
+        }
+        #main-dashboard #home-page .sl-category:active { transform:translateY(2px) scale(.96); }
+        #main-dashboard #home-page .sl-category-icon {
+            width:52px;height:52px;
+            border-radius:16px !important;
+            background:linear-gradient(145deg,#18395d,#071b35) !important;
+            border:1px solid rgba(216,182,107,.72) !important;
+            box-shadow:0 7px 14px rgba(7,27,53,.2),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -4px 8px rgba(0,0,0,.18) !important;
+            transform:perspective(300px) rotateX(2deg);
+            transition:transform .3s ease,box-shadow .3s ease;
+        }
+        #main-dashboard #home-page .sl-category-icon i { color:#f4dfaa !important; }
+        #main-dashboard #home-page .sl-category-image { border-radius:15px !important; }
+        #main-dashboard #home-page .sl-category.active .sl-category-icon {
+            border:2px solid #f0d18a !important;
+            box-shadow:0 0 0 3px rgba(216,182,107,.18),0 9px 20px rgba(7,27,53,.24) !important;
+        }
+        #main-dashboard #home-page .sl-category.active { color:#8a6426 !important; }
+        #main-dashboard #home-page .sl-category:focus-visible { outline:3px solid #d8b66b;outline-offset:4px;border-radius:12px; }
+        #main-dashboard #home-page .sl-game-section {
+            padding:15px 0 17px !important;
+            background:linear-gradient(180deg,#fff 0%,#fbfcfe 100%);
+            border-bottom:1px solid #edf1f6;
+        }
+        #main-dashboard #home-page .sl-section-heading { padding:0 13px 11px !important; }
+        #main-dashboard #home-page .sl-section-heading h3 {
+            color:#142943 !important;
+            font-size:15px !important;
+            font-weight:900;
+            letter-spacing:.1px;
+            text-shadow:none;
+        }
+        #main-dashboard #home-page .sl-section-heading h3 i { color:#b48636 !important; }
+        #main-dashboard #home-page .sl-section-heading p {
+            color:#586579 !important;
+            font-size:11px !important;
+            font-weight:600;
+            line-height:1.45;
+        }
+        #main-dashboard #home-page .sl-more { color:#946b2a !important;font-size:11px;font-weight:900; }
+        #main-dashboard #home-page .sl-game-row { padding:2px 12px 9px !important;gap:10px; }
+        #main-dashboard #home-page .sl-game-card {
+            background:#10243d !important;
+            border:1px solid rgba(184,138,59,.42) !important;
+            border-radius:13px !important;
+            box-shadow:0 8px 18px rgba(7,27,53,.16),0 2px 4px rgba(7,27,53,.08) !important;
+            transform:translateZ(0);
+            transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease;
+        }
+        #main-dashboard #home-page .sl-game-card:active {
+            transform:perspective(500px) rotateX(2deg) scale(.97) !important;
+            box-shadow:0 3px 8px rgba(7,27,53,.18) !important;
+        }
+        #main-dashboard #home-page .sl-game-card img {
+            filter:saturate(1.06) contrast(1.03);
+            transition:transform .5s ease,filter .5s ease;
+        }
+        #main-dashboard #home-page .sl-game-card:active img { transform:scale(1.035); }
+        #main-dashboard #home-page .sl-game-caption {
+            font-size:10px !important;
+            line-height:1.35;
+            letter-spacing:.35px;
+            padding:20px 5px 8px !important;
+            color:#fff !important;
+            text-shadow:0 1px 3px #000,0 0 8px rgba(0,0,0,.5) !important;
+        }
+        #main-dashboard .nav-bar {
+            background:linear-gradient(120deg,#071b35,#102f55 60%,#16436d) !important;
+            border-top:1px solid rgba(244,223,170,.45) !important;
+            box-shadow:0 -8px 24px rgba(7,27,53,.2) !important;
+        }
+        #main-dashboard .nav-item { color:#d3dce8 !important;font-weight:700; }
+        #main-dashboard .nav-item.active { color:#f4d58e !important; }
+        #main-dashboard .nav-center {
+            background:linear-gradient(145deg,#f4dfaa,#c99b4a) !important;
+            color:#10243d !important;
+            border:3px solid #102f55 !important;
+            box-shadow:0 4px 12px rgba(0,0,0,.25),inset 0 1px 2px rgba(255,255,255,.65) !important;
+        }
+        /* Keep common page copy crisp and accessible on light surfaces. */
+        #main-dashboard .page { color:#202b3b; }
+        #main-dashboard .page p { line-height:1.5; }
+        #main-dashboard input,#main-dashboard textarea,#main-dashboard select { color:#172235; }
+        #main-dashboard button { -webkit-font-smoothing:antialiased; }
+        @keyframes slBannerFloat {
+            0%,100% { transform:translateY(0); }
+            50% { transform:translateY(-2px); }
+        }
+        @media (hover:hover) and (pointer:fine) {
+            #main-dashboard #home-page .sl-category:hover .sl-category-icon {
+                transform:perspective(300px) rotateX(7deg) translateY(-3px);
+                box-shadow:0 12px 22px rgba(7,27,53,.24),inset 0 1px 0 rgba(255,255,255,.3) !important;
+            }
+            #main-dashboard #home-page .sl-game-card:hover {
+                transform:translateY(-4px) perspective(600px) rotateX(2deg);
+                border-color:#d8b66b !important;
+                box-shadow:0 14px 25px rgba(7,27,53,.22) !important;
+            }
+            #main-dashboard #home-page .sl-game-card:hover img { transform:scale(1.045); }
+        }
+        @media(prefers-reduced-motion:reduce) {
+            html { scroll-behavior:auto; }
+            #main-dashboard #home-page .hero-banner { animation:none; }
+            #main-dashboard #home-page .sl-category,
+            #main-dashboard #home-page .sl-category-icon,
+            #main-dashboard #home-page .sl-game-card,
+            #main-dashboard #home-page .sl-game-card img { transition:none !important; }
+        }
+
 </style>
 </head>
 <body oncontextmenu="return false">
@@ -1079,26 +1389,78 @@
             <div id="home-page" class="page active">
                 <div class="slider-container"><div class="hero-banner" id="slider"></div><div class="slider-dots" id="slider-dots"></div></div>
                 <div class="notice-bar"><i class="fas fa-volume-up" style="color:var(--primary)"></i><marquee style="font-size:12px;font-weight:700;color:#475569" data-lang="welcome_notice">Welcome to 'StarLight'! Deposit now and get 100% bonus on your first deposit. Withdrawals within 30 mins. 🔥</marquee></div>
-                <div class="cat-scroll">
-                    <div class="cat-btn active"><i class="fas fa-th-large"></i><span data-lang="all">All</span></div>
-                    <div class="cat-btn"><i class="fas fa-gamepad"></i><span data-lang="slots">Slots</span></div>
-                    <div class="cat-btn"><i class="fas fa-users"></i><span data-lang="live">Live</span></div>
-                    <div class="cat-btn"><i class="fas fa-fish"></i><span data-lang="fishing">Fishing</span></div>
-                    <div class="cat-btn"><i class="fas fa-basketball-ball"></i><span data-lang="sports">Sports</span></div>
-                    <div class="cat-btn"><i class="fas fa-dice"></i><span data-lang="dice">Dice</span></div>
+                <div class="sl-category-strip">
+                    <button class="sl-category active" onclick="slGoSection('sl-hot',this)">
+                        <span class="sl-category-icon"><img class="sl-category-image" data-image-url="https://i.ibb.co.com/20JGjtz9/1.webp" alt="Hot Games"><i class="fas fa-fire"></i></span><b>Hot Games</b>
+                    </button>
+                    <button class="sl-category" onclick="slGoSection('sl-lottery',this)">
+                        <span class="sl-category-icon"><img class="sl-category-image" data-image-url="https://i.ibb.co.com/GfgMzJ2K/2.webp" alt="Lottery"><i class="fas fa-ticket-alt"></i></span><b>Lottery</b>
+                    </button>
+                    <button class="sl-category" onclick="slGoSection('sl-original',this)">
+                        <span class="sl-category-icon"><img class="sl-category-image" data-image-url="https://i.ibb.co.com/sd7P0XDm/3.webp" alt="Original"><i class="fas fa-gem"></i></span><b>Original</b>
+                    </button>
+                    <button class="sl-category" onclick="slGoSection('sl-slots',this)">
+                        <span class="sl-category-icon"><img class="sl-category-image" data-image-url="https://i.ibb.co.com/cKXHXxjT/4.webp" alt="Slots"><i class="fas fa-dice"></i></span><b>Slots</b>
+                    </button>
+                    <button class="sl-category" onclick="slGoSection('sl-fishing',this)">
+                        <span class="sl-category-icon"><img class="sl-category-image" data-image-url="https://i.ibb.co.com/N6zpwM2s/5.webp" alt="Fishing"><i class="fas fa-fish"></i></span><b>Fishing</b>
+                    </button>
                 </div>
-                <div class="game-grid">
-                    <div class="game-btn" onclick="playGame('Aviator')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/k2pHmp3D/aviator.png"><p>Aviator</p></div>
-                    <div class="game-btn" onclick="playGame('Wingo')"><span class="game-tag">Hot</span><img src="https://i.ibb.co.com/hJ3pG0xN/win.png"><p>WinGo</p></div>
-                    <div class="game-btn" onclick="playGame('JILI Slot')"><span class="game-tag">New</span><img src="https://files.catbox.moe/tl6rjy.png"><p>Super Ace</p></div>
-                    <div class="game-btn" onclick="playGame('PG Soft')"><img src="https://files.catbox.moe/5z5kd1.png"><p>Crazy Time</p></div>
-                    <div class="game-btn" onclick="playGame('Pragmatic Play')"><span class="game-tag">Popular</span><img src="https://files.catbox.moe/11vvpx.png"><p>Gates of Olympus</p></div>
-                    <div class="game-btn" onclick="playGame('Chicken')"><img src="https://i.ibb.co.com/cKZww3Ky/121.png"><p>Chicken</p></div>
-                    <div class="game-btn" onclick="playGame('Boom')"><img src="https://ossimg.crhhh.com/bdtgame/gamelogo/TB_Chess/811.png"><p>Boom</p></div>
-                    <div class="game-btn" onclick="playGame('Jackpot')"><img src="https://files.catbox.moe/gzj1wf.jpg"><p>Jackpot</p></div>
-                    <div class="game-btn" onclick="playGame('3 CARDS')"><img src="https://files.catbox.moe/5qw81v.jpg"><p>3 CARDS</p></div>
-                </div>
-                
+
+                <section class="sl-game-section" id="sl-hot">
+                    <div class="sl-section-heading">
+                        <div><h3><i class="fas fa-fire"></i> Recommended Games</h3><p>The most popular games among players</p></div>
+                        <span class="sl-section-arrows"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-right"></i></span>
+                    </div>
+                    <div class="sl-game-row">
+                        <div class="sl-game-card" onclick="playGame('Aviator')"><img src="https://i.ibb.co.com/k2pHmp3D/aviator.png" alt="Aviator"><span class="sl-game-caption">AVIATOR</span></div>
+                        <div class="sl-game-card" onclick="playGame('PG Soft')"><img src="https://files.catbox.moe/5z5kd1.png"alt="Crazy Time"><span class="sl-game-caption">Crazy Time</span></div>
+                        <div class="sl-game-card" onclick="playGame('Chicken')"><img src="https://i.ibb.co.com/cKZww3Ky/121.png" alt="Chicken Road 2"><span class="sl-game-caption">CHICKEN ROAD 2</span></div>
+                    </div>
+                </section>
+
+                <section class="sl-game-section" id="sl-lottery">
+                    <div class="sl-section-heading">
+                        <div><h3><i class="fas fa-ticket-alt"></i> Lottery</h3><p>Fair and diverse lottery gameplay</p></div>
+                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="sl-game-row sl-single-row">
+                        <div class="sl-game-card" onclick="playGame('Wingo')"><img src="https://i.ibb.co.com/hJ3pG0xN/win.png" alt="WinGo"><span class="sl-game-caption">WINGO</span></div>
+                    </div>
+                </section>
+
+                <section class="sl-game-section" id="sl-original">
+                    <div class="sl-section-heading">
+                        <div><h3><i class="fas fa-gem"></i> Original</h3><p>Games independently developed for you</p></div>
+                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="sl-game-row">
+                        <div class="sl-game-card" onclick="playGame('JILI Slot')"><img src="https://files.catbox.moe/tl6rjy.png" alt="Mines"><span class="sl-game-caption">Super Ace</span></div>
+                        <div class="sl-game-card" onclick="playGame('')"><img src="https://files.catbox.moe/11vvpx.png" alt="Gates of Olympus"><span class="sl-game-caption">BACCARAT</span></div>
+                    </div>
+                </section>
+
+                <section class="sl-game-section" id="sl-slots">
+                    <div class="sl-section-heading">
+                        <div><h3><i class="fas fa-dice"></i> Slots</h3><p>Online real-time game dealers, all verified fair games</p></div>
+                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="sl-game-row">
+                        <div class="sl-game-card" onclick="playGame('Pragmatic Play')"><img src="https://ossimg.crhhh.com/bdtgame/gamelogo/TB_Chess/811.png" alt="Mega Ace"><span class="sl-game-caption">Boom</span></div>
+                        <div class="sl-game-card" onclick="playGame('Pragmatic Play')"><img src="https://files.catbox.moe/5qw81v.jpg" alt="Go Rush"><span class="sl-game-caption">3 CARDS</span></div>
+                    </div>
+                </section>
+
+                <section class="sl-game-section" id="sl-fishing">
+                    <div class="sl-section-heading">
+                        <div><h3><i class="fas fa-fish"></i> Fishing</h3><p>Classic arcade gameplay, super cool visual enjoyment</p></div>
+                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                    </div>
+                    <div class="sl-game-row sl-single-row">
+                        <div class="sl-game-card" onclick="playGame('PG Soft')"><img src="https://i.ibb.co.com/R8XBB3M/32.png" alt="Fishing Game"><span class="sl-game-caption"> Jackpot FISHING</span></div>
+                    </div>
+                </section>
+
                 <div style="margin: 15px; border-radius: 20px; overflow: hidden; border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                     <iframe src="https://dkclubleder.vercel.app/" style="width: 100%; height: 500px; border: none;" allow="fullscreen"></iframe>
                 </div>
@@ -3206,5 +3568,25 @@
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <script>
+        window.slGoSection = function(sectionId, button) {
+            var target = document.getElementById(sectionId);
+            if (!target) return;
+            document.querySelectorAll('.sl-category').forEach(function(item) {
+                item.classList.toggle('active', item === button);
+            });
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        // Category image links: paste a URL into the matching data-image-url="" field.
+        document.querySelectorAll('.sl-category-image').forEach(function(image) {
+            var imageUrl = image.getAttribute('data-image-url');
+            if (!imageUrl || !imageUrl.trim()) return;
+            image.onload = function() { image.parentElement.classList.add('has-image'); };
+            image.onerror = function() { image.parentElement.classList.remove('has-image'); };
+            image.src = imageUrl.trim();
+        });
+    </script>
 </body>
 </html>
