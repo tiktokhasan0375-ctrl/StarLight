@@ -1274,6 +1274,81 @@
             #main-dashboard #home-page .sl-game-card img { transition:none !important; }
         }
 
+
+        /* Readability improvements: larger text and touch targets without changing layout */
+        body { font-size: 16px; }
+        button, .btn, .gift-receive-btn, .btn-main, .dep-submit-full-btn, .with-submit-btn { font-size: 16px !important; min-height: 44px; }
+        input, select, textarea { font-size: 16px !important; }
+        .gift-page-card h4, .gift-page-card p, .gift-input-box input { font-size: 16px; }
+        .history-card th, .history-card td { font-size: 14px; }
+        .acc-menu-text h4, .acc-menu-text p { font-size: 15px; }
+
+        /* Larger, touch-friendly category controls and working horizontal game rails */
+        #main-dashboard #home-page .sl-category-strip { gap:16px !important; padding:12px 14px 16px !important; overflow-x:auto !important; overflow-y:hidden !important; touch-action:pan-x pan-y !important; scroll-snap-type:x proximity; }
+        #main-dashboard #home-page .sl-category { flex:0 0 82px !important; min-width:82px !important; gap:8px !important; font-size:13px !important; padding:3px 2px 6px !important; scroll-snap-align:center; }
+        #main-dashboard #home-page .sl-category-icon { width:60px !important; height:60px !important; font-size:25px !important; }
+        #main-dashboard #home-page .sl-category b { font-size:13px !important; line-height:1.2 !important; white-space:nowrap; }
+        #main-dashboard #home-page .sl-game-row { display:grid !important; grid-auto-flow:column !important; grid-auto-columns:minmax(112px, 38%) !important; overflow-x:auto !important; overflow-y:hidden !important; touch-action:pan-x pan-y !important; overscroll-behavior-x:contain; scroll-snap-type:x proximity; padding-bottom:8px !important; }
+        #main-dashboard #home-page .sl-game-card { scroll-snap-align:start; }
+        #main-dashboard #home-page .sl-game-caption { font-size:11px !important; padding:17px 4px 7px !important; }
+        #main-dashboard #home-page .sl-more { display:inline-flex !important; align-items:center; gap:5px; border:1px solid #d8b66b; border-radius:8px; padding:8px 12px; background:#fff8e8; color:#8f6427 !important; font:800 12px Inter,sans-serif; cursor:pointer; }
+        #main-dashboard #home-page .sl-more:active, #main-dashboard #home-page .sl-more.is-used { background:#f3dfb1; transform:scale(.97); }
+        @media(max-width:360px){ #main-dashboard #home-page .sl-category{flex-basis:76px !important;min-width:76px !important} #main-dashboard #home-page .sl-category-icon{width:56px !important;height:56px !important} }
+
+        /* Member profile editor */
+        .profile-edit-link{border:0;background:transparent;padding:0;color:#1e293b;font:inherit;cursor:pointer}
+        .settings-change-ava{border:0;background:transparent;font-size:13px;font-weight:700;color:#64748b;cursor:pointer;padding:10px}
+        .profile-editor-overlay{position:fixed;inset:0;z-index:99999;background:rgba(15,23,42,.66);display:flex;align-items:center;justify-content:center;padding:18px}
+        .profile-editor-box{width:min(100%,430px);max-height:88vh;overflow:auto;background:#fff;border-radius:18px;padding:20px;box-shadow:0 18px 55px rgba(0,0,0,.25)}
+        .profile-editor-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+        .profile-editor-head h3{font-size:19px;color:#1e293b;margin:0}
+        .profile-editor-head button{border:0;background:#f1f5f9;border-radius:50%;width:34px;height:34px;font-size:25px;cursor:pointer;color:#334155}
+        .profile-editor-box label{display:block;font-size:14px;font-weight:700;color:#334155;margin:12px 0 7px}
+        .profile-editor-box input{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px;outline:none}
+        .profile-editor-box input:focus{border-color:#a8792d;box-shadow:0 0 0 3px rgba(168,121,45,.12)}
+        .profile-save-btn{width:100%;border:0;border-radius:11px;padding:14px;margin-top:16px;background:var(--primary);color:#fff;font-size:16px;font-weight:800;cursor:pointer}
+        .profile-avatar-hint{font-size:14px;color:#64748b;margin-bottom:12px}
+        .profile-avatar-options{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+        .profile-avatar-option{border:2px solid #e2e8f0;background:#f8fafc;border-radius:14px;padding:5px;cursor:pointer;aspect-ratio:1}
+        .profile-avatar-option img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+        .profile-avatar-option.selected{border-color:var(--primary);background:#fff8e8;box-shadow:0 0 0 2px rgba(168,121,45,.15)}
+        .settings-avatar-row img{width:64px;height:64px}
+
+
+        /* Larger circular game category controls */
+        #main-dashboard #home-page .sl-category-strip{
+            display:flex !important; flex-wrap:nowrap !important; overflow-x:auto !important;
+            overflow-y:hidden !important; gap:14px !important; padding:12px 14px 16px !important;
+            -webkit-overflow-scrolling:touch; overscroll-behavior-x:contain;
+            scroll-snap-type:x mandatory; touch-action:pan-x pan-y; cursor:grab;
+        }
+        #main-dashboard #home-page .sl-category-strip:active{cursor:grabbing}
+        #main-dashboard #home-page .sl-category{
+            flex:0 0 82px !important; min-width:82px !important; width:82px !important;
+            display:flex !important; align-items:center !important; justify-content:flex-start !important;
+            gap:7px !important; padding:2px 0 4px !important; font-size:12px !important;
+            font-weight:800 !important; text-align:center !important; scroll-snap-align:center;
+            user-select:none; -webkit-tap-highlight-color:transparent;
+        }
+        #main-dashboard #home-page .sl-category-icon{
+            width:66px !important; height:66px !important; min-width:66px !important;
+            border-radius:50% !important; overflow:hidden !important; position:relative !important;
+            border:2px solid #d8b66b !important; box-shadow:0 4px 12px rgba(7,27,53,.18) !important;
+        }
+        #main-dashboard #home-page .sl-category-image{
+            width:100% !important; height:100% !important; inset:0 !important;
+            object-fit:cover !important; border-radius:50% !important;
+        }
+        #main-dashboard #home-page .sl-category b{font-size:12px !important; line-height:1.2 !important; white-space:nowrap}
+        #main-dashboard #home-page .sl-category.active .sl-category-icon{
+            outline:3px solid rgba(216,182,107,.28); outline-offset:2px;
+        }
+        #game-frame-container .close-game{width:46px;height:46px;font-size:22px;top:max(14px,env(safe-area-inset-top));left:14px;}
+        @media(max-width:360px){
+            #main-dashboard #home-page .sl-category{flex-basis:76px !important;min-width:76px !important;width:76px !important}
+            #main-dashboard #home-page .sl-category-icon{width:60px !important;height:60px !important;min-width:60px !important}
+        }
+
 </style>
 </head>
 <body oncontextmenu="return false">
@@ -1422,7 +1497,7 @@
                 <section class="sl-game-section" id="sl-lottery">
                     <div class="sl-section-heading">
                         <div><h3><i class="fas fa-ticket-alt"></i> Lottery</h3><p>Fair and diverse lottery gameplay</p></div>
-                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                        <button type="button" class="sl-more" onclick="slShowMore(this)" data-target="sl-lottery" aria-label="Show more lottery games">More <i class="fas fa-angle-right"></i></button>
                     </div>
                     <div class="sl-game-row sl-single-row">
                         <div class="sl-game-card" onclick="playGame('Wingo')"><img src="https://i.ibb.co.com/hJ3pG0xN/win.png" alt="WinGo"><span class="sl-game-caption">WINGO</span></div>
@@ -1432,7 +1507,7 @@
                 <section class="sl-game-section" id="sl-original">
                     <div class="sl-section-heading">
                         <div><h3><i class="fas fa-gem"></i> Original</h3><p>Games independently developed for you</p></div>
-                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                        <button type="button" class="sl-more" onclick="slShowMore(this)" data-target="sl-original" aria-label="Show more original games">More <i class="fas fa-angle-right"></i></button>
                     </div>
                     <div class="sl-game-row">
                         <div class="sl-game-card" onclick="playGame('JILI Slot')"><img src="https://files.catbox.moe/tl6rjy.png" alt="Mines"><span class="sl-game-caption">Super Ace</span></div>
@@ -1443,7 +1518,7 @@
                 <section class="sl-game-section" id="sl-slots">
                     <div class="sl-section-heading">
                         <div><h3><i class="fas fa-dice"></i> Slots</h3><p>Online real-time game dealers, all verified fair games</p></div>
-                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                        <button type="button" class="sl-more" onclick="slShowMore(this)" data-target="sl-slots" aria-label="Show more slots games">More <i class="fas fa-angle-right"></i></button>
                     </div>
                     <div class="sl-game-row">
                         <div class="sl-game-card" onclick="playGame('Pragmatic Play')"><img src="https://ossimg.crhhh.com/bdtgame/gamelogo/TB_Chess/811.png" alt="Mega Ace"><span class="sl-game-caption">Boom</span></div>
@@ -1454,7 +1529,7 @@
                 <section class="sl-game-section" id="sl-fishing">
                     <div class="sl-section-heading">
                         <div><h3><i class="fas fa-fish"></i> Fishing</h3><p>Classic arcade gameplay, super cool visual enjoyment</p></div>
-                        <span class="sl-more">More <i class="fas fa-angle-right"></i></span>
+                        <button type="button" class="sl-more" onclick="slShowMore(this)" data-target="sl-fishing" aria-label="Show more fishing games">More <i class="fas fa-angle-right"></i></button>
                     </div>
                     <div class="sl-game-row sl-single-row">
                         <div class="sl-game-card" onclick="playGame('PG Soft')"><img src="https://i.ibb.co.com/R8XBB3M/32.png" alt="Fishing Game"><span class="sl-game-caption"> Jackpot FISHING</span></div>
@@ -1521,11 +1596,13 @@
                             <span class="vip-benefit-icon gift"><i class="fas fa-gift"></i></span>
                             <div class="vip-benefit-copy"><strong>Level up rewards</strong><small>Each account can only receive 1 time</small></div>
                             <b class="vip-benefit-value" id="vip-level-reward">৳100</b>
+                            <button id="vip-level-claim-btn" type="button" onclick="claimVipReward('level')" style="margin-left:8px;border:0;border-radius:8px;padding:8px 10px;background:linear-gradient(135deg,#f5d98f,#bd9143);color:#142744;font-weight:900;white-space:nowrap">Claim</button>
                         </div>
                         <div class="vip-benefit-row">
                             <span class="vip-benefit-icon coin"><i class="fas fa-coins"></i></span>
                             <div class="vip-benefit-copy"><strong>Daily salary</strong><small>Daily reward for eligible members</small></div>
                             <b class="vip-benefit-value" id="vip-daily-reward">৳100</b>
+                            <button id="vip-daily-claim-btn" type="button" onclick="claimVipReward('daily')" style="margin-left:8px;border:0;border-radius:8px;padding:8px 10px;background:linear-gradient(135deg,#f5d98f,#bd9143);color:#142744;font-weight:900;white-space:nowrap">Claim</button>
                         </div>
                         <div class="vip-benefit-row">
                             <span class="vip-benefit-icon rate"><i class="fas fa-percent"></i></span>
@@ -1824,7 +1901,7 @@
             <div id="account-page" class="page acc-page-bg">
                 <div class="acc-header">
                     <div class="acc-user-info">
-                        <img src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" class="acc-avatar" alt="Avatar">
+                        <img id="account-profile-avatar" src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" class="acc-avatar" alt="Avatar">
                         <div class="acc-name-wrap">
                             <div class="acc-name">
                                 <span id="display-member-name">MEMBER</span><span id="uid-gen-header">NGIZ1JD</span>
@@ -2056,9 +2133,8 @@
                 <div style="padding: 0 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: bold; color: #1e293b;">
                     <i class="fas fa-list-alt" style="color: var(--primary);"></i> History
                 </div>
-                <div class="empty-state" style="background:#fff; margin: 0 15px; border-radius:15px; padding: 30px;">
-                    <i class="fas fa-inbox"></i>
-                    <p>No data</p>
+                <div id="gift-history-list" class="empty-state" style="background:#fff; margin: 0 15px 20px; border-radius:15px; padding: 18px;">
+                    <i class="fas fa-inbox"></i><p>No gift claims yet</p>
                 </div>
             </div>
 
@@ -2157,12 +2233,12 @@
                 </div>
                 <div class="settings-profile-card">
                     <div class="settings-avatar-row">
-                        <img src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" alt="Avatar">
-                        <span class="settings-change-ava">Change avatar ></span>
+                        <img id="settings-profile-avatar" src="https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp" alt="Avatar">
+                        <button type="button" class="settings-change-ava" onclick="openProfileEditor('avatar')">ছবি পরিবর্তন করুন <i class="fas fa-chevron-right"></i></button>
                     </div>
                     <div class="settings-info-row">
                         <span class="label">Nickname</span>
-                        <span class="val" id="set-nickname-display">MemberNNGIZ1JD ></span>
+                        <button type="button" class="val profile-edit-link" onclick="openProfileEditor('name')"><span id="set-nickname-display">MEMBER ></span> <i class="fas fa-pen"></i></button>
                     </div>
                     <div class="settings-info-row">
                         <span class="label">UID</span>
@@ -2172,7 +2248,7 @@
                 
                 <div class="settings-sec-title">Security information</div>
                 <div class="settings-sec-list">
-                    <div class="settings-sec-item" onclick="showToast('Edit Password')">
+                    <div class="settings-sec-item" onclick="openProfileEditor('password')">
                         <div class="settings-sec-left">
                             <div class="settings-sec-icon"><i class="fas fa-lock"></i></div> Login password
                         </div>
@@ -2270,6 +2346,7 @@
             <!-- GAME HISTORY PAGE -->
             <div id="game-hist-page" class="page">
                 <div class="with-top-nav"><i class="fas fa-chevron-left" onclick="nav('account')"></i><h3 data-lang="game_history">Game History</h3><span></span></div>
+                <div id="user-game-live-status" style="margin:12px 14px;padding:13px 15px;border-radius:12px;background:#eef6ff;border:1px solid #cfe3ff;color:#174477;font-weight:700;display:flex;align-items:center;justify-content:space-between;gap:10px"><span><i class="fas fa-signal"></i> Game Status <small id="user-game-session-count" style="display:block;font-size:11px;font-weight:500;opacity:.8">Games played: 0</small></span><strong id="user-game-live-label">Offline</strong></div>
                 <div class="history-card"><table><thead><tr><th data-lang="game">Game</th><th data-lang="bet">Bet</th><th data-lang="win">Win</th><th data-lang="time">Time</th></tr></thead><tbody id="game-list"></tbody></table></div>
             </div>
             
@@ -2315,9 +2392,40 @@
         </div>
     </div>
 
+    <!-- PROFILE EDITOR -->
+    <div id="profile-editor-modal" class="profile-editor-overlay" style="display:none" role="dialog" aria-modal="true" aria-labelledby="profile-editor-title">
+        <div class="profile-editor-box">
+            <div class="profile-editor-head"><h3 id="profile-editor-title">প্রোফাইল এডিট</h3><button type="button" onclick="closeProfileEditor()" aria-label="Close">&times;</button></div>
+            <div id="profile-name-panel" style="display:none">
+                <label for="profile-new-name">নতুন মেম্বার নাম</label>
+                <input id="profile-new-name" type="text" maxlength="24" placeholder="আপনার নাম লিখুন" autocomplete="nickname">
+                <button type="button" class="profile-save-btn" onclick="saveMemberName()">নাম সেভ করুন</button>
+            </div>
+            <div id="profile-avatar-panel" style="display:none">
+                <p class="profile-avatar-hint">নিচের ছবিগুলোর যেকোনো একটি বেছে নিন</p>
+                <div class="profile-avatar-options">
+                    <button type="button" class="profile-avatar-option" data-avatar="https://i.ibb.co.com/B5jPm10y/av-116.png" onclick="chooseProfileAvatar(this)"><img src="https://i.ibb.co.com/B5jPm10y/av-116.png" alt="Avatar 1"></button>
+                    <button type="button" class="profile-avatar-option" data-avatar="https://i.ibb.co.com/GQTdPJ4g/av-78.png" onclick="chooseProfileAvatar(this)"><img src="https://i.ibb.co.com/GQTdPJ4g/av-78.png" alt="Avatar 2"></button>
+                    <button type="button" class="profile-avatar-option" data-avatar="https://i.ibb.co.com/vCrShN6W/av-47.png" onclick="chooseProfileAvatar(this)"><img src="https://i.ibb.co.com/vCrShN6W/av-47.png" alt="Avatar 3"></button>
+                    <button type="button" class="profile-avatar-option" data-avatar="https://i.ibb.co.com/qzy1dzz/av-103.png" onclick="chooseProfileAvatar(this)"><img src="https://i.ibb.co.com/qzy1dzz/av-103.png" alt="Avatar 4"></button>
+                    <button type="button" class="profile-avatar-option" data-avatar="https://i.ibb.co.com/Wv5QsLMG/av-83.png" onclick="chooseProfileAvatar(this)"><img src="https://i.ibb.co.com/Wv5QsLMG/av-83.png" alt="Avatar 5"></button>
+                    <button type="button" class="profile-avatar-option" data-avatar="https://i.ibb.co.com/C5kBfyVz/av-89.png" onclick="chooseProfileAvatar(this)"><img src="https://i.ibb.co.com/C5kBfyVz/av-89.png" alt="Avatar 6"></button>
+                    <button type="button" class="profile-avatar-option" data-avatar="https://i.ibb.co.com/tT6hNtss/av-21.png" onclick="chooseProfileAvatar(this)"><img src="https://i.ibb.co.com/tT6hNtss/av-21.png" alt="Avatar 7"></button>
+                </div>
+                <button type="button" class="profile-save-btn" onclick="saveMemberAvatar()">ছবি সেভ করুন</button>
+            </div>
+            <div id="profile-password-panel" style="display:none">
+                <label for="profile-current-password">বর্তমান পাসওয়ার্ড</label><input id="profile-current-password" type="password" autocomplete="current-password" placeholder="বর্তমান পাসওয়ার্ড">
+                <label for="profile-new-password">নতুন পাসওয়ার্ড</label><input id="profile-new-password" type="password" autocomplete="new-password" placeholder="কমপক্ষে ৬ অক্ষর">
+                <label for="profile-confirm-password">নতুন পাসওয়ার্ড নিশ্চিত করুন</label><input id="profile-confirm-password" type="password" autocomplete="new-password" placeholder="আবার লিখুন">
+                <button type="button" class="profile-save-btn" onclick="changeMemberPassword()">পাসওয়ার্ড পরিবর্তন করুন</button>
+            </div>
+        </div>
+    </div>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js";
-        import { getDatabase, ref, set, push, onValue, get, update, increment, remove, runTransaction } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
+        import { getDatabase, ref, set, push, onValue, get, update, increment, remove, runTransaction, onDisconnect } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js";
         
         const firebaseConfig = {
             apiKey: "AIzaSyAy9PPm5UJpuhxfuPhNgocsUOOBFXXlmzU8",
@@ -2332,6 +2440,15 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
+        // Public bridge for the separate VIP UI script (Firebase SDK stays in this module).
+        window.vipDb = db;
+        window.vipFirebaseRef = ref;
+        window.vipRunTransaction = runTransaction;
+        window.vipShowToast = function(message){
+            const toast=document.getElementById("toast");
+            if(toast){ toast.innerText=message; toast.classList.add("show"); setTimeout(()=>toast.classList.remove("show"),3000); }
+        };
+        window.vipSyncLevel = function(phone, level){ return update(ref(db,"users/"+phone),{vipLevel:level}); };
 
         const configData = { sliders: ["https://i.ibb.co.com/jZ8WpYV2/file-0000000071bc8211a9fa9148346c1998.png", "https://i.ibb.co.com/YTjQ06mG/file-00000000c6888211b5cf9b25a6b604f5.png", "https://i.ibb.co.com/r2Xd3DH3/file-00000000eaac82119569dc0ad4c1de43.png"] };
         
@@ -2526,23 +2643,39 @@
 
         // --- GIFT PAGE REDEEM ---
         window.redeemGiftPage = async function() {
-            const code = document.getElementById("gift-page-input").value.trim();
+            const input = document.getElementById("gift-page-input");
+            const code = input ? input.value.trim().toUpperCase() : "";
             const phone = localStorage.getItem("userPhone");
+            if (!phone) return showToast("❌ Please login first");
             if (!code) return showToast("❌ Enter Code");
             try {
                 const giftRef = ref(db, "giftcodes/" + code);
-                const snapshot = await get(giftRef);
-                if (snapshot.exists()) {
-                    const giftData = snapshot.val();
-                    const amt = parseFloat(giftData.amount);
-                    await update(ref(db, "users/" + phone), { balance: increment(amt) });
-                    await remove(giftRef);
-                    showToast(`✅ Congrats! ৳${amt} Redeemed`);
-                    document.getElementById("gift-page-input").value = "";
-                } else {
-                    showToast("❌ Invalid or used code!");
+                const claimTime = Date.now();
+                const claimResult = await runTransaction(giftRef, current => {
+                    if (!current || current.claimedBy) return;
+                    return { ...current, claimedBy: phone, claimedAt: claimTime };
+                });
+                if (!claimResult.committed || !claimResult.snapshot.exists()) {
+                    showToast("❌ Invalid or already used code!");
+                    return;
                 }
-            } catch (err) { showToast("❌ System Error!"); }
+                const giftData = claimResult.snapshot.val();
+                const amt = Number(giftData.amount);
+                if (!Number.isFinite(amt) || amt <= 0) {
+                    await update(giftRef, { claimError: "invalid_amount" });
+                    return showToast("❌ Invalid gift amount. Contact support.");
+                }
+                await update(ref(db, "users/" + phone), { balance: increment(amt) });
+                await push(ref(db, "giftHistory/" + phone), {
+                    code, amount: amt, date: new Date(claimTime).toLocaleString(), timestamp: claimTime, status: "Success"
+                });
+                // Keep claimed code in Firebase for audit; it cannot be redeemed twice.
+                if (input) input.value = "";
+                showToast(`✅ Congrats! ৳${amt} Redeemed`);
+            } catch (err) {
+                console.error("Gift claim error", err);
+                showToast("❌ System Error: " + (err.message || "Please try again"));
+            }
         };
 
         // --- EXISTING FUNCTIONS ---
@@ -2606,6 +2739,10 @@
             document.getElementById("main-dashboard").classList.remove("hidden"); 
             const phone = localStorage.getItem("userPhone"); 
             if (!phone) return logout(); 
+            if (!window.vipConfigListenerStarted) {
+                window.vipConfigListenerStarted = true;
+                onValue(ref(db, "config/vip"), snap => { if (snap.exists() && window.applyAdminVipSettings) window.applyAdminVipSettings(snap.val() || {}); });
+            }
             
             // Initialize Deposit Page UI safely
             if(typeof setDepM === 'function') setDepM('bkash');
@@ -2613,7 +2750,10 @@
             onValue(ref(db, "users/" + phone), snapshot => { 
                 const data = snapshot.val(); 
                 if (data) { 
-                    const bal = "৳" + parseFloat(data.balance).toFixed(2); 
+                    if (typeof window.updateVipMember === "function") window.updateVipMember(data);
+                    const vipNameEl = document.getElementById("vip-member-name");
+                    if (vipNameEl) vipNameEl.textContent = data.memberName || "Member";
+                    const bal = "৳" + parseFloat(data.balance || 0).toFixed(2); 
                     const userBalEl = document.getElementById("user-bal");
                     const depTopBalEl = document.getElementById("dep-top-bal");
                     const withTopBalEl = document.getElementById("with-top-bal");
@@ -2633,12 +2773,14 @@
                     if(withRuleTurnoverEl) withRuleTurnoverEl.innerText = "৳" + (data.turnover || 0).toFixed(2);
                     
                     const mName = data.memberName || "MEMBER";
+                    const avatarUrl = data.avatarUrl || "https://i.ibb.co.com/TDT5F36x/5-ab77b716.webp";
+                    ["account-profile-avatar", "settings-profile-avatar"].forEach(id => { const img = document.getElementById(id); if (img) img.src = avatarUrl; });
                     const displayMemberNameEl = document.getElementById("display-member-name");
                     const setNicknameDisplayEl = document.getElementById("set-nickname-display");
                     const setUidDisplayEl = document.getElementById("set-uid-display");
                     
                     if(displayMemberNameEl) displayMemberNameEl.innerText = mName;
-                    if(setNicknameDisplayEl) setNicknameDisplayEl.innerText = mName + data.uid + " >";
+                    if(setNicknameDisplayEl) setNicknameDisplayEl.innerText = mName + " >";
                     if(setUidDisplayEl) setUidDisplayEl.innerText = data.uid;
 
                     const safeBal = parseFloat(data.safeBalance || 0).toFixed(2);
@@ -2701,7 +2843,7 @@
                         if(s.exists()) {
                             const bal = parseFloat(s.val().safeBalance || 0);
                             if(bal > 0) {
-                                const interest = bal * 0.001; // 0.1%
+                                const interest = bal * (Number(adminRuntimeLimits.safe_interest ?? 0.1) / 100);
                                 await update(ref(db, "users/" + phone), { safeBalance: increment(interest) });
                             }
                         }
@@ -2784,7 +2926,7 @@
                                 let inviterKey=null;
                                 usersSnap.forEach(uChild=>{ if(String(uChild.val().uid)===String(inviterUid)) inviterKey=uChild.key; });
                                 if(inviterKey) {
-                                    const commission=Number(dep.amount||0)*0.05;
+                                    const commission=Number(dep.amount||0)*(Number(adminRuntimeLimits.commission_rate ?? 5)/100);
                                     await runTransaction(ref(db,"users/"+inviterKey), current=>{
                                         if(!current) return current;
                                         const receipts=current.commissionReceipts||{};
@@ -2918,7 +3060,8 @@
             if(!phone) return showToast("Please login first");
             if(selectedWithM==="ewallet") {
                 if(!window.activeCard) return showToast("❌ Please add a wallet first");
-                if(!amt||amt<100) return showToast("❌ Minimum withdraw 100 TK");
+                if(!amt||amt<Number(adminRuntimeLimits.min_withdraw ?? 100)) return showToast("❌ Minimum withdraw "+Number(adminRuntimeLimits.min_withdraw ?? 100)+" TK");
+                if(amt>Number(adminRuntimeLimits.max_withdraw ?? 25000)) return showToast("❌ Maximum withdraw "+Number(adminRuntimeLimits.max_withdraw ?? 25000)+" TK");
             } else if(!amt||amt<10) return showToast("❌ Minimum withdraw 10 USDT");
             if(!Number.isFinite(amt)||amt<=0) return showToast("❌ Invalid amount");
             try {
@@ -3108,36 +3251,69 @@
                 if(withListEl) withListEl.innerHTML = html || "<tr><td colspan='3' style='text-align:center'>No Data</td></tr>"; 
             }); 
             
-            onValue(ref(db, "deposits/"), snapshot => { 
-                let tHtml = ""; 
-                const transListEl = document.getElementById("trans-list");
-                snapshot.forEach(child => { 
-                    if(child.val().phone === phone) {
-                        tHtml += `<tr><td style="color:green">+Deposit</td><td>৳${child.val().amount}</td><td>${child.val().date}</td></tr>`;
-                    }
-                });
-                onValue(ref(db, "withdrawals/"), wSnap => {
-                    wSnap.forEach(wChild => {
-                        if(wChild.val().phone === phone) {
-                            tHtml += `<tr><td style="color:red">-Withdraw</td><td>${wChild.val().method==='USDT'?'$':'৳'}${wChild.val().amount}</td><td>${wChild.val().date}</td></tr>`;
-                        }
-                    });
-                    if(transListEl) transListEl.innerHTML = tHtml || "<tr><td colspan='3' style='text-align:center'>No Transactions</td></tr>";
-                });
+            const transListEl = document.getElementById("trans-list");
+            let transactionRows = { deposits: [], withdrawals: [], gifts: [] };
+            const renderTransactions = () => {
+                const all = [...transactionRows.deposits, ...transactionRows.withdrawals, ...transactionRows.gifts]
+                    .sort((a,b) => Number(b.timestamp||0)-Number(a.timestamp||0));
+                if (transListEl) transListEl.innerHTML = all.length ? all.map(r => `<tr><td style="color:${r.color}">${safeText(r.type)}</td><td>${r.symbol}${Number(r.amount||0).toFixed(2)}</td><td>${safeText(r.date||"")}</td></tr>`).join("") : "<tr><td colspan='3' style='text-align:center'>No Transactions</td></tr>";
+            };
+            onValue(ref(db, "deposits/"), snapshot => {
+                transactionRows.deposits = [];
+                snapshot.forEach(child => { const d=child.val()||{}; if(d.phone===phone) transactionRows.deposits.push({type:"+Deposit",amount:d.amount,symbol:"৳",date:d.date,color:"green",timestamp:Number(d.timestamp||0)}); });
+                renderTransactions();
+            });
+            onValue(ref(db, "withdrawals/"), snapshot => {
+                transactionRows.withdrawals = [];
+                snapshot.forEach(child => { const w=child.val()||{}; if(w.phone===phone) transactionRows.withdrawals.push({type:"-Withdraw",amount:w.amount,symbol:w.method==='USDT'?'$':'৳',date:w.date,color:"red",timestamp:Number(w.timestamp||0)}); });
+                renderTransactions();
+            });
+            onValue(ref(db, "giftHistory/" + phone), snapshot => {
+                transactionRows.gifts = [];
+                snapshot.forEach(child => { const g=child.val()||{}; transactionRows.gifts.push({type:"+Gift Claim",amount:g.amount,symbol:"৳",date:g.date,color:"#059669",timestamp:Number(g.timestamp||0)}); });
+                renderTransactions();
             });
             
             const gameListEl = document.getElementById("game-list");
             if(gameListEl) gameListEl.innerHTML = "<tr><td colspan='4' style='text-align:center; color:#94a3b8;'>Play games to see history</td></tr>";
+
+            onValue(ref(db, "giftHistory/" + phone), snapshot => {
+                const el = document.getElementById("gift-history-list");
+                if (!el) return;
+                const rows = [];
+                snapshot.forEach(child => rows.push({key:child.key, ...(child.val() || {})}));
+                rows.sort((a,b) => Number(b.timestamp||0)-Number(a.timestamp||0));
+                el.className = rows.length ? "history-card" : "empty-state";
+                el.innerHTML = rows.length ? rows.map(g => `<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid #edf0f4;text-align:left"><div><b style="display:block;color:#1e293b;font-size:15px">${safeText(g.code||"Gift")}</b><small style="color:#64748b">${safeText(g.date||"")}</small></div><div style="text-align:right"><b style="color:#059669;font-size:16px">+৳${Number(g.amount||0).toFixed(2)}</b><small style="display:block;color:#059669">${safeText(g.status||"Success")}</small></div></div>`).join("") : '<i class="fas fa-inbox"></i><p>No gift claims yet</p>';
+            });
+
+            onValue(ref(db, "gameRecords"), snapshot => {
+                const rows = [];
+                snapshot.forEach(child => { const r=child.val()||{}; if(r.phone===phone) rows.push({key:child.key,...r}); });
+                rows.sort((a,b)=>Number(b.timestamp||0)-Number(a.timestamp||0));
+                const sessionCountEl=document.getElementById("user-game-session-count");
+                if(sessionCountEl) sessionCountEl.textContent="Games played: "+rows.filter(r=>r.event==="Started").length;
+                if(gameListEl) gameListEl.innerHTML = rows.length ? rows.map(r=>`<tr><td>${safeText(r.game||"Game")}${r.event ? ` <small>(${safeText(r.event)})</small>` : ""}</td><td>৳${Number(r.bet||0).toFixed(2)}</td><td>৳${Number(r.win||0).toFixed(2)}</td><td>${safeText(r.date||"")}</td></tr>`).join("") : "<tr><td colspan='4' style='text-align:center;color:#94a3b8;'>No game history yet</td></tr>";
+            });
+            onValue(ref(db, "gameStatus/" + phone), snapshot => {
+                const status = snapshot.val() || {};
+                const label = document.getElementById("user-game-live-label");
+                const panel = document.getElementById("user-game-live-status");
+                const fresh = status.status === "Playing" && Date.now() - Number(status.updatedAt || status.startedAt || 0) < 10 * 60 * 1000;
+                if (label) label.textContent = fresh ? ("Playing • " + (status.game || "Game")) : "Offline";
+                if (panel) { panel.style.background = fresh ? "#ecfdf5" : "#eef6ff"; panel.style.borderColor = fresh ? "#a7f3d0" : "#cfe3ff"; panel.style.color = fresh ? "#047857" : "#174477"; }
+            });
         };
         
         window.goFinalDep = function() { 
             const dAmtEl = document.getElementById("d-amt");
             const amt = dAmtEl ? dAmtEl.value : "";
             const phone = localStorage.getItem("userPhone"); 
-            const min = "binance" === selectedDepM ? 1 : 100; 
+            const min = "binance" === selectedDepM ? 1 : Number(adminRuntimeLimits.min_deposit ?? 100); 
             const sym = "binance" === selectedDepM ? "$" : "৳"; 
             
-            if (!amt || amt < min) return showToast(`❌ Minimum deposit ${sym}${min}`); 
+            if (!amt || amt < min) return showToast(`❌ Minimum deposit ${sym}${min}`);
+            if (selectedDepM !== "binance" && Number(adminRuntimeLimits.max_deposit) > 0 && Number(amt) > Number(adminRuntimeLimits.max_deposit)) return showToast(`❌ Maximum deposit ৳${adminRuntimeLimits.max_deposit}`); 
             const link = gatewayLinks[selectedDepM]; 
             if(link) { 
                 showToast("Redirecting to Gateway..."); 
@@ -3147,29 +3323,107 @@
             }
         };
         
-        window.playGame = async function(name) { 
-            const link = gameLinks[name], phone = localStorage.getItem("userPhone"); 
-            if(link && "#" !== link) { 
-                showToast("🎮 " + name + " Loading..."); 
-                setTimeout(() => { 
-                    const finalUrl = link + "?user=" + phone;
-                    const gameFrame = document.getElementById("game-frame");
-                    const gameContainer = document.getElementById("game-frame-container");
-                    if(gameFrame) gameFrame.src = finalUrl;
-                    if(gameContainer) gameContainer.style.display = "block";
-                    document.body.style.overflow = "hidden";
-                }, 800); 
-            } else { 
-                showToast("Min Deposit 100 TK"); 
-            } 
+        window.gameStatusHeartbeat = null;
+        window.gameStatusRef = null;
+        window.playGame = async function(name) {
+            const link = gameLinks[name], phone = localStorage.getItem("userPhone");
+            if (!phone) { showToast("Please login first"); return; }
+            if (!link || link === "#") { showToast("Game link not found. Please contact support."); return; }
+            try {
+                if (window.currentGameSession) window.closeGame();
+                showToast("🎮 " + name + " Loading...");
+                const gameFrame = document.getElementById("game-frame");
+                const gameContainer = document.getElementById("game-frame-container");
+                if (!gameFrame || !gameContainer) throw new Error("Game window is unavailable");
+                const startedAt = Date.now();
+                const statusRef = ref(db, "gameStatus/" + phone);
+                window.currentGameSession = { phone, name, startedAt, statusRef };
+                window.gameStatusRef = statusRef;
+                // Mark this session offline automatically if the browser disconnects or closes.
+                await onDisconnect(statusRef).update({ phone, game: name, status: "Offline", endedAt: Date.now(), updatedAt: Date.now() });
+                await update(statusRef, { phone, game: name, status: "Playing", startedAt, endedAt: null, updatedAt: startedAt });
+                await push(ref(db, "gameRecords"), { phone, game: name, event: "Started", bet: 0, win: 0, timestamp: startedAt, date: new Date(startedAt).toLocaleString() });
+                if (window.gameStatusHeartbeat) clearInterval(window.gameStatusHeartbeat);
+                const refreshGamePresence = () => {
+                    const session = window.currentGameSession;
+                    if (session && session.statusRef) update(session.statusRef, { phone: session.phone, game: session.name, status: "Playing", updatedAt: Date.now() }).catch(console.error);
+                };
+                if (window.gameStatusHeartbeat) clearInterval(window.gameStatusHeartbeat);
+                window.gameStatusHeartbeat = setInterval(refreshGamePresence, 15000);
+                if (!window.gamePresenceListenersAdded) {
+                    document.addEventListener("visibilitychange", refreshGamePresence);
+                    window.addEventListener("focus", refreshGamePresence);
+                    window.addEventListener("pageshow", refreshGamePresence);
+                    window.gamePresenceListenersAdded = true;
+                }
+                let finalUrl;
+                try { const u = new URL(link, window.location.href); u.searchParams.set("user", phone); finalUrl = u.toString(); }
+                catch (_) { finalUrl = link + (link.includes("?") ? "&" : "?") + "user=" + encodeURIComponent(phone); }
+                gameFrame.src = finalUrl;
+                gameContainer.style.display = "block";
+                document.body.style.overflow = "hidden";
+                // Register one browser-history entry so Android/browser Back returns to dashboard.
+                if (!window.gameBackStateActive) {
+                    window.gameBackStateActive = true;
+                    window.history.pushState({ starlightGame: true }, "", window.location.href);
+                }
+            } catch (error) {
+                console.error("Unable to start game session:", error);
+                showToast("Game could not start: " + (error.message || "Please try again"));
+                window.currentGameSession = null;
+                if (window.gameStatusHeartbeat) { clearInterval(window.gameStatusHeartbeat); window.gameStatusHeartbeat = null; }
+            }
         };
-        window.closeGame = function() {
+        window.closeGame = function(fromHistory) {
+            const wasGameBackStateActive = !!window.gameBackStateActive;
+            window.gameBackStateActive = false;
+            const session = window.currentGameSession;
+            if (window.gameStatusHeartbeat) { clearInterval(window.gameStatusHeartbeat); window.gameStatusHeartbeat = null; }
+            if (session && session.phone) {
+                const endedAt = Date.now();
+                const statusRef = session.statusRef || ref(db, "gameStatus/" + session.phone);
+                update(statusRef, { phone: session.phone, game: session.name, status: "Offline", endedAt, updatedAt: endedAt }).catch(console.error);
+                push(ref(db, "gameRecords"), { phone: session.phone, game: session.name, event: "Ended", bet: 0, win: 0, timestamp: endedAt, date: new Date(endedAt).toLocaleString() }).catch(console.error);
+                window.currentGameSession = null;
+                window.gameStatusRef = null;
+            }
             const gameContainer = document.getElementById("game-frame-container");
             const gameFrame = document.getElementById("game-frame");
             if(gameContainer) gameContainer.style.display = "none";
             if(gameFrame) gameFrame.src = "";
             document.body.style.overflow = "auto";
+            // The X button consumes the game history entry; popstate closes without navigating again.
+            if (!fromHistory && wasGameBackStateActive) {
+                try { window.history.back(); } catch (_) {}
+            }
         };
+        // Browser/Android WebView Back button support while a game is open.
+        window.addEventListener("popstate", function() {
+            const container = document.getElementById("game-frame-container");
+            if (container && container.style.display !== "none" && window.currentGameSession) {
+                window.closeGame(true);
+            } else {
+                window.gameBackStateActive = false;
+            }
+        });
+        document.addEventListener("backbutton", function(event) {
+            const container = document.getElementById("game-frame-container");
+            if (container && container.style.display !== "none") {
+                if (event && event.preventDefault) event.preventDefault();
+                window.closeGame();
+            }
+        }, false);
+        document.addEventListener("keydown", function(event) {
+            if (event.key !== "Escape" && event.key !== "Backspace") return;
+            const container = document.getElementById("game-frame-container");
+            if (container && container.style.display !== "none") {
+                event.preventDefault(); window.closeGame();
+            }
+        });
+        window.addEventListener("pagehide", () => {
+            const session = window.currentGameSession;
+            if (session && session.statusRef) update(session.statusRef, { status: "Offline", endedAt: Date.now(), updatedAt: Date.now() }).catch(() => {});
+        });
 
         window.addEventListener("load", () => { 
             const refParam = new URLSearchParams(window.location.search).get("ref"); 
@@ -3181,6 +3435,254 @@
             } 
             if(localStorage.getItem("isLoggedIn") === "true") enterDashboard(); 
         });
+    
+        // ===== ADMIN PANEL -> USER PANEL LIVE CONFIG SYNC =====
+        const adminRuntimeLimits = {};
+        let adminGameNames = [];
+        let adminSliderTimer = null;
+        let adminNotificationTab = 1;
+        window.adminUserNotifications = [];
+
+        function safeText(value) {
+            return String(value == null ? "" : value).replace(/[&<>"']/g, ch => ({
+                "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+            }[ch]));
+        }
+
+        function renderAdminManagedGames(games) {
+            const home = document.getElementById("home-page");
+            if (!home) return;
+            let section = document.getElementById("admin-managed-games-section");
+            if (!section) {
+                section = document.createElement("section");
+                section.id = "admin-managed-games-section";
+                section.className = "sl-game-section";
+                const iframeWrap = Array.from(home.children).find(el => el.querySelector && el.querySelector("iframe"));
+                if (iframeWrap) home.insertBefore(section, iframeWrap);
+                else home.appendChild(section);
+            }
+            const entries = Object.entries(games || {}).filter(([key,g]) => g && g.active !== false && g.url);
+            if (!entries.length) { section.style.display = "none"; section.innerHTML = ""; return; }
+            section.style.display = "";
+            section.innerHTML = `
+                <div class="sl-section-heading">
+                    <div><h3><i class="fas fa-gamepad"></i> More Games</h3><p>Games added from the admin panel</p></div>
+                </div>
+                <div class="sl-game-row">
+                    ${entries.map(([key,g]) => {
+                        const name = String(g.name || key);
+                        const image = String(g.image || "");
+                        return `<div class="sl-game-card" data-admin-game="${safeText(name)}">
+                            ${image ? `<img src="${safeText(image)}" alt="${safeText(name)}" onerror="this.style.display='none'">` : ""}
+                            <span class="sl-game-caption">${safeText(name)}</span>
+                        </div>`;
+                    }).join("")}
+                </div>`;
+            section.querySelectorAll("[data-admin-game]").forEach(card => {
+                card.addEventListener("click", () => window.playGame(card.getAttribute("data-admin-game")));
+            });
+        }
+
+        // Keep the existing slider design; only its image source becomes admin-controlled.
+        window.startSlider = function() {
+            const slider = document.getElementById("slider");
+            const dots = document.getElementById("slider-dots");
+            if (!slider || !dots || !configData.sliders || !configData.sliders.length) return;
+            if (adminSliderTimer) clearInterval(adminSliderTimer);
+            let index = 0;
+            const paint = () => {
+                const list = configData.sliders || [];
+                if (!list.length) return;
+                index = index % list.length;
+                slider.style.backgroundImage = `url("${list[index]}")`;
+                dots.innerHTML = list.map((_,i)=>`<div class="dot ${i===index?"active":""}"></div>`).join("");
+            };
+            paint();
+            if (configData.sliders.length > 1) {
+                adminSliderTimer = setInterval(() => {
+                    index = (index + 1) % configData.sliders.length;
+                    paint();
+                }, 3000);
+            }
+        };
+
+        onValue(ref(db, "config/sliders"), snapshot => {
+            const urls = [];
+            if (snapshot.exists()) snapshot.forEach(child => {
+                const value = child.val();
+                const url = typeof value === "string" ? value : value && value.url;
+                if (url && /^https?:\/\//i.test(url)) urls.push(url);
+            });
+            if (urls.length) configData.sliders = urls;
+            else if (!configData.sliders.length) configData.sliders = [];
+            if (document.getElementById("slider")) window.startSlider();
+        });
+
+        onValue(ref(db, "config/gateways"), snapshot => {
+            if (!snapshot.exists()) return;
+            const data = snapshot.val() || {};
+            ["bkash","nagad","binance"].forEach(key => {
+                if (typeof data[key] === "string" && data[key].trim()) gatewayLinks[key] = data[key].trim();
+            });
+        });
+
+        onValue(ref(db, "games"), snapshot => {
+            const games = {};
+            adminGameNames.forEach(name => { delete gameLinks[name]; });
+            adminGameNames = [];
+            if (snapshot.exists()) snapshot.forEach(child => {
+                const game = child.val() || {};
+                const name = String(game.name || child.key);
+                if (game.url && game.active !== false) {
+                    gameLinks[name] = String(game.url);
+                    adminGameNames.push(name);
+                }
+                games[child.key] = game;
+            });
+            renderAdminManagedGames(games);
+        });
+
+        onValue(ref(db, "config/limits"), snapshot => {
+            if (!snapshot.exists()) return;
+            Object.assign(adminRuntimeLimits, snapshot.val() || {});
+            window.adminRuntimeLimits = adminRuntimeLimits;
+            const safeRate = Number(adminRuntimeLimits.safe_interest);
+            const badge = document.querySelector(".safe-rate-badge");
+            if (badge && Number.isFinite(safeRate)) badge.textContent = "Interest rate " + safeRate + "%";
+        });
+
+        onValue(ref(db, "config/vip"), snapshot => {
+            if (snapshot.exists() && typeof window.applyAdminVipSettings === "function") {
+                window.applyAdminVipSettings(snapshot.val() || {});
+            } else if (snapshot.exists()) {
+                window.pendingAdminVipSettings = snapshot.val() || {};
+            }
+        });
+
+        onValue(ref(db, "announcements"), snapshot => {
+            const items = [];
+            if (snapshot.exists()) snapshot.forEach(child => items.push({key:child.key,...(child.val()||{})}));
+            items.reverse();
+            const content = document.getElementById("announce-page-content");
+            if (content) content.innerHTML = items.length ? items.map(a => `
+                <article style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-bottom:10px">
+                    <b style="display:block;color:#1e293b;margin-bottom:6px">${safeText(a.title)}</b>
+                    <p style="font-size:13px;color:#475569;white-space:pre-wrap">${safeText(a.message)}</p>
+                    <small style="display:block;color:#94a3b8;margin-top:8px">${safeText(a.date||"")}</small>
+                </article>`).join("") : '<div class="empty-state"><i class="fas fa-bullhorn"></i><p>No new announcements</p></div>';
+            const marquee = document.querySelector("#home-page .notice-bar marquee");
+            if (marquee && items.length) marquee.textContent = items[0].message || items[0].title || marquee.textContent;
+        });
+
+        onValue(ref(db, "notifications"), snapshot => {
+            const items = [];
+            if (snapshot.exists()) snapshot.forEach(child => items.push({key:child.key,...(child.val()||{})}));
+            items.reverse();
+            window.adminUserNotifications = items;
+            renderUserNotificationTab();
+        });
+
+        function renderUserNotificationTab() {
+            const content = document.getElementById("notif-content-area");
+            if (!content) return;
+            const items = window.adminUserNotifications || [];
+            if (adminNotificationTab === 1) {
+                content.innerHTML = items.length ? items.map(n => `
+                    <article style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin:10px 15px">
+                        <b style="display:block;color:#1e293b;margin-bottom:6px">${safeText(n.title)}</b>
+                        <p style="font-size:13px;color:#475569;white-space:pre-wrap">${safeText(n.message)}</p>
+                        <small style="display:block;color:#94a3b8;margin-top:8px">${safeText(n.date||"")}</small>
+                    </article>`).join("") : '<div class="empty-state"><i class="fas fa-inbox"></i><p>No data</p></div>';
+            } else {
+                content.innerHTML = '<div class="empty-state"><i class="fas fa-info-circle"></i><p>No information</p></div>';
+            }
+        }
+        window.switchNotifTab = function(tab) {
+            adminNotificationTab = Number(tab) === 2 ? 2 : 1;
+            ["1","2"].forEach(n => {
+                const el = document.getElementById("notif-tab-"+n);
+                if (el) el.classList.toggle("active", Number(n) === adminNotificationTab);
+            });
+            renderUserNotificationTab();
+        };
+
+        // Apply already-loaded VIP data if the database callback arrived before the UI script.
+        if (window.pendingAdminVipSettings && typeof window.applyAdminVipSettings === "function") {
+            window.applyAdminVipSettings(window.pendingAdminVipSettings);
+        }
+
+        const profileAvatarUrls = [
+            "https://i.ibb.co.com/B5jPm10y/av-116.png",
+            "https://i.ibb.co.com/GQTdPJ4g/av-78.png",
+            "https://i.ibb.co.com/vCrShN6W/av-47.png",
+            "https://i.ibb.co.com/qzy1dzz/av-103.png",
+            "https://i.ibb.co.com/Wv5QsLMG/av-83.png",
+            "https://i.ibb.co.com/C5kBfyVz/av-89.png",
+            "https://i.ibb.co.com/tT6hNtss/av-21.png"
+        ];
+        let selectedProfileAvatar = "";
+        window.openProfileEditor = async function(mode) {
+            const phone = localStorage.getItem("userPhone");
+            if (!phone || localStorage.getItem("isLoggedIn") !== "true") return showToast("আগে লগইন করুন");
+            const modal = document.getElementById("profile-editor-modal");
+            ["profile-name-panel","profile-avatar-panel","profile-password-panel"].forEach(id => document.getElementById(id).style.display = "none");
+            const titles = {name:"মেম্বার নাম পরিবর্তন",avatar:"প্রোফাইল ছবি পরিবর্তন",password:"পাসওয়ার্ড পরিবর্তন"};
+            document.getElementById("profile-editor-title").textContent = titles[mode] || "প্রোফাইল এডিট";
+            if (mode === "name") {
+                const snap = await get(ref(db, "users/" + phone));
+                document.getElementById("profile-new-name").value = snap.exists() ? (snap.val().memberName || "") : "";
+                document.getElementById("profile-name-panel").style.display = "block";
+            } else if (mode === "avatar") {
+                selectedProfileAvatar = "";
+                document.querySelectorAll(".profile-avatar-option").forEach(b => b.classList.remove("selected"));
+                document.getElementById("profile-avatar-panel").style.display = "block";
+            } else if (mode === "password") {
+                ["profile-current-password","profile-new-password","profile-confirm-password"].forEach(id => document.getElementById(id).value = "");
+                document.getElementById("profile-password-panel").style.display = "block";
+            }
+            modal.style.display = "flex";
+        };
+        window.closeProfileEditor = function(){ const modal=document.getElementById("profile-editor-modal"); if(modal) modal.style.display="none"; };
+        window.chooseProfileAvatar = function(button){
+            const url=button && button.getAttribute("data-avatar");
+            if(!url || !profileAvatarUrls.includes(url)) return;
+            selectedProfileAvatar=url;
+            document.querySelectorAll(".profile-avatar-option").forEach(b=>b.classList.toggle("selected",b===button));
+        };
+        window.saveMemberName = async function(){
+            const phone=localStorage.getItem("userPhone"), name=(document.getElementById("profile-new-name").value||"").trim();
+            if(!phone) return showToast("আগে লগইন করুন");
+            if(name.length<2 || name.length>24) return showToast("নাম ২ থেকে ২৪ অক্ষরের মধ্যে দিন");
+            try { await update(ref(db,"users/"+phone),{memberName:name,profileUpdatedAt:Date.now()}); closeProfileEditor(); showToast("✅ মেম্বার নাম পরিবর্তন হয়েছে"); }
+            catch(e){ console.error(e); showToast("❌ নাম সেভ হয়নি: "+(e.message||"ত্রুটি")); }
+        };
+        window.saveMemberAvatar = async function(){
+            const phone=localStorage.getItem("userPhone");
+            if(!phone) return showToast("আগে লগইন করুন");
+            if(!profileAvatarUrls.includes(selectedProfileAvatar)) return showToast("একটি ছবি নির্বাচন করুন");
+            try { await update(ref(db,"users/"+phone),{avatarUrl:selectedProfileAvatar,profileUpdatedAt:Date.now()}); closeProfileEditor(); showToast("✅ প্রোফাইল ছবি পরিবর্তন হয়েছে"); }
+            catch(e){ console.error(e); showToast("❌ ছবি সেভ হয়নি: "+(e.message||"ত্রুটি")); }
+        };
+        window.changeMemberPassword = async function(){
+            const phone=localStorage.getItem("userPhone");
+            const current=document.getElementById("profile-current-password").value;
+            const next=document.getElementById("profile-new-password").value;
+            const confirm=document.getElementById("profile-confirm-password").value;
+            if(!phone) return showToast("আগে লগইন করুন");
+            if(!current || !next || !confirm) return showToast("সব পাসওয়ার্ডের ঘর পূরণ করুন");
+            if(next.length<6) return showToast("নতুন পাসওয়ার্ড কমপক্ষে ৬ অক্ষরের হতে হবে");
+            if(next!==confirm) return showToast("নতুন পাসওয়ার্ড মিলছে না");
+            if(current===next) return showToast("নতুন পাসওয়ার্ড আলাদা দিন");
+            try {
+                const userRef=ref(db,"users/"+phone), snap=await get(userRef);
+                if(!snap.exists()) return showToast("অ্যাকাউন্ট পাওয়া যায়নি");
+                if(String(snap.val().password||"")!==current) return showToast("বর্তমান পাসওয়ার্ড ভুল");
+                await update(userRef,{password:next,passwordUpdatedAt:Date.now()});
+                closeProfileEditor(); showToast("✅ পাসওয়ার্ড পরিবর্তন হয়েছে");
+            } catch(e){ console.error(e); showToast("❌ পাসওয়ার্ড পরিবর্তন হয়নি: "+(e.message||"ত্রুটি")); }
+        };
+        document.getElementById("profile-editor-modal")?.addEventListener("click",function(e){if(e.target===this) closeProfileEditor();});
+
     </script>
 
     <script>
@@ -3529,7 +4031,7 @@
 
 <script>
 (function(){
-    const vipData = [
+    let vipData = [
         {level:1,deposit:"৳500+",salary:"৳100",reward:"৳100"},
         {level:2,deposit:"৳2,000+",salary:"৳300",reward:"৳300"},
         {level:3,deposit:"৳10,000+",salary:"৳500",reward:"৳500"},
@@ -3537,33 +4039,157 @@
         {level:5,deposit:"৳2,00,000+",salary:"৳10,000",reward:"৳10,000"}
     ];
     let activeVipLevel = 1;
+    let currentVipUser = null;
+    const defaultThresholds = {1:500,2:2000,3:10000,4:50000,5:200000};
+    function money(v){ return "৳" + Number(v||0).toLocaleString("en-US",{maximumFractionDigits:2}); }
+    function localDateKey(d=new Date()){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
+    function thresholds(){
+        const cfg=window.currentAdminVipSettings||{};
+        return {
+            1:Number(cfg.vip1_dep||defaultThresholds[1]), 2:Number(cfg.vip2_dep||defaultThresholds[2]),
+            3:Number(cfg.vip3_dep||defaultThresholds[3]), 4:Number(cfg.vip4_dep||defaultThresholds[4]),
+            5:Number(cfg.vip5_dep||defaultThresholds[5])
+        };
+    }
+    function levelForDeposit(total){
+        const t=thresholds(); let level=0;
+        for(let i=1;i<=5;i++) if(Number(total||0)>=t[i]) level=i;
+        return level;
+    }
+    window.applyAdminVipSettings = function(settings){
+        if(!settings) return;
+        window.currentAdminVipSettings=settings;
+        [1,2,3,4,5].forEach(level=>{
+            const dep=settings["vip"+level+"_dep"], salary=settings["vip"+level+"_salary"];
+            const item=vipData.find(x=>x.level===level);
+            if(item){
+                if(dep!==undefined && dep!=="") item.deposit=money(dep)+"+";
+                if(salary!==undefined && salary!=="") { item.salary=money(salary); item.reward=item.salary; }
+            }
+            const card=document.querySelector("#vip-level-track .vip-level-card.vip-lv"+level);
+            if(card && item){
+                const req=card.querySelector(".vip-card-require"), bottom=card.querySelector(".vip-card-bottom b");
+                if(req) req.textContent="Deposit "+item.deposit;
+                if(bottom) bottom.textContent=item.salary+"/Day";
+            }
+        });
+        if(currentVipUser) window.updateVipMember(currentVipUser);
+        window.selectVipLevel(activeVipLevel);
+    };
+    window.updateVipMember = function(user){
+        currentVipUser=user||{};
+        const total=Number(currentVipUser.totalDeposit||0);
+        const calculated=levelForDeposit(total);
+        const existing=Math.max(0,Math.min(5,Number(currentVipUser.vipLevel||0)));
+        const level=Math.max(existing,calculated);
+        currentVipUser.vipLevel=level;
+        const loggedPhone=localStorage.getItem("userPhone");
+        if(loggedPhone && level>existing && typeof window.vipSyncLevel==="function") window.vipSyncLevel(loggedPhone,level).catch(err=>console.warn("VIP level sync failed",err));
+        const nameEl=document.getElementById("vip-member-name");
+        if(nameEl) nameEl.textContent=currentVipUser.memberName||"Member";
+        const tag=document.querySelector("#vip-page .vip-member-tag");
+        if(tag) tag.innerHTML='<i class="fas fa-gem"></i> VIP '+level;
+        const exp=document.querySelector("#vip-page .vip-progress-box strong");
+        if(exp) exp.innerHTML=money(total).replace("৳","")+" <small>EXP</small>";
+        const claimLevel=document.getElementById("vip-level-claim-btn");
+        const claimDaily=document.getElementById("vip-daily-claim-btn");
+        const levelClaimed=(currentVipUser.vipRewardClaims||{});
+        if(claimLevel){
+            const already=!!levelClaimed["level_"+activeVipLevel];
+            claimLevel.disabled=activeVipLevel>level || already;
+            claimLevel.textContent=already?"Claimed":(activeVipLevel>level?"Locked":"Claim");
+            claimLevel.style.opacity=claimLevel.disabled?".55":"1";
+        }
+        if(claimDaily){
+            const today=localDateKey();
+            const dailyKey="daily_"+today;
+            const already=!!levelClaimed[dailyKey];
+            const selectedOwnLevel=activeVipLevel===level;
+            claimDaily.disabled=level<1 || already || !selectedOwnLevel;
+            claimDaily.textContent=already?"Claimed":(level<1?"Locked":(selectedOwnLevel?"Claim Daily":"Select Your VIP"));
+            claimDaily.style.opacity=claimDaily.disabled?".55":"1";
+        }
+        window.selectVipLevel(Math.max(1,Math.min(5,activeVipLevel)));
+        const historyEl=document.getElementById("vip-history-content");
+        if(historyEl){
+            const history=currentVipUser.vipRewardHistory||{};
+            const entries=Object.values(history).sort((a,b)=>Number(b.timestamp||0)-Number(a.timestamp||0));
+            historyEl.className=entries.length?"":"vip-empty-state";
+            historyEl.style.display=document.getElementById("vip-history-tab")?.classList.contains("active")?"flex":"none";
+            historyEl.innerHTML=entries.length?entries.map(h=>`<div style="width:100%;display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-bottom:1px solid rgba(237,207,145,.16);color:#fff"><span>${String(h.title||"VIP Reward").replace(/[<>]/g,"")}<small style="display:block;color:#bdcadd">${new Date(Number(h.timestamp||0)).toLocaleString()}</small></span><b style="color:#f4d48b">+${money(h.amount)}</b></div>`).join(""):'<i class="fas fa-inbox"></i><span>No VIP reward history yet</span>';
+        }
+    };
+    window.claimVipReward = async function(type){
+        const phone=localStorage.getItem("userPhone");
+        if(!phone || !window.vipDb || !window.vipFirebaseRef || !window.vipRunTransaction) return (window.vipShowToast||alert)("Please login first");
+        const userLevel=Number((currentVipUser||{}).vipLevel||0);
+        let claimKey, amount, title;
+        if(type==="level"){
+            if(activeVipLevel>userLevel || activeVipLevel<1) return (window.vipShowToast||alert)("এই VIP লেভেল এখনো আনলক হয়নি");
+            const item=vipData.find(x=>x.level===activeVipLevel);
+            amount=Number(String(item?.reward||"").replace(/[^0-9.]/g,""));
+            claimKey="level_"+activeVipLevel; title="VIP"+activeVipLevel+" Level-up Reward";
+        }else if(type==="daily"){
+            if(userLevel<1) return (window.vipShowToast||alert)("VIP 1 পেতে প্রয়োজনীয় ডিপোজিট করুন");
+            if(activeVipLevel!==userLevel) return (window.vipShowToast||alert)("আপনার বর্তমান VIP লেভেল নির্বাচন করুন");
+            const item=vipData.find(x=>x.level===userLevel);
+            amount=Number(String(item?.salary||"").replace(/[^0-9.]/g,""));
+            claimKey="daily_"+localDateKey(); title="VIP"+userLevel+" Daily Salary";
+        }else return;
+        if(!Number.isFinite(amount)||amount<=0) return (window.vipShowToast||alert)("Reward amount is not configured");
+        const now=Date.now();
+        try{
+            const userRef=window.vipFirebaseRef(window.vipDb,"users/"+phone);
+            const result=await window.vipRunTransaction(userRef,current=>{
+                if(!current) return;
+                current.vipRewardClaims=current.vipRewardClaims||{};
+                if(current.vipRewardClaims[claimKey]) return;
+                const currentLevel=Math.max(Number(current.vipLevel||0),levelForDeposit(Number(current.totalDeposit||0)));
+                if(type==="level" && currentLevel<activeVipLevel) return;
+                if(type==="daily" && currentLevel<1) return;
+                current.balance=Number(current.balance||0)+amount;
+                current.vipRewardClaims[claimKey]=now;
+                current.vipRewardHistory=current.vipRewardHistory||{};
+                current.vipRewardHistory[String(now)+"_"+claimKey]= {type, title, amount, timestamp:now, date:new Date(now).toLocaleString()};
+                return current;
+            });
+            if(!result.committed){ (window.vipShowToast||alert)("এই রিওয়ার্ডটি ইতিমধ্যে ক্লেইম করা হয়েছে অথবা যোগ্যতা পূরণ হয়নি"); return; }
+            currentVipUser=result.snapshot.val()||currentVipUser;
+            window.updateVipMember(currentVipUser);
+            (window.vipShowToast||alert)("সফল! "+money(amount)+" আপনার ব্যালেন্সে যোগ হয়েছে");
+        }catch(error){ console.error("VIP reward claim failed",error); (window.vipShowToast||alert)("VIP reward claim failed: "+(error.message||"Try again")); }
+    };
     window.selectVipLevel = function(level){
-        const item = vipData.find(x=>x.level===Number(level));
-        if(!item) return;
-        activeVipLevel = item.level;
-        document.getElementById("vip-benefit-heading").textContent = "VIP"+item.level+" Benefits level";
-        document.getElementById("vip-level-reward").textContent = item.reward;
-        document.getElementById("vip-daily-reward").textContent = item.salary;
-        document.getElementById("vip-deposit-requirement").textContent = item.deposit;
-        const cards = document.querySelectorAll("#vip-level-track .vip-level-card");
+        const item=vipData.find(x=>x.level===Number(level)); if(!item) return;
+        activeVipLevel=item.level;
+        const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+        set("vip-benefit-heading","VIP"+item.level+" Benefits level");
+        set("vip-level-reward",item.reward); set("vip-daily-reward",item.salary); set("vip-deposit-requirement",item.deposit);
+        const cards=document.querySelectorAll("#vip-level-track .vip-level-card");
         cards.forEach((card,index)=>card.classList.toggle("selected",index===item.level-1));
-        const track = document.getElementById("vip-level-track");
-        const card = cards[item.level-1];
-        if(track && card) track.scrollTo({left:card.offsetLeft-track.offsetLeft-(track.clientWidth-card.clientWidth)/2,behavior:"smooth"});
+        const track=document.getElementById("vip-level-track"),card=cards[item.level-1];
+        if(track&&card) track.scrollTo({left:card.offsetLeft-track.offsetLeft-(track.clientWidth-card.clientWidth)/2,behavior:"smooth"});
+        if(currentVipUser){
+            const claims=currentVipUser.vipRewardClaims||{};
+            const levelBtn=document.getElementById("vip-level-claim-btn");
+            const ownLevel=Number(currentVipUser.vipLevel||0);
+            if(levelBtn){const done=!!claims["level_"+activeVipLevel];levelBtn.disabled=activeVipLevel>ownLevel||done;levelBtn.textContent=done?"Claimed":(activeVipLevel>ownLevel?"Locked":"Claim");levelBtn.style.opacity=levelBtn.disabled?".55":"1";}
+            const dailyBtn=document.getElementById("vip-daily-claim-btn");
+            if(dailyBtn){const done=!!claims["daily_"+localDateKey()];dailyBtn.disabled=ownLevel<1||done||activeVipLevel!==ownLevel;dailyBtn.textContent=done?"Claimed":(ownLevel<1?"Locked":(activeVipLevel===ownLevel?"Claim Daily":"Select Your VIP"));dailyBtn.style.opacity=dailyBtn.disabled?".55":"1";}
+        }
     };
-    window.changeVipLevel = function(step){
-        const next = Math.max(1,Math.min(5,activeVipLevel+Number(step)));
-        window.selectVipLevel(next);
-    };
-    window.switchVipTab = function(tab){
-        const history = tab==="history";
-        document.getElementById("vip-history-content").style.display = history?"flex":"none";
-        document.getElementById("vip-rules-content").style.display = history?"none":"block";
-        document.getElementById("vip-history-tab").classList.toggle("active",history);
-        document.getElementById("vip-rules-tab").classList.toggle("active",!history);
-        document.querySelector("#vip-page .vip-view-all").style.display = history?"block":"none";
+    window.changeVipLevel=function(step){window.selectVipLevel(Math.max(1,Math.min(5,activeVipLevel+Number(step))))};
+    window.switchVipTab=function(tab){
+        const history=tab==="history";
+        const historyEl=document.getElementById("vip-history-content"),rulesEl=document.getElementById("vip-rules-content");
+        if(historyEl) historyEl.style.display=history?"flex":"none";
+        if(rulesEl) rulesEl.style.display=history?"none":"block";
+        document.getElementById("vip-history-tab")?.classList.toggle("active",history);
+        document.getElementById("vip-rules-tab")?.classList.toggle("active",!history);
+        const view=document.querySelector("#vip-page .vip-view-all"); if(view) view.style.display=history?"block":"none";
     };
     window.selectVipLevel(1);
+    if(window.pendingAdminVipSettings) window.applyAdminVipSettings(window.pendingAdminVipSettings);
 })();
 </script>
 
@@ -3578,6 +4204,29 @@
             });
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         };
+        window.slShowMore = function(button) {
+            var section = document.getElementById(button && button.getAttribute('data-target'));
+            var row = section && section.querySelector('.sl-game-row');
+            if (!row) return;
+            var distance = Math.max(row.clientWidth * 0.85, 180);
+            if (row.scrollWidth > row.clientWidth + 4) { row.scrollBy({ left: distance, behavior: 'smooth' }); }
+            else { var next = section && section.nextElementSibling; if (next && next.classList.contains('sl-game-section')) next.scrollIntoView({behavior:'smooth',block:'start'}); else section.scrollIntoView({behavior:'smooth',block:'start'}); }
+            button.classList.add('is-used');
+            window.setTimeout(function(){ button.classList.remove('is-used'); }, 350);
+        };
+        document.querySelectorAll('.sl-section-arrows').forEach(function(arrows) {
+            var row = arrows.closest('.sl-game-section')?.querySelector('.sl-game-row');
+            if (!row) return;
+            arrows.querySelectorAll('i').forEach(function(icon, index) {
+                icon.style.cursor = 'pointer';
+                icon.setAttribute('role','button');
+                icon.setAttribute('tabindex','0');
+                icon.setAttribute('aria-label', index === 0 ? 'Scroll games left' : 'Scroll games right');
+                var move = function(){ row.scrollBy({left:(index === 0 ? -1 : 1) * Math.max(row.clientWidth * .8,160),behavior:'smooth'}); };
+                icon.addEventListener('click',move);
+                icon.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();move();}});
+            });
+        });
 
         // Category image links: paste a URL into the matching data-image-url="" field.
         document.querySelectorAll('.sl-category-image').forEach(function(image) {
@@ -3586,6 +4235,22 @@
             image.onload = function() { image.parentElement.classList.add('has-image'); };
             image.onerror = function() { image.parentElement.classList.remove('has-image'); };
             image.src = imageUrl.trim();
+        });
+        // Allow pointer/mouse drag as well as native finger swipe on the category strip.
+        document.querySelectorAll('.sl-category-strip').forEach(function(strip) {
+            let dragging = false, startX = 0, startScroll = 0;
+            strip.addEventListener('pointerdown', function(e) {
+                if (e.pointerType === 'touch') return;
+                dragging = true; startX = e.clientX; startScroll = strip.scrollLeft;
+                strip.classList.add('is-dragging');
+            });
+            strip.addEventListener('pointermove', function(e) {
+                if (!dragging) return;
+                strip.scrollLeft = startScroll - (e.clientX - startX);
+            });
+            ['pointerup','pointercancel','pointerleave'].forEach(function(type) {
+                strip.addEventListener(type, function(){ dragging = false; strip.classList.remove('is-dragging'); });
+            });
         });
     </script>
 </body>
