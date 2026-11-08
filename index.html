@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>StarLight</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Noto+Sans+SC:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
         /* --- Anti-Copy CSS Start --- */
         * { -webkit-user-select: none !important; -moz-user-select: none !important; -ms-user-select: none !important; user-select: none !important; -webkit-touch-callout: none !important; }
@@ -23,7 +23,7 @@
             --gold: linear-gradient(135deg, #b88a3b, #76521e); 
         }
 
-        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; font-family: Inter, sans-serif; margin: 0; padding: 0; user-select: none }
+        * { -webkit-tap-highlight-color: transparent; box-sizing: border-box; font-family: Inter, "Noto Sans SC", "Microsoft YaHei", sans-serif; margin: 0; padding: 0; user-select: none }
         body { background-color: #f1f5f9; color: #333; min-height: 100vh; overflow-x: hidden }
         .app-shell { background: #fff; box-shadow: 0 0 50px rgba(0,0,0,.05); display: flex; flex-direction: column; margin: 0 auto; max-width: 430px; min-height: 100vh; position: relative; width: 100% }
         .auth-header { background: linear-gradient(135deg, var(--secondary), var(--primary)); border-bottom-left-radius: 40px; border-bottom-right-radius: 40px; box-shadow: 0 10px 20px rgba(184, 138, 59, .2); color: #fff; padding: 40px 20px; text-align: center }
@@ -1349,9 +1349,81 @@
             #main-dashboard #home-page .sl-category-icon{width:60px !important;height:60px !important;min-width:60px !important}
         }
 
+
+        /* Reliable notice ticker: flex child gets a real viewport and text always travels */
+        #main-dashboard #home-page .notice-bar { overflow:hidden !important; min-width:0; }
+        #main-dashboard #home-page .sl-notice-viewport {
+            display:block; flex:1 1 0%; min-width:0; width:0; overflow:hidden; position:relative;
+            white-space:nowrap;
+        }
+        #main-dashboard #home-page .sl-notice-track {
+            display:inline-block; width:max-content; max-width:none; white-space:nowrap;
+            font-size:12px; font-weight:700; color:inherit; padding-left:100%;
+            animation:slNoticeTravel 18s linear infinite; will-change:transform;
+        }
+        @keyframes slNoticeTravel { from { transform:translateX(0); } to { transform:translateX(-100%); } }
+        @media (prefers-reduced-motion: reduce) {
+            #main-dashboard #home-page .sl-notice-track { animation-duration:30s; }
+        }
 </style>
+
+<style>
+#starlight-login-loader{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.34);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s ease,visibility .16s ease}
+#starlight-login-loader.show{opacity:1;visibility:visible;pointer-events:all}
+.starlight-loader-core{position:relative;width:154px;height:154px;display:flex;align-items:center;justify-content:center}
+.starlight-loader-ring{position:absolute;inset:7px;width:140px;height:140px;animation:starlightRingSpin 2s linear infinite;overflow:visible}
+.starlight-loader-ring circle{fill:none;stroke:#d8b34c;stroke-width:2.8;stroke-linecap:round;stroke-dasharray:205 55;filter:drop-shadow(0 0 5px rgba(255,198,55,.7))}
+.starlight-loader-ring text{fill:#f5cf62;font-size:11px;font-weight:900;letter-spacing:2px}
+.starlight-loader-center{font-size:19px;font-weight:1000;letter-spacing:1px;color:#f7d56e;text-shadow:0 0 12px rgba(255,193,45,.55);animation:starlightPulse .75s ease-in-out infinite alternate}
+@keyframes starlightRingSpin{to{transform:rotate(360deg)}}
+@keyframes starlightPulse{from{transform:scale(.94);opacity:.82}to{transform:scale(1.06);opacity:1}}
+.auth-country-menu{position:absolute;top:calc(100% + 7px);left:7px;z-index:10000;width:190px;padding:5px;background:#fff;border:1px solid #e6d7b5;border-radius:11px;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.auth-country-menu button{width:100%;display:flex;align-items:center;justify-content:space-between;padding:11px 9px;border:0;border-radius:7px;background:#fff;color:#183657;font-size:12px;font-weight:700;text-align:left}
+.auth-country-menu button:active{background:#f8f0dc}
+.auth-country-menu b{color:#b88a3b}
+#loginBtn:disabled{opacity:.7}
+</style>
+
+
+<style>
+.auth-country-menu{position:fixed!important;top:auto;left:auto;z-index:2147483000;width:190px;max-height:220px;overflow:auto;padding:5px;background:#101010;border:1px solid #b88a3b;border-radius:11px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.auth-country-menu button{width:100%;display:flex;align-items:center;justify-content:space-between;padding:12px 10px;border:0;border-radius:7px;background:#101010;color:#fff;font-size:13px;font-weight:700;text-align:left}
+.auth-country-menu button:active,.auth-country-menu button:hover{background:#b88a3b;color:#111}
+.auth-country-menu b{color:#e7ca83}
+.starlight-welcome-overlay{position:fixed;inset:0;z-index:999998;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(0,0,0,.78)}
+.starlight-welcome-overlay.show{display:flex}
+.starlight-welcome-card{width:min(100%,560px);max-height:86vh;overflow:auto;background:#050505;border:1px solid #b88a3b;border-radius:22px;box-shadow:0 16px 50px rgba(0,0,0,.55);color:#f6e7bf;text-align:center}
+.starlight-welcome-card h2{margin:0;padding:17px 12px;background:linear-gradient(110deg,#76521e,#d8b66b,#9b702d);color:#101010;font-size:clamp(17px,4vw,23px);font-weight:900}
+.starlight-welcome-content{padding:12px 18px 18px;font-size:clamp(14px,3.5vw,18px);line-height:1.48}
+.starlight-welcome-content p{margin:15px 0}
+.starlight-welcome-highlight{background:#f5d84b;color:#111;text-decoration:underline;font-weight:800;padding:5px}
+.starlight-welcome-channel{background:#d8b66b;color:#111;font-weight:800;padding:5px}
+.starlight-welcome-link-title{margin-bottom:3px!important}
+.starlight-welcome-content a{color:#f4d36d;font-weight:800;overflow-wrap:anywhere}
+.starlight-welcome-thanks{color:#d9e9c8;text-decoration:underline;font-weight:700}
+.starlight-welcome-card>button{width:100%;border:0;padding:16px;background:linear-gradient(110deg,#76521e,#d8b66b,#9b702d);color:#111;font-size:17px;font-weight:800}
+</style>
+
+
+
 </head>
 <body oncontextmenu="return false">
+    <div id="starlight-welcome-overlay" class="starlight-welcome-overlay" aria-hidden="true">
+      <section class="starlight-welcome-card" role="dialog" aria-modal="true" aria-labelledby="starlight-welcome-title">
+        <h2 id="starlight-welcome-title">✅ Welcome To StarLight ✅</h2>
+        <div class="starlight-welcome-content">
+          <p class="starlight-welcome-highlight">🚨🚨🚨 FOLLOW OUR LATEST INFORMATION AND NEWS IN 👇👇👇</p>
+          <p class="starlight-welcome-channel">🌟 StarLight OFFICIAL UPDATES 🌟</p>
+          <p>📢</p>
+          <p>Dear Valued Members,</p>
+          <p>We have noticed an increase in imitation websites. To ensure you are visiting the StarLight website, please verify the website address carefully and use only the link shown below. Stay vigilant and report any suspicious activity.</p>
+          <p class="starlight-welcome-link-title">Official website for StarLight</p>
+          <p><a href="https://starlightorg.vercel.app/" target="_blank" rel="noopener noreferrer">starlightorg.vercel.app</a></p>
+          <p class="starlight-welcome-thanks">Thank you for your continued trust and support ✅</p>
+        </div>
+        <button type="button" onclick="closeStarLightWelcome()">Confirm</button>
+      </section>
+    </div>
 
     <div id="starlight-loader" role="status" aria-label="Loading StarLight">
         <div class="loader-content">
@@ -1396,6 +1468,7 @@
                         <div id="auth-language-menu" class="auth-language-menu hidden">
                             <button type="button" onclick="setLanguage('en');toggleAuthLanguage(false)">🇺🇸 &nbsp; English</button>
                             <button type="button" onclick="setLanguage('bn');toggleAuthLanguage(false)">🇧🇩 &nbsp; বাংলা (বাংলাদেশ)</button>
+                            <button type="button" onclick="setLanguage('zh');toggleAuthLanguage(false)">🇨🇳 &nbsp; 中文</button>
                         </div>
                     </div>
                 </div>
@@ -1413,7 +1486,7 @@
                     </div>
                     <div id="login-phone-panel" class="auth-method-panel">
                         <div class="auth-field-title"><i class="fas fa-mobile-alt"></i><span data-lang="phone_number">Phone number</span></div>
-                        <div class="auth-input-row"><button class="auth-country" type="button" onclick="toggleCountryList()" aria-label="Bangladesh country code +880"><span class="auth-country-flag" aria-hidden="true">🇧🇩</span><span class="auth-country-code">+880</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><input type="tel" id="l-phone" placeholder="Please enter the phone number" autocomplete="tel"></div>
+                        <div class="auth-input-row"><button class="auth-country" type="button" onclick="toggleCountryList(this)" aria-label="Select country code"><span class="auth-country-flag" aria-hidden="true">🇧🇩</span><span class="auth-country-code">+880</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><input type="tel" id="l-phone" placeholder="Please enter the phone number" autocomplete="tel"></div>
                     </div>
                     <div id="login-email-panel" class="auth-method-panel hidden">
                         <div class="auth-field-title"><i class="fas fa-envelope"></i><span data-lang="email">Email</span></div>
@@ -1434,7 +1507,7 @@
                     </div>
                     <div id="reg-phone-panel" class="auth-method-panel">
                         <div class="auth-field-title"><i class="fas fa-mobile-alt"></i><span data-lang="phone_number">Phone number</span></div>
-                        <div class="auth-input-row"><button class="auth-country" type="button" onclick="toggleCountryList()" aria-label="Bangladesh country code +880"><span class="auth-country-flag" aria-hidden="true">🇧🇩</span><span class="auth-country-code">+880</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><input type="tel" id="r-phone" placeholder="Please enter the phone number" autocomplete="tel"></div>
+                        <div class="auth-input-row"><button class="auth-country" type="button" onclick="toggleCountryList(this)" aria-label="Select country code"><span class="auth-country-flag" aria-hidden="true">🇧🇩</span><span class="auth-country-code">+880</span><i class="fas fa-chevron-down" aria-hidden="true"></i></button><input type="tel" id="r-phone" placeholder="Please enter the phone number" autocomplete="tel"></div>
                     </div>
                     <div id="reg-email-panel" class="auth-method-panel hidden">
                         <div class="auth-field-title"><i class="fas fa-envelope"></i><span data-lang="email">Email</span></div>
@@ -1463,7 +1536,7 @@
 
             <div id="home-page" class="page active">
                 <div class="slider-container"><div class="hero-banner" id="slider"></div><div class="slider-dots" id="slider-dots"></div></div>
-                <div class="notice-bar"><i class="fas fa-volume-up" style="color:var(--primary)"></i><marquee style="font-size:12px;font-weight:700;color:#475569" data-lang="welcome_notice">Welcome to 'StarLight'! Deposit now and get 100% bonus on your first deposit. Withdrawals within 30 mins. 🔥</marquee></div>
+                <div class="notice-bar"><i class="fas fa-volume-up" style="color:var(--primary);flex:0 0 auto"></i><div class="sl-notice-viewport"><div class="sl-notice-track" data-lang="welcome_notice">Welcome to 'StarLight'! Deposit now and get 100% bonus on your first deposit. Withdrawals within 30 mins. 🔥</div></div></div>
                 <div class="sl-category-strip">
                     <button class="sl-category active" onclick="slGoSection('sl-hot',this)">
                         <span class="sl-category-icon"><img class="sl-category-image" data-image-url="https://i.ibb.co.com/20JGjtz9/1.webp" alt="Hot Games"><i class="fas fa-fire"></i></span><b>Hot Games</b>
@@ -2123,18 +2196,18 @@
                 </div>
                 <img src="https://files.catbox.moe/46vgke.png" class="gift-page-banner" alt="Gift Banner">
                 <div class="gift-page-card">
-                    <h4>Hi<br>We have a gift for you</h4>
-                    <p>Please enter the gift code below</p>
+                    <h4 data-lang="gift_intro_title">Hi<br>We have a gift for you</h4>
+                    <p data-lang="gift_intro_desc">Please enter the gift code below</p>
                     <div class="gift-input-box">
-                        <input type="text" id="gift-page-input" placeholder="Please enter gift code">
+                        <input type="text" id="gift-page-input" data-lang-placeholder="gift_code_placeholder" placeholder="Please enter gift code" autocomplete="off" autocapitalize="characters">
                     </div>
-                    <button class="gift-receive-btn" onclick="redeemGiftPage()">Receive</button>
+                    <button class="gift-receive-btn" onclick="redeemGiftPage()" data-lang="gift_receive">Receive</button>
                 </div>
                 <div style="padding: 0 15px; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; font-weight: bold; color: #1e293b;">
-                    <i class="fas fa-list-alt" style="color: var(--primary);"></i> History
+                    <i class="fas fa-list-alt" style="color: var(--primary);"></i> <span data-lang="gift_history">History</span>
                 </div>
                 <div id="gift-history-list" class="empty-state" style="background:#fff; margin: 0 15px 20px; border-radius:15px; padding: 18px;">
-                    <i class="fas fa-inbox"></i><p>No gift claims yet</p>
+                    <i class="fas fa-inbox"></i><p data-lang="gift_empty">No gift claims yet</p>
                 </div>
             </div>
 
@@ -2489,7 +2562,7 @@
                 game_stats: "Game statistics", language: "Language", service_center: "Service center", settings: "Settings", feedback: "Feedback", announcement: "Announcement",
                 customer_service: "Customer Service", beginners_guide: "Beginner's Guide", about_us: "About us", log_out: "Log out", home: "Home", profile: "Profile",
                 deposit_history: "Deposit History", withdraw_history: "Withdraw History", date: "Date", amount: "Amount", status: "Status",
-                guide_toast: "Guide loading..."
+                gift_page_title: "Gift Center", gift_intro_title: "Hi\nWe have a gift for you", gift_intro_desc: "Please enter the gift code below", gift_code_placeholder: "Please enter gift code", gift_receive: "Receive", gift_history: "History", gift_empty: "No gift claims yet", gift_claim_success: "Gift code claimed successfully", gift_login_first: "Please login first", gift_enter_code: "Enter gift code", gift_invalid: "Invalid or already used code", gift_invalid_amount: "Invalid gift amount. Contact support.", gift_claim_error: "Could not claim gift code. Please try again.", gift_amount_label: "Gift reward", gift_status_success: "Success", transaction_deposit: "+Deposit", transaction_withdraw: "-Withdraw", transaction_gift: "+Gift Claim", no_transactions: "No transactions yet", no_data: "No data", no_information: "No information", games_played: "Games played", game_history_empty: "Play games to see history", game_status_playing: "Playing", game_status_offline: "Offline", bet: "Bet", game: "Game", time: "Time", type: "Type", win: "Win", recharge_inst: "Recharge instructions", guide_toast: "Guide loading..."
             },
             bn: {
                 auth_slogan: "সবচেয়ে বিশ্বস্ত প্ল্যাটফর্মে বড় জিতুন",
@@ -2511,7 +2584,77 @@
                 game_stats: "খেলা পরিসংখ্যান", language: "ভাষা", service_center: "সেবা কেন্দ্র", settings: "সেটিংস", feedback: "মতামত", announcement: "ঘোষণা",
                 customer_service: "কাস্টমার সার্ভিস", beginners_guide: "নতুনদের গাইড", about_us: "আমাদের সম্পর্কে", log_out: "লগ আউট", home: "হোম", profile: "প্রোফাইল",
                 deposit_history: "ডিপোজিট ইতিহাস", withdraw_history: "উত্তোলন ইতিহাস", date: "তারিখ", amount: "পরিমাণ", status: "স্ট্যাটাস",
-                guide_toast: "গাইড লোড হচ্ছে..."
+                gift_page_title: "গিফট সেন্টার", gift_intro_title: "হ্যালো\nআপনার জন্য একটি উপহার আছে", gift_intro_desc: "নিচে গিফট কোড লিখুন", gift_code_placeholder: "গিফট কোড লিখুন", gift_receive: "ক্লেইম করুন", gift_history: "ইতিহাস", gift_empty: "এখনো কোনো গিফট ক্লেইম করা হয়নি", gift_claim_success: "গিফট কোড সফলভাবে ক্লেইম হয়েছে", gift_login_first: "প্রথমে লগইন করুন", gift_enter_code: "গিফট কোড লিখুন", gift_invalid: "ভুল অথবা ইতিমধ্যে ব্যবহৃত কোড", gift_invalid_amount: "গিফটের পরিমাণ সঠিক নয়। সাপোর্টে যোগাযোগ করুন।", gift_claim_error: "গিফট কোড ক্লেইম করা যায়নি। আবার চেষ্টা করুন।", gift_amount_label: "গিফট রিওয়ার্ড", gift_status_success: "সফল", transaction_deposit: "+ডিপোজিট", transaction_withdraw: "-উত্তোলন", transaction_gift: "+গিফট ক্লেইম", no_transactions: "এখনো কোনো লেনদেন নেই", no_data: "কোনো তথ্য নেই", no_information: "কোনো তথ্য নেই", games_played: "খেলা হয়েছে", game_history_empty: "ইতিহাস দেখতে গেম খেলুন", game_status_playing: "খেলছেন", game_status_offline: "অফলাইন", bet: "বেট", game: "গেম", time: "সময়", type: "ধরন", win: "জয়", recharge_inst: "রিচার্জের নির্দেশনা", guide_toast: "গাইড লোড হচ্ছে..."
+            },
+            zh: {
+                auth_slogan: "在最值得信赖的平台赢取大奖",
+                auth_login_title: "登录", auth_login_desc: "请使用手机号码或电子邮箱登录\\n如果忘记密码，请联系客服", email: "电子邮箱", remember_password: "记住密码", forgot_password: "忘记密码？", forgot_password_help: "请联系客服重置密码。", register_your_phone: "注册手机号", set_password: "设置密码", privacy_agreement: "我已阅读并同意", privacy_title: "[隐私协议]", register_prompt: "注册", login_prompt: "已有账户 · 登录",
+                login: "登录", register: "注册", account_number: "账户号码", password: "密码", login_btn: "登录账户",
+                phone_number: "手机号码", new_password: "新密码", confirm_password: "确认密码", invite_code: "邀请码", create_account: "创建账户",
+                welcome_notice: "欢迎来到 StarLight！立即充值，首次充值可获得 100% 奖励。提现将在 30 分钟内处理。🔥",
+                all: "全部", slots: "老虎机", live: "真人", fishing: "捕鱼", sports: "体育", dice: "骰子",
+                vip_benefits: "VIP 特权", vip_subtitle: "活跃玩家专享每日奖励",
+                total_commission: "总佣金", direct_comm: "5% 直接佣金", total_team: "团队总人数（查看）", today_earn: "今日收入",
+                invitation_code: "邀请码", copy: "复制", invitation_link: "邀请链接", copy_link: "复制链接",
+                my_downline: "我的下级", phone: "手机", balance: "余额", deposit: "充值",
+                deposit_money: "充值金额", local_wallet: "本地钱包", amount_limit_dep: "金额（৳100 - ৳25,000）", deposit_now: "立即充值",
+                withdraw_funds: "提现", required_turnover: "所需流水：", amount_min_with: "金额（最低 ৳100）", account_password: "账户密码", withdraw_now: "立即提现",
+                add_wallet_card: "添加钱包/银行卡", wallet_number: "钱包号码", save_wallet: "保存钱包信息",
+                last_login: "上次登录：", total_balance: "总余额", wallet: "钱包", safe: "保险箱", safe_info_short: "每日利率为 0.1%，每 1 分钟计算一次收益。",
+                game_history: "游戏记录", my_game_history: "我的游戏记录", transaction: "交易", my_trans_history: "我的交易记录",
+                my_dep_history: "我的充值记录", withdraw: "提现", my_with_history: "我的提现记录", notification: "通知", gifts: "礼物",
+                game_stats: "游戏统计", language: "语言", service_center: "客服中心", settings: "设置", feedback: "反馈", announcement: "公告",
+                customer_service: "客户服务", beginners_guide: "新手指南", about_us: "关于我们", log_out: "退出登录", home: "首页", profile: "个人中心",
+                deposit_history: "充值记录", withdraw_history: "提现记录", date: "日期", amount: "金额", status: "状态",
+                gift_page_title: "礼品中心", gift_intro_title: "您好\n我们为您准备了一份礼物", gift_intro_desc: "请在下方输入礼品码", gift_code_placeholder: "请输入礼品码", gift_receive: "领取", gift_history: "领取记录", gift_empty: "暂无礼品领取记录", gift_claim_success: "礼品码领取成功", gift_login_first: "请先登录", gift_enter_code: "请输入礼品码", gift_invalid: "礼品码无效或已被使用", gift_invalid_amount: "礼品金额无效，请联系客服。", gift_claim_error: "礼品码领取失败，请重试。", gift_amount_label: "礼品奖励", gift_status_success: "成功", transaction_deposit: "+充值", transaction_withdraw: "-提现", transaction_gift: "+领取礼品", no_transactions: "暂无交易记录", no_data: "暂无数据", no_information: "暂无信息", games_played: "已玩游戏", game_history_empty: "开始游戏后即可查看记录", game_status_playing: "游戏中", game_status_offline: "离线", bet: "投注", game: "游戏", time: "时间", type: "类型", win: "赢", recharge_inst: "充值说明", guide_toast: "指南加载中..."
+            }
+        };
+
+        window.t = function(key) { return (window.langData[window.currentLang] && window.langData[window.currentLang][key]) || key; };
+
+        window.extraLanguageText = {
+            "Withdraw fast, safe and stable": {bn:"দ্রুত, নিরাপদ ও নির্ভরযোগ্য উত্তোলন",zh:"快速、安全、稳定的提现"},
+            "Hot Games": {bn:"জনপ্রিয় গেম",zh:"热门游戏"}, "Recommended Games": {bn:"প্রস্তাবিত গেম",zh:"推荐游戏"},
+            "The most popular games among players": {bn:"খেলোয়াড়দের মধ্যে সবচেয়ে জনপ্রিয় গেম",zh:"最受玩家欢迎的游戏"},
+            "Fair and diverse lottery gameplay": {bn:"ন্যায্য ও বৈচিত্র্যময় লটারি গেম",zh:"公平多样的彩票玩法"},
+            "Games independently developed for you": {bn:"আপনার জন্য বিশেষভাবে তৈরি গেম",zh:"为您独立开发的游戏"},
+            "Online real-time game dealers, all verified fair games": {bn:"অনলাইন লাইভ ডিলার, সব গেম যাচাইকৃত ও ন্যায্য",zh:"在线实时真人荷官，所有游戏均经过公平性验证"},
+            "Classic arcade gameplay, super cool visual enjoyment": {bn:"ক্লাসিক আর্কেড গেম, দারুণ ভিজ্যুয়াল অভিজ্ঞতা",zh:"经典街机玩法，畅享酷炫视觉体验"},
+            "Member": {bn:"সদস্য",zh:"会员"}, "My experience": {bn:"আমার অভিজ্ঞতা",zh:"我的经验值"}, "Days": {bn:"দিন",zh:"天"},
+            "Payout time": {bn:"পেমেন্টের সময়",zh:"结算时间"}, "VIP level rewards are settled at 2:00 am on the 1st of every month": {bn:"প্রতি মাসের ১ তারিখ রাত ২টায় VIP পুরস্কার হিসাব করা হয়",zh:"每月1日凌晨2点结算VIP等级奖励"},
+            "• Member level": {bn:"• সদস্যের স্তর",zh:"• 会员等级"}, "Level up rewards": {bn:"লেভেল আপ পুরস্কার",zh:"升级奖励"}, "Each account can only receive 1 time": {bn:"প্রতি অ্যাকাউন্টে একবারই পাওয়া যাবে",zh:"每个账户仅可领取一次"},
+            "Daily salary": {bn:"দৈনিক বেতন",zh:"每日奖励"}, "Daily reward for eligible members": {bn:"যোগ্য সদস্যদের দৈনিক পুরস্কার",zh:"符合条件的会员每日奖励"}, "Deposit requirement": {bn:"ডিপোজিটের শর্ত",zh:"充值要求"}, "Required deposit to reach this level": {bn:"এই লেভেলে পৌঁছাতে প্রয়োজনীয় ডিপোজিট",zh:"达到此等级所需的充值金额"},
+            "Rules": {bn:"নিয়মাবলি",zh:"规则"}, "VIP level is determined by the deposit requirement shown on each level card.": {bn:"প্রতিটি লেভেল কার্ডে দেখানো ডিপোজিটের পরিমাণ অনুযায়ী VIP লেভেল নির্ধারিত হয়।",zh:"VIP等级由各等级卡片显示的充值要求决定。"},
+            "VIP rewards are settled at 2:00 am on the 1st of every month.": {bn:"প্রতি মাসের ১ তারিখ রাত ২টায় VIP পুরস্কার নিষ্পত্তি হয়।",zh:"VIP奖励于每月1日凌晨2点结算。"}, "View All": {bn:"সব দেখুন",zh:"查看全部"},
+            "Direct subordinates": {bn:"সরাসরি অধীনস্থ",zh:"直属下级"}, "Team subordinates": {bn:"টিমের অধীনস্থ",zh:"团队下级"}, "Number of register": {bn:"নিবন্ধনের সংখ্যা",zh:"注册人数"}, "Deposit number": {bn:"ডিপোজিটের সংখ্যা",zh:"充值人数"}, "Deposit amount": {bn:"ডিপোজিটের পরিমাণ",zh:"充值金额"},
+            "Number of people making first deposit": {bn:"প্রথমবার ডিপোজিটকারীর সংখ্যা",zh:"首次充值人数"}, "Total team deposit": {bn:"টিমের মোট ডিপোজিট",zh:"团队总充值"}, "Today commission": {bn:"আজকের কমিশন",zh:"今日佣金"}, "Download QR Code": {bn:"QR কোড ডাউনলোড",zh:"下载二维码"},
+            "Copy invitation code": {bn:"আমন্ত্রণ কোড কপি",zh:"复制邀请码"}, "Loading...": {bn:"লোড হচ্ছে...",zh:"加载中..."}, "Subordinate data": {bn:"অধীনস্থদের তথ্য",zh:"下级数据"}, "View your invited members": {bn:"আপনার আমন্ত্রিত সদস্যদের দেখুন",zh:"查看您邀请的成员"}, "Commission detail": {bn:"কমিশনের বিস্তারিত",zh:"佣金详情"},
+            "5% from successful referred deposits": {bn:"রেফার করা সফল ডিপোজিট থেকে ৫%",zh:"推荐用户成功充值可获得5%佣金"}, "Invitation rules": {bn:"আমন্ত্রণের নিয়ম",zh:"邀请规则"}, "How referral commission works": {bn:"রেফারেল কমিশন যেভাবে কাজ করে",zh:"推荐佣金规则"}, "Agent line customer service": {bn:"এজেন্ট কাস্টমার সার্ভিস",zh:"代理客服"}, "Contact support": {bn:"সাপোর্টে যোগাযোগ করুন",zh:"联系客服"},
+            "Rebate ratio": {bn:"রিবেটের হার",zh:"返佣比例"}, "Current referral rate: 5%": {bn:"বর্তমান রেফারেল হার: ৫%",zh:"当前推荐比例：5%"}, "This Week register": {bn:"এই সপ্তাহের নিবন্ধন",zh:"本周注册"}, "Total number of subordinates": {bn:"মোট অধীনস্থ সদস্য",zh:"下级总人数"}, "This Week commission": {bn:"এই সপ্তাহের কমিশন",zh:"本周佣金"}, "Invite friends": {bn:"বন্ধুদের আমন্ত্রণ জানান",zh:"邀请好友"}, "Fair and justice": {bn:"ন্যায্য ও সুবিচারপূর্ণ",zh:"公平公正"}, "Open and transparent": {bn:"উন্মুক্ত ও স্বচ্ছ",zh:"公开透明"}, "Fair commission": {bn:"ন্যায্য কমিশন",zh:"公平佣金"}, "Income from successful referred deposits": {bn:"রেফার করা সফল ডিপোজিট থেকে আয়",zh:"来自推荐用户成功充值的收入"}, "Scan to join StarLight": {bn:"StarLight-এ যোগ দিতে স্ক্যান করুন",zh:"扫码加入 StarLight"}, "Generating invitation link...": {bn:"আমন্ত্রণ লিংক তৈরি হচ্ছে...",zh:"正在生成邀请链接..."}, "Copy invitation link": {bn:"আমন্ত্রণ লিংক কপি",zh:"复制邀请链接"}, "Share on Telegram": {bn:"Telegram-এ শেয়ার করুন",zh:"分享到 Telegram"},
+            "Automatic commission": {bn:"স্বয়ংক্রিয় কমিশন",zh:"自动佣金"}, "View subordinate data": {bn:"অধীনস্থদের তথ্য দেখুন",zh:"查看下级数据"}, "StarLight referral rules": {bn:"StarLight রেফারেল নিয়ম",zh:"StarLight 推荐规则"}, "Share your personal invitation link or QR code with friends.": {bn:"বন্ধুদের সঙ্গে আপনার ব্যক্তিগত আমন্ত্রণ লিংক বা QR কোড শেয়ার করুন।",zh:"与好友分享您的专属邀请链接或二维码。"}, "Commission is credited automatically to your balance and total commission.": {bn:"কমিশন স্বয়ংক্রিয়ভাবে আপনার ব্যালেন্স ও মোট কমিশনে যোগ হবে।",zh:"佣金将自动计入您的余额和总佣金。"}, "No signup bonus or extra referral bonus is offered on this page.": {bn:"এই পেজে সাইনআপ বোনাস বা অতিরিক্ত রেফারেল বোনাস নেই।",zh:"此页面不提供注册奖励或额外推荐奖励。"}, "Direct commission ratio": {bn:"সরাসরি কমিশনের হার",zh:"直接佣金比例"}, "Calculated from successful referred deposits only": {bn:"শুধু সফল রেফারেল ডিপোজিটের ভিত্তিতে হিসাব করা হয়",zh:"仅根据推荐用户成功充值金额计算"}, "No extra bonus": {bn:"অতিরিক্ত বোনাস নেই",zh:"无额外奖励"},
+            "Top Methods": {bn:"জনপ্রিয় পদ্ধতি",zh:"常用方式"}, "Select Channel Section": {bn:"চ্যানেল নির্বাচন",zh:"选择渠道"}, "Select channel": {bn:"চ্যানেল বেছে নিন",zh:"选择渠道"}, "Channels will be injected here by JS based on selected method": {bn:"নির্বাচিত পদ্ধতি অনুযায়ী চ্যানেল এখানে দেখানো হবে",zh:"将根据所选方式在此显示渠道"}, "Deposit Amount Section": {bn:"ডিপোজিটের পরিমাণ",zh:"充值金额"}, "Presets injected by JS": {bn:"নির্ধারিত পরিমাণ এখানে দেখানো হবে",zh:"预设金额将在此显示"}, "Recharge Instructions": {bn:"রিচার্জের নির্দেশনা",zh:"充值说明"}, "Recharge instructions": {bn:"রিচার্জের নির্দেশনা",zh:"充值说明"}, "Instructions injected by JS": {bn:"নির্দেশনা এখানে দেখানো হবে",zh:"说明将在此显示"}, "Deposit History Card (As seen in video)": {bn:"ডিপোজিটের ইতিহাস",zh:"充值记录"}, "No recent deposits": {bn:"সাম্প্রতিক কোনো ডিপোজিট নেই",zh:"暂无近期充值"},
+            "WITHDRAW PAGE": {bn:"উত্তোলন পেজ",zh:"提现页面"}, "Withdrawal history": {bn:"উত্তোলনের ইতিহাস",zh:"提现记录"}, "Available balance": {bn:"উত্তোলনযোগ্য ব্যালেন্স",zh:"可用余额"}, "E-Wallet": {bn:"ই-ওয়ালেট",zh:"电子钱包"}, "E-Wallet Selection Card": {bn:"ই-ওয়ালেট নির্বাচন",zh:"电子钱包选择"}, "Select Wallet": {bn:"ওয়ালেট নির্বাচন করুন",zh:"选择钱包"}, "Tap to add/select": {bn:"যোগ বা নির্বাচন করতে চাপ দিন",zh:"点击添加或选择"}, "Contact customer service to Add USDT address": {bn:"USDT ঠিকানা যোগ করতে কাস্টমার সার্ভিসে যোগাযোগ করুন",zh:"请联系客服添加USDT地址"}, "Withdrawable balance": {bn:"উত্তোলনযোগ্য ব্যালেন্স",zh:"可提现余额"}, "Withdrawal amount received": {bn:"প্রাপ্ত উত্তোলনের পরিমাণ",zh:"到账提现金额"}, "Need to bet": {bn:"বেট করতে হবে",zh:"还需投注"}, "to be able to withdraw": {bn:"উত্তোলন করতে",zh:"才能提现吗"}, "Withdraw time": {bn:"উত্তোলনের সময়",zh:"提现时间"}, "Today Remaining Withdrawal Times": {bn:"আজ বাকি উত্তোলনের সংখ্যা",zh:"今日剩余提现次数"}, "Withdrawal amount range": {bn:"উত্তোলনের পরিমাণের সীমা",zh:"提现金额范围"},
+            "ADD CARD PAGE": {bn:"কার্ড যোগ করার পেজ",zh:"添加银行卡页面"}, "E-Wallet Payment method": {bn:"ই-ওয়ালেট পেমেন্ট পদ্ধতি",zh:"电子钱包支付方式"}, "Choose type": {bn:"ধরন নির্বাচন করুন",zh:"选择类型"}, "Please choose": {bn:"অনুগ্রহ করে নির্বাচন করুন",zh:"请选择"}, "Full name": {bn:"পূর্ণ নাম",zh:"姓名"}, "Account": {bn:"অ্যাকাউন্ট",zh:"账户"}, "Save": {bn:"সেভ করুন",zh:"保存"}, "ACCOUNT PAGE": {bn:"অ্যাকাউন্ট পেজ",zh:"账户页面"}, "Last login:": {bn:"সর্বশেষ লগইন:",zh:"上次登录："}, "Total balance": {bn:"মোট ব্যালেন্স",zh:"总余额"}, "Wallet": {bn:"ওয়ালেট",zh:"钱包"}, "My game history": {bn:"আমার গেমের ইতিহাস",zh:"我的游戏记录"}, "My transaction history": {bn:"আমার লেনদেনের ইতিহাস",zh:"我的交易记录"}, "My deposit history": {bn:"আমার ডিপোজিটের ইতিহাস",zh:"我的充值记录"}, "My withdraw history": {bn:"আমার উত্তোলনের ইতিহাস",zh:"我的提现记录"}, "Gifts": {bn:"উপহার",zh:"礼品"}, "Service center": {bn:"সেবা কেন্দ্র",zh:"服务中心"}, "Settings": {bn:"সেটিংস",zh:"设置"}, "Customer Service": {bn:"কাস্টমার সার্ভিস",zh:"客户服务"}, "Beginner's Guide": {bn:"নতুনদের নির্দেশিকা",zh:"新手指南"}, "Log out": {bn:"লগ আউট",zh:"退出登录"},
+            "SAFE PAGE": {bn:"সেফ পেজ",zh:"保险箱页面"}, "Financial security": {bn:"আর্থিক নিরাপত্তা",zh:"资金安全"}, "24-hour estimated revenue": {bn:"২৪ ঘণ্টার আনুমানিক আয়",zh:"24小时预估收益"}, "Generated revenue": {bn:"অর্জিত আয়",zh:"已产生收益"}, "My interest rate 0.1": {bn:"আমার সুদের হার ০.১",zh:"我的利率 0.1"}, "Accumulated revenue": {bn:"মোট সঞ্চিত আয়",zh:"累计收益"}, "Funds are safe and secure, and can be transferred at any time": {bn:"আপনার অর্থ নিরাপদ; যেকোনো সময় স্থানান্তর করতে পারবেন",zh:"资金安全可靠，可随时转出"}, "Learn about safes >>": {bn:"সেফ সম্পর্কে জানুন >>",zh:"了解保险箱 >>"}, "Historical records": {bn:"পুরোনো রেকর্ড",zh:"历史记录"}, "All history": {bn:"সব ইতিহাস",zh:"全部记录"},
+            "NOTIFICATION PAGE": {bn:"নোটিফিকেশন পেজ",zh:"通知页面"}, "Information": {bn:"তথ্য",zh:"信息"}, "GIFT PAGE": {bn:"গিফট পেজ",zh:"礼品页面"}, "Gift": {bn:"উপহার",zh:"礼品"}, "GAME STATISTICS PAGE": {bn:"গেম পরিসংখ্যান পেজ",zh:"游戏统计页面"}, "Today": {bn:"আজ",zh:"今天"}, "Yesterday": {bn:"গতকাল",zh:"昨天"}, "This week": {bn:"এই সপ্তাহ",zh:"本周"}, "This month": {bn:"এই মাস",zh:"本月"},
+            "LANGUAGE PAGE": {bn:"ভাষা নির্বাচন",zh:"语言选择"}, "SETTINGS PAGE": {bn:"সেটিংস পেজ",zh:"设置页面"}, "Settings Center": {bn:"সেটিংস কেন্দ্র",zh:"设置中心"}, "Nickname": {bn:"ডাকনাম",zh:"昵称"}, "Security information": {bn:"নিরাপত্তা তথ্য",zh:"安全信息"}, "Login password": {bn:"লগইন পাসওয়ার্ড",zh:"登录密码"}, "Bind mailbox": {bn:"ইমেইল যুক্ত করুন",zh:"绑定邮箱"}, "Updated version": {bn:"আপডেট করা সংস্করণ",zh:"当前版本"}, "FEEDBACK PAGE": {bn:"মতামত পেজ",zh:"反馈页面"}, "Send helpful feedback": {bn:"আপনার মতামত পাঠান",zh:"提交有帮助的反馈"}, "Chance to win Mystery Rewards": {bn:"বিশেষ পুরস্কার জেতার সুযোগ",zh:"赢取神秘奖励的机会"}, "Submit": {bn:"জমা দিন",zh:"提交"}, "ABOUT US PAGE": {bn:"আমাদের সম্পর্কে",zh:"关于我们"}, "Confidentiality Agreement": {bn:"গোপনীয়তা চুক্তি",zh:"保密协议"}, "Risk Disclosure Agreement": {bn:"ঝুঁকি প্রকাশ বিবৃতি",zh:"风险披露协议"}, "ANNOUNCEMENT PAGE": {bn:"ঘোষণা পেজ",zh:"公告页面"}, "No new announcements": {bn:"নতুন কোনো ঘোষণা নেই",zh:"暂无新公告"},
+            "Game Status": {bn:"গেমের অবস্থা",zh:"游戏状态"}, "Game": {bn:"গেম",zh:"游戏"}, "Bet": {bn:"বেট",zh:"投注"}, "Win": {bn:"জয়",zh:"赢"}, "Time": {bn:"সময়",zh:"时间"}, "Type": {bn:"ধরন",zh:"类型"}, "Home": {bn:"হোম",zh:"首页"}, "Profile": {bn:"প্রোফাইল",zh:"个人中心"}, "Confirm Withdrawal": {bn:"উত্তোলন নিশ্চিত করুন",zh:"确认提现"}, "Cancel": {bn:"বাতিল",zh:"取消"}, "Confirm": {bn:"নিশ্চিত করুন",zh:"确认"}, "Transfer In": {bn:"জমা করুন",zh:"转入"}, "Transfer Out": {bn:"তুলে নিন",zh:"转出"}, "No data": {bn:"কোনো তথ্য নেই",zh:"暂无数据"}
+        };
+        window.translateStaticText = function(root) {
+            if (!root || !window.extraLanguageText) return;
+            const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+            let node;
+            while ((node = walker.nextNode())) {
+                const parent = node.parentElement;
+                if (!parent || parent.closest('script,style,noscript,[data-lang],[data-lang-placeholder]')) continue;
+                if (node.__sourceEnglish === undefined) node.__sourceEnglish = node.nodeValue;
+                const original = node.__sourceEnglish.trim();
+                const item = window.extraLanguageText[original];
+                if (!item) continue;
+                const translated = currentLang === 'en' ? original : (item[currentLang] || original);
+                const leading = node.__sourceEnglish.match(/^\s*/)?.[0] || '';
+                const trailing = node.__sourceEnglish.match(/\s*$/)?.[0] || '';
+                node.nodeValue = leading + translated + trailing;
             }
         };
 
@@ -2525,35 +2668,57 @@
             applyLanguage();
             
             document.querySelectorAll('.lang-item').forEach(el => el.classList.remove('active'));
-            const selectedLang = document.getElementById(lang === 'bn' ? 'lang-bn' : 'lang-en');
+            const selectedLang = document.getElementById('lang-' + lang);
             if(selectedLang) selectedLang.classList.add('active');
             const authLangLabel = document.getElementById('auth-lang-label');
-            if(authLangLabel) authLangLabel.innerText = lang === 'bn' ? 'বাংলা' : 'EN';
-            showToast(lang === 'bn' ? "ভাষা বাংলা করা হয়েছে" : "Language set to English");
+            if(authLangLabel) authLangLabel.innerText = lang === 'bn' ? 'বাংলা' : (lang === 'zh' ? '中文' : 'EN');
+            if (typeof window.renderUserTransactions === "function") window.renderUserTransactions();
+            if (typeof window.refreshLocalizedGiftHistory === "function") window.refreshLocalizedGiftHistory();
+            showToast(lang === 'bn' ? "ভাষা বাংলা করা হয়েছে" : (lang === 'zh' ? "语言已设置为中文" : "Language set to English"));
         };
 
         window.applyLanguage = function() {
             const langDisplay = document.getElementById("current-lang-display");
-            if(langDisplay) langDisplay.innerText = currentLang === 'bn' ? "বাংলা" : "English";
+            if(langDisplay) langDisplay.innerText = currentLang === 'bn' ? "বাংলা" : (currentLang === 'zh' ? "中文" : "English");
             
             document.querySelectorAll("[data-lang]").forEach(el => {
                 const key = el.getAttribute("data-lang");
                 if(langData[currentLang] && langData[currentLang][key]) el.innerText = langData[currentLang][key];
             });
             const authLangLabel = document.getElementById('auth-lang-label');
-            if(authLangLabel) authLangLabel.innerText = currentLang === 'bn' ? 'বাংলা' : 'EN';
+            if(authLangLabel) authLangLabel.innerText = currentLang === 'bn' ? 'বাংলা' : (currentLang === 'zh' ? '中文' : 'EN');
             const placeholders = currentLang === 'bn' ? {
                 'l-phone':'ফোন নম্বর লিখুন','r-phone':'ফোন নম্বর লিখুন','l-email':'আপনার ইমেইল লিখুন','r-email':'আপনার ইমেইল লিখুন',
                 'l-pass':'পাসওয়ার্ড','r-pass':'পাসওয়ার্ড সেট করুন','r-cpass':'পাসওয়ার্ড নিশ্চিত করুন','r-ref':'ইনভাইট কোড লিখুন'
+            } : (currentLang === 'zh' ? {
+                'l-phone':'请输入手机号码','r-phone':'请输入手机号码','l-email':'请输入电子邮箱','r-email':'请输入电子邮箱',
+                'l-pass':'密码','r-pass':'设置密码','r-cpass':'确认密码','r-ref':'请输入邀请码'
             } : {
                 'l-phone':'Please enter the phone number','r-phone':'Please enter the phone number','l-email':'Please input your email','r-email':'Please input your email',
                 'l-pass':'Password','r-pass':'Set password','r-cpass':'Confirm password','r-ref':'Please enter the invitation code'
-            };
+            });
             Object.keys(placeholders).forEach(id => { const field = document.getElementById(id); if(field) field.placeholder = placeholders[id]; });
+            document.querySelectorAll("[data-lang-placeholder]").forEach(el => { const key = el.getAttribute("data-lang-placeholder"); if(langData[currentLang] && langData[currentLang][key]) el.placeholder = langData[currentLang][key]; });
+            document.documentElement.lang = currentLang === 'bn' ? 'bn' : (currentLang === 'zh' ? 'zh-CN' : 'en');
+            if (document.body && typeof window.translateStaticText === "function") window.translateStaticText(document.body);
             if(typeof setDepM === 'function') setDepM(selectedDepM); 
             if(typeof setWithM === 'function') setWithM(selectedWithM);
         };
         applyLanguage();
+        if (document.body && !window.staticLanguageObserver) {
+            window.staticLanguageObserver = new MutationObserver(mutations => {
+                mutations.forEach(m => m.addedNodes.forEach(node => {
+                    if (node.nodeType === 1) window.translateStaticText(node);
+                    else if (node.nodeType === 3 && node.parentElement && !node.parentElement.closest('script,style,noscript,[data-lang],[data-lang-placeholder]')) {
+                        const source = node.__sourceEnglish === undefined ? node.nodeValue : node.__sourceEnglish;
+                        if (node.__sourceEnglish === undefined) node.__sourceEnglish = source;
+                        const key = String(source || '').trim(), item = window.extraLanguageText[key];
+                        if (item) { const leading = source.match(/^\s*/)?.[0] || '', trailing = source.match(/\s*$/)?.[0] || ''; node.nodeValue = leading + (currentLang === 'en' ? key : (item[currentLang] || key)) + trailing; }
+                    }
+                }));
+            });
+            window.staticLanguageObserver.observe(document.body, { childList: true, subtree: true });
+        }
 
         // --- AUTH METHOD + LANGUAGE CONTROLS ---
         window.authMethods = { login: 'phone', reg: 'phone' };
@@ -2566,7 +2731,7 @@
                 if(tab) tab.classList.toggle('active', type === method);
             });
             const title = document.querySelector('#auth-container .auth-heading h2');
-            if(title && view === 'reg') title.innerText = currentLang === 'bn' ? 'রেজিস্টার' : 'Register';
+            if(title && view === 'reg') title.innerText = currentLang === 'bn' ? 'রেজিস্টার' : (currentLang === 'zh' ? '注册' : 'Register');
             else if(title) title.innerText = langData[currentLang].auth_login_title;
         };
         window.toggleAuthLanguage = function(force) {
@@ -2579,12 +2744,64 @@
             if(!document.getElementById('reg-view').classList.contains('hidden')) switchAuth('login');
             else showToast(currentLang === 'bn' ? 'লগইন পেজ' : 'Login page');
         };
-        window.toggleCountryList = function() { showToast(currentLang === 'bn' ? 'দেশের কোড: +880' : 'Country code: +880'); };
-        window.authUserKey = function(method, value) {
+        // Country selector: Bangladesh +880 and India +91.
+        window.selectedAuthCountry = { code: '+880', flag: '🇧🇩', name: 'Bangladesh' };
+        window.toggleCountryList = function(button) {
+            document.querySelectorAll('.auth-country-menu').forEach(menu => menu.remove());
+            const menu = document.createElement('div');
+            menu.className = 'auth-country-menu';
+            menu.innerHTML = '<button type="button" data-code="+880" data-flag="🇧🇩" data-name="Bangladesh">🇧🇩 Bangladesh <b>+880</b></button><button type="button" data-code="+91" data-flag="🇮🇳" data-name="India">🇮🇳 India <b>+91</b></button>';
+            const rect = button.getBoundingClientRect();
+            menu.style.left = Math.max(8, Math.min(rect.left, window.innerWidth - 205)) + 'px';
+            menu.style.top = Math.min(rect.bottom + 6, window.innerHeight - 112) + 'px';
+            document.body.appendChild(menu);
+            menu.addEventListener('click', function(event) {
+                const option = event.target.closest('button[data-code]');
+                if (!option) return;
+                window.selectedAuthCountry = { code: option.dataset.code, flag: option.dataset.flag, name: option.dataset.name };
+                document.querySelectorAll('.auth-country').forEach(el => {
+                    el.querySelector('.auth-country-flag').textContent = window.selectedAuthCountry.flag;
+                    el.querySelector('.auth-country-code').textContent = window.selectedAuthCountry.code;
+                    el.setAttribute('aria-label', window.selectedAuthCountry.name + ' country code ' + window.selectedAuthCountry.code);
+                });
+                menu.remove();
+            });
+            setTimeout(() => {
+                const closeMenu = event => {
+                    if (!menu.contains(event.target) && !button.contains(event.target)) {
+                        menu.remove(); document.removeEventListener('pointerdown', closeMenu, true);
+                    }
+                };
+                document.addEventListener('pointerdown', closeMenu, true);
+            }, 0);
+        };
+        window.authUserKey = function(method, value, countryCode) {
             if(method === 'email') return 'email_' + btoa(value.trim().toLowerCase()).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
             let phone = value.trim().replace(/[^0-9]/g,'');
+            const code = countryCode || selectedAuthCountry.code;
+            if (code === '+91') {
+                if (phone.length > 10 && phone.startsWith('91')) phone = phone.slice(2);
+                if (phone.startsWith('0') && phone.length > 10) phone = phone.slice(1);
+                return '91' + phone.slice(-10);
+            }
             if(phone.startsWith('880')) phone = '0' + phone.slice(3);
             return phone.startsWith('0') ? phone : '0' + phone;
+        };
+        window.showStarLightLoginLoader = function() {
+            const layer = document.getElementById('starlight-login-loader');
+            if (layer) layer.classList.add('show');
+        };
+        window.hideStarLightLoginLoader = function() {
+            const layer = document.getElementById('starlight-login-loader');
+            if (layer) layer.classList.remove('show');
+        };
+        window.showStarLightWelcome = function() {
+            const popup = document.getElementById('starlight-welcome-overlay');
+            if (popup) { popup.classList.add('show'); popup.setAttribute('aria-hidden', 'false'); }
+        };
+        window.closeStarLightWelcome = function() {
+            const popup = document.getElementById('starlight-welcome-overlay');
+            if (popup) { popup.classList.remove('show'); popup.setAttribute('aria-hidden', 'true'); }
         };
 
         // --- SAFE SYSTEM LOGIC ---
@@ -2644,37 +2861,60 @@
         // --- GIFT PAGE REDEEM ---
         window.redeemGiftPage = async function() {
             const input = document.getElementById("gift-page-input");
-            const code = input ? input.value.trim().toUpperCase() : "";
+            const code = input ? input.value.trim().toUpperCase().replace(/\s+/g, "") : "";
             const phone = localStorage.getItem("userPhone");
-            if (!phone) return showToast("❌ Please login first");
-            if (!code) return showToast("❌ Enter Code");
+            if (!phone) return showToast("❌ " + t("gift_login_first"));
+            if (!code) return showToast("❌ " + t("gift_enter_code"));
+            const giftRef = ref(db, "giftcodes/" + code);
+            const claimTime = Date.now();
+            let locked = false;
             try {
-                const giftRef = ref(db, "giftcodes/" + code);
-                const claimTime = Date.now();
+                // Read and validate the amount before marking the code as used.
+                const before = await get(giftRef);
+                if (!before.exists()) return showToast("❌ " + t("gift_invalid"));
+                const beforeData = before.val() || {};
+                const amountValue = beforeData.amount ?? beforeData.value ?? beforeData.balance ?? beforeData.reward;
+                const amt = Number(amountValue);
+                if (!Number.isFinite(amt) || amt <= 0) return showToast("❌ " + t("gift_invalid_amount"));
+
                 const claimResult = await runTransaction(giftRef, current => {
-                    if (!current || current.claimedBy) return;
+                    if (!current || typeof current !== "object" || current.claimedBy || current.usedBy || current.status === "Claimed" || current.status === "Used") return;
+                    const currentAmount = Number(current.amount ?? current.value ?? current.balance ?? current.reward);
+                    if (!Number.isFinite(currentAmount) || currentAmount <= 0 || currentAmount !== amt) return;
                     return { ...current, claimedBy: phone, claimedAt: claimTime };
                 });
-                if (!claimResult.committed || !claimResult.snapshot.exists()) {
-                    showToast("❌ Invalid or already used code!");
-                    return;
-                }
-                const giftData = claimResult.snapshot.val();
-                const amt = Number(giftData.amount);
-                if (!Number.isFinite(amt) || amt <= 0) {
-                    await update(giftRef, { claimError: "invalid_amount" });
-                    return showToast("❌ Invalid gift amount. Contact support.");
-                }
-                await update(ref(db, "users/" + phone), { balance: increment(amt) });
-                await push(ref(db, "giftHistory/" + phone), {
-                    code, amount: amt, date: new Date(claimTime).toLocaleString(), timestamp: claimTime, status: "Success"
-                });
-                // Keep claimed code in Firebase for audit; it cannot be redeemed twice.
+                if (!claimResult.committed || !claimResult.snapshot.exists()) return showToast("❌ " + t("gift_invalid"));
+                locked = true;
+
+                const historyRef = push(ref(db, "giftHistory/" + phone));
+                const historyKey = historyRef.key;
+                if (!historyKey) throw new Error("History key could not be created");
+                const record = { code, amount: amt, date: new Date(claimTime).toLocaleString(currentLang === "bn" ? "bn-BD" : (currentLang === "zh" ? "zh-CN" : "en-US")), timestamp: claimTime, status: "Success" };
+                // One multi-location update keeps the balance credit and both history views in sync.
+                const updates = {};
+                updates["users/" + phone + "/balance"] = increment(amt);
+                updates["giftHistory/" + phone + "/" + historyKey] = record;
+                await update(ref(db), updates);
+
+                locked = false;
                 if (input) input.value = "";
-                showToast(`✅ Congrats! ৳${amt} Redeemed`);
+                showToast("✅ " + t("gift_claim_success") + " · ৳" + amt.toFixed(2));
+                if (typeof refreshBalance === "function") refreshBalance();
             } catch (err) {
                 console.error("Gift claim error", err);
-                showToast("❌ System Error: " + (err.message || "Please try again"));
+                // If the credit/history write failed, release this user's temporary claim lock.
+                if (locked) {
+                    try {
+                        await runTransaction(giftRef, current => {
+                            if (!current || current.claimedBy !== phone || Number(current.claimedAt) !== claimTime) return;
+                            const restored = { ...current };
+                            delete restored.claimedBy;
+                            delete restored.claimedAt;
+                            return restored;
+                        });
+                    } catch (rollbackError) { console.error("Gift claim rollback error", rollbackError); }
+                }
+                showToast("❌ " + t("gift_claim_error"));
             }
         };
 
@@ -2686,8 +2926,12 @@
             if (!value || !pass) return showToast(currentLang === 'bn' ? '❌ তথ্য দিন' : '❌ Enter Info');
             if (method === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return showToast(currentLang === 'bn' ? '❌ সঠিক ইমেইল দিন' : '❌ Enter a valid email');
             if (method === 'phone' && value.replace(/\D/g,'').length < 10) return showToast(currentLang === 'bn' ? '❌ সঠিক ফোন নম্বর দিন' : '❌ Enter valid number');
-            const key = authUserKey(method, value);
+            const key = authUserKey(method, value, window.selectedAuthCountry.code);
+            const loginButton = document.getElementById('loginBtn');
+            if (loginButton) loginButton.disabled = true;
+            showStarLightLoginLoader();
             try {
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 const snapshot = await get(ref(db, 'users/' + key));
                 if (snapshot.exists()) {
                     const userData = snapshot.val();
@@ -2697,9 +2941,14 @@
                         if (method === 'email') localStorage.setItem('userEmail', value.trim().toLowerCase());
                         else localStorage.removeItem('userEmail');
                         enterDashboard();
+                        setTimeout(showStarLightWelcome, 250);
                     } else showToast(currentLang === 'bn' ? '❌ পাসওয়ার্ড ভুল!' : '❌ Invalid Password!');
                 } else showToast(currentLang === 'bn' ? '❌ অ্যাকাউন্ট পাওয়া যায়নি!' : '❌ User Not Found!');
             } catch (err) { console.error(err); showToast('❌ Connection Error! Check Internet.'); }
+            finally {
+                hideStarLightLoginLoader();
+                if (loginButton) loginButton.disabled = false;
+            }
         };
 
         window.processRegister = async function() {
@@ -2714,7 +2963,9 @@
             if (pass !== cpass) return showToast(currentLang === 'bn' ? '❌ পাসওয়ার্ড মিলছে না' : '❌ Password mismatch');
             const agree = document.getElementById('auth-agree');
             if (agree && !agree.checked) return showToast(currentLang === 'bn' ? '❌ গোপনীয়তা নীতিতে সম্মতি দিন' : '❌ Please accept the Privacy Agreement');
-            const key = authUserKey(method, value);
+            const key = authUserKey(method, value, window.selectedAuthCountry.code);
+            const registerStartedAt = Date.now();
+            showStarLightLoginLoader();
             try {
                 const checkUser = await get(ref(db, 'users/' + key));
                 if (checkUser.exists()) return showToast(method === 'email' ? '❌ Email already exists' : '❌ Number already exists');
@@ -2731,6 +2982,11 @@
                 if(method === 'email') document.getElementById('l-email').value = value.trim().toLowerCase();
                 else document.getElementById('l-phone').value = value;
             } catch (err) { console.error(err); showToast('❌ Registration Failed!'); }
+            finally {
+                const remaining = 2000 - (Date.now() - registerStartedAt);
+                if (remaining > 0) await new Promise(resolve => setTimeout(resolve, remaining));
+                hideStarLightLoginLoader();
+            }
         };
 
         window.enterDashboard = function() { 
@@ -3253,30 +3509,44 @@
             
             const transListEl = document.getElementById("trans-list");
             let transactionRows = { deposits: [], withdrawals: [], gifts: [] };
-            const renderTransactions = () => {
+            window.currentTransactionRows = transactionRows;
+            window.renderUserTransactions = function() {
                 const all = [...transactionRows.deposits, ...transactionRows.withdrawals, ...transactionRows.gifts]
                     .sort((a,b) => Number(b.timestamp||0)-Number(a.timestamp||0));
-                if (transListEl) transListEl.innerHTML = all.length ? all.map(r => `<tr><td style="color:${r.color}">${safeText(r.type)}</td><td>${r.symbol}${Number(r.amount||0).toFixed(2)}</td><td>${safeText(r.date||"")}</td></tr>`).join("") : "<tr><td colspan='3' style='text-align:center'>No Transactions</td></tr>";
+                if (transListEl) transListEl.innerHTML = all.length ? all.map(r => `<tr><td style="color:${r.color}">${safeText(t(r.typeKey)||r.type)}</td><td>${r.symbol}${Number(r.amount||0).toFixed(2)}</td><td>${safeText(r.date||"")}</td></tr>`).join("") : `<tr><td colspan="3" style="text-align:center">${safeText(t("no_transactions"))}</td></tr>`;
             };
+            const renderTransactions = window.renderUserTransactions;
             onValue(ref(db, "deposits/"), snapshot => {
                 transactionRows.deposits = [];
-                snapshot.forEach(child => { const d=child.val()||{}; if(d.phone===phone) transactionRows.deposits.push({type:"+Deposit",amount:d.amount,symbol:"৳",date:d.date,color:"green",timestamp:Number(d.timestamp||0)}); });
+                snapshot.forEach(child => { const d=child.val()||{}; if(d.phone===phone) transactionRows.deposits.push({type:"+Deposit",typeKey:"transaction_deposit",amount:d.amount,symbol:"৳",date:d.date,color:"green",timestamp:Number(d.timestamp||0)}); });
                 renderTransactions();
             });
             onValue(ref(db, "withdrawals/"), snapshot => {
                 transactionRows.withdrawals = [];
-                snapshot.forEach(child => { const w=child.val()||{}; if(w.phone===phone) transactionRows.withdrawals.push({type:"-Withdraw",amount:w.amount,symbol:w.method==='USDT'?'$':'৳',date:w.date,color:"red",timestamp:Number(w.timestamp||0)}); });
+                snapshot.forEach(child => { const w=child.val()||{}; if(w.phone===phone) transactionRows.withdrawals.push({type:"-Withdraw",typeKey:"transaction_withdraw",amount:w.amount,symbol:w.method==='USDT'?'$':'৳',date:w.date,color:"red",timestamp:Number(w.timestamp||0)}); });
                 renderTransactions();
             });
             onValue(ref(db, "giftHistory/" + phone), snapshot => {
                 transactionRows.gifts = [];
-                snapshot.forEach(child => { const g=child.val()||{}; transactionRows.gifts.push({type:"+Gift Claim",amount:g.amount,symbol:"৳",date:g.date,color:"#059669",timestamp:Number(g.timestamp||0)}); });
+                snapshot.forEach(child => { const g=child.val()||{}; transactionRows.gifts.push({type:"+Gift Claim",typeKey:"transaction_gift",amount:g.amount,symbol:"৳",date:g.date,color:"#059669",timestamp:Number(g.timestamp||0)}); });
                 renderTransactions();
             });
             
             const gameListEl = document.getElementById("game-list");
-            if(gameListEl) gameListEl.innerHTML = "<tr><td colspan='4' style='text-align:center; color:#94a3b8;'>Play games to see history</td></tr>";
+            if(gameListEl) gameListEl.innerHTML = `<tr><td colspan="4" style="text-align:center;color:#94a3b8">${safeText(t("game_history_empty"))}</td></tr>`;
 
+            window.refreshLocalizedGiftHistory = async function() {
+                try {
+                    const snap = await get(ref(db, "giftHistory/" + phone));
+                    const el = document.getElementById("gift-history-list");
+                    if (!el) return;
+                    const rows = [];
+                    snap.forEach(child => rows.push({key:child.key, ...(child.val() || {})}));
+                    rows.sort((a,b) => Number(b.timestamp||0)-Number(a.timestamp||0));
+                    el.className = rows.length ? "history-card" : "empty-state";
+                    el.innerHTML = rows.length ? rows.map(g => `<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid #edf0f4;text-align:left"><div><b style="display:block;color:#1e293b;font-size:15px">${safeText(g.code||"Gift")}</b><small style="color:#64748b">${safeText(g.date||"")}</small></div><div style="text-align:right"><b style="color:#059669;font-size:16px">+৳${Number(g.amount||0).toFixed(2)}</b><small style="display:block;color:#059669">${safeText(g.status === "Success" ? t("gift_status_success") : (g.status || t("gift_status_success")))}</small></div></div>`).join("") : `<i class="fas fa-inbox"></i><p>${safeText(t("gift_empty"))}</p>`;
+                } catch (err) { console.error("Gift history refresh error", err); }
+            };
             onValue(ref(db, "giftHistory/" + phone), snapshot => {
                 const el = document.getElementById("gift-history-list");
                 if (!el) return;
@@ -3284,7 +3554,7 @@
                 snapshot.forEach(child => rows.push({key:child.key, ...(child.val() || {})}));
                 rows.sort((a,b) => Number(b.timestamp||0)-Number(a.timestamp||0));
                 el.className = rows.length ? "history-card" : "empty-state";
-                el.innerHTML = rows.length ? rows.map(g => `<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid #edf0f4;text-align:left"><div><b style="display:block;color:#1e293b;font-size:15px">${safeText(g.code||"Gift")}</b><small style="color:#64748b">${safeText(g.date||"")}</small></div><div style="text-align:right"><b style="color:#059669;font-size:16px">+৳${Number(g.amount||0).toFixed(2)}</b><small style="display:block;color:#059669">${safeText(g.status||"Success")}</small></div></div>`).join("") : '<i class="fas fa-inbox"></i><p>No gift claims yet</p>';
+                el.innerHTML = rows.length ? rows.map(g => `<div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 4px;border-bottom:1px solid #edf0f4;text-align:left"><div><b style="display:block;color:#1e293b;font-size:15px">${safeText(g.code||"Gift")}</b><small style="color:#64748b">${safeText(g.date||"")}</small></div><div style="text-align:right"><b style="color:#059669;font-size:16px">+৳${Number(g.amount||0).toFixed(2)}</b><small style="display:block;color:#059669">${safeText(g.status === "Success" ? t("gift_status_success") : (g.status || t("gift_status_success")))}</small></div></div>`).join("") : `<i class="fas fa-inbox"></i><p>${safeText(t("gift_empty"))}</p>`;
             });
 
             onValue(ref(db, "gameRecords"), snapshot => {
@@ -3292,7 +3562,7 @@
                 snapshot.forEach(child => { const r=child.val()||{}; if(r.phone===phone) rows.push({key:child.key,...r}); });
                 rows.sort((a,b)=>Number(b.timestamp||0)-Number(a.timestamp||0));
                 const sessionCountEl=document.getElementById("user-game-session-count");
-                if(sessionCountEl) sessionCountEl.textContent="Games played: "+rows.filter(r=>r.event==="Started").length;
+                if(sessionCountEl) sessionCountEl.textContent=t("games_played")+": "+rows.filter(r=>r.event==="Started").length;
                 if(gameListEl) gameListEl.innerHTML = rows.length ? rows.map(r=>`<tr><td>${safeText(r.game||"Game")}${r.event ? ` <small>(${safeText(r.event)})</small>` : ""}</td><td>৳${Number(r.bet||0).toFixed(2)}</td><td>৳${Number(r.win||0).toFixed(2)}</td><td>${safeText(r.date||"")}</td></tr>`).join("") : "<tr><td colspan='4' style='text-align:center;color:#94a3b8;'>No game history yet</td></tr>";
             });
             onValue(ref(db, "gameStatus/" + phone), snapshot => {
@@ -3300,7 +3570,7 @@
                 const label = document.getElementById("user-game-live-label");
                 const panel = document.getElementById("user-game-live-status");
                 const fresh = status.status === "Playing" && Date.now() - Number(status.updatedAt || status.startedAt || 0) < 10 * 60 * 1000;
-                if (label) label.textContent = fresh ? ("Playing • " + (status.game || "Game")) : "Offline";
+                if (label) label.textContent = fresh ? (t("game_status_playing") + " • " + (status.game || "Game")) : t("game_status_offline");
                 if (panel) { panel.style.background = fresh ? "#ecfdf5" : "#eef6ff"; panel.style.borderColor = fresh ? "#a7f3d0" : "#cfe3ff"; panel.style.color = fresh ? "#047857" : "#174477"; }
             });
         };
@@ -3328,7 +3598,11 @@
         window.playGame = async function(name) {
             const link = gameLinks[name], phone = localStorage.getItem("userPhone");
             if (!phone) { showToast("Please login first"); return; }
-            if (!link || link === "#") { showToast("Game link not found. Please contact support."); return; }
+            // Games without a configured URL (including blank names and "#") open Deposit.
+            if (typeof link !== "string" || !link.trim() || link.trim() === "#") {
+                nav("deposit");
+                return;
+            }
             try {
                 if (window.currentGameSession) window.closeGame();
                 showToast("🎮 " + name + " Loading...");
@@ -3570,8 +3844,8 @@
                     <p style="font-size:13px;color:#475569;white-space:pre-wrap">${safeText(a.message)}</p>
                     <small style="display:block;color:#94a3b8;margin-top:8px">${safeText(a.date||"")}</small>
                 </article>`).join("") : '<div class="empty-state"><i class="fas fa-bullhorn"></i><p>No new announcements</p></div>';
-            const marquee = document.querySelector("#home-page .notice-bar marquee");
-            if (marquee && items.length) marquee.textContent = items[0].message || items[0].title || marquee.textContent;
+            const noticeMarquee = document.querySelector("#home-page .notice-bar .sl-notice-track");
+            if (noticeMarquee && items.length) { noticeMarquee.textContent = items[0].message || items[0].title || noticeMarquee.textContent; noticeMarquee.style.animation = "none"; void noticeMarquee.offsetWidth; noticeMarquee.style.animation = ""; }
         });
 
         onValue(ref(db, "notifications"), snapshot => {
@@ -3949,8 +4223,8 @@
             if(tabReg) tabReg.classList.toggle("active", e === "reg");
             const title = document.querySelector('#auth-container .auth-heading h2');
             const desc = document.querySelector('#auth-container .auth-heading p');
-            if(title) title.innerText = e === 'reg' ? (currentLang === 'bn' ? 'রেজিস্টার' : 'Register') : langData[currentLang].auth_login_title;
-            if(desc) desc.innerText = e === 'reg' ? (currentLang === 'bn' ? 'ফোন নম্বর অথবা ইমেইল দিয়ে রেজিস্টার করুন' : 'Please register by phone number or email') : langData[currentLang].auth_login_desc;
+            if(title) title.innerText = e === 'reg' ? (currentLang === 'bn' ? 'রেজিস্টার' : (currentLang === 'zh' ? '注册' : 'Register')) : langData[currentLang].auth_login_title;
+            if(desc) desc.innerText = e === 'reg' ? (currentLang === 'bn' ? 'ফোন নম্বর অথবা ইমেইল দিয়ে রেজিস্টার করুন' : (currentLang === 'zh' ? '请使用手机号码或电子邮箱注册' : 'Please register by phone number or email')) : langData[currentLang].auth_login_desc;
         }
         
         function nav(e) { 
@@ -4253,5 +4527,19 @@
             });
         });
     </script>
+
+<div id="starlight-login-loader" aria-hidden="true">
+  <div class="starlight-loader-core">
+    <svg class="starlight-loader-ring" viewBox="0 0 140 140" aria-hidden="true">
+      <defs><path id="starlight-loader-text-path" d="M70,70 m-53,0 a53,53 0 1,1 106,0 a53,53 0 1,1 -106,0"/></defs>
+      <circle cx="70" cy="70" r="63"></circle>
+      <text><textPath href="#starlight-loader-text-path">STARLIGHT • STARLIGHT • STARLIGHT • </textPath></text>
+    </svg>
+    <div class="starlight-loader-center">StarLight</div>
+  </div>
+</div>
+
+
+
 </body>
 </html>
