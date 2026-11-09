@@ -1039,6 +1039,8 @@
             transition:transform .18s ease,border-color .18s ease;
         }
         .sl-game-card:active {transform:scale(.96);border-color:#d8b66b}
+        #main-dashboard #home-page .sl-game-row:not(.sl-games-expanded) > .sl-game-card:nth-child(n+4) { display:none !important; }
+        #main-dashboard #home-page .sl-game-row.sl-games-expanded { grid-auto-flow:row !important; grid-template-columns:repeat(3,minmax(0,1fr)) !important; overflow:visible !important; }
         .sl-game-card img {display:block;width:100%;height:100%;object-fit:cover;background:#171c27}
         .sl-game-caption {
             position:absolute;left:0;right:0;bottom:0;padding:15px 3px 6px;
@@ -1558,7 +1560,7 @@
                 <section class="sl-game-section" id="sl-hot">
                     <div class="sl-section-heading">
                         <div><h3><i class="fas fa-fire"></i> Recommended Games</h3><p>The most popular games among players</p></div>
-                        <span class="sl-section-arrows"><i class="fas fa-chevron-left"></i><i class="fas fa-chevron-right"></i></span>
+                        <button type="button" class="sl-more" onclick="slShowMore(this)" data-target="sl-hot" aria-label="Show more hot games" style="display:none">More <i class="fas fa-angle-right"></i></button>
                     </div>
                     <div class="sl-game-row">
                         <div class="sl-game-card" onclick="playGame('Aviator')"><img src="https://i.ibb.co.com/k2pHmp3D/aviator.png" alt="Aviator"><span class="sl-game-caption">AVIATOR</span></div>
@@ -3724,36 +3726,50 @@
         }
 
         function renderAdminManagedGames(games) {
-            const home = document.getElementById("home-page");
-            if (!home) return;
-            let section = document.getElementById("admin-managed-games-section");
-            if (!section) {
-                section = document.createElement("section");
-                section.id = "admin-managed-games-section";
-                section.className = "sl-game-section";
-                const iframeWrap = Array.from(home.children).find(el => el.querySelector && el.querySelector("iframe"));
-                if (iframeWrap) home.insertBefore(section, iframeWrap);
-                else home.appendChild(section);
-            }
-            const entries = Object.entries(games || {}).filter(([key,g]) => g && g.active !== false && g.url);
-            if (!entries.length) { section.style.display = "none"; section.innerHTML = ""; return; }
-            section.style.display = "";
-            section.innerHTML = `
-                <div class="sl-section-heading">
-                    <div><h3><i class="fas fa-gamepad"></i> More Games</h3><p>Games added from the admin panel</p></div>
-                </div>
-                <div class="sl-game-row">
-                    ${entries.map(([key,g]) => {
-                        const name = String(g.name || key);
-                        const image = String(g.image || "");
-                        return `<div class="sl-game-card" data-admin-game="${safeText(name)}">
-                            ${image ? `<img src="${safeText(image)}" alt="${safeText(name)}" onerror="this.style.display='none'">` : ""}
-                            <span class="sl-game-caption">${safeText(name)}</span>
-                        </div>`;
-                    }).join("")}
-                </div>`;
-            section.querySelectorAll("[data-admin-game]").forEach(card => {
-                card.addEventListener("click", () => window.playGame(card.getAttribute("data-admin-game")));
+            const categoryTargets = {
+                "Hot Games": "sl-hot",
+                "Lottery": "sl-lottery",
+                "Original": "sl-original",
+                "Slots": "sl-slots",
+                "Fishing": "sl-fishing"
+            };
+            // Remove only cards previously rendered from the admin database.
+            document.querySelectorAll("#home-page .sl-game-card[data-admin-game]").forEach(card => card.remove());
+
+            Object.entries(games || {}).forEach(([key, game]) => {
+                if (!game || game.active === false) return;
+                const name = String(game.name || key);
+                const category = Object.prototype.hasOwnProperty.call(categoryTargets, game.category)
+                    ? game.category : "Hot Games";
+                const section = document.getElementById(categoryTargets[category]);
+                const row = section && section.querySelector(".sl-game-row");
+                if (!row) return;
+
+                const card = document.createElement("div");
+                card.className = "sl-game-card";
+                card.setAttribute("data-admin-game", name);
+                if (game.image) {
+                    const img = document.createElement("img");
+                    img.src = String(game.image);
+                    img.alt = name;
+                    img.onerror = function(){ this.style.display = "none"; };
+                    card.appendChild(img);
+                }
+                const caption = document.createElement("span");
+                caption.className = "sl-game-caption";
+                caption.textContent = name;
+                card.appendChild(caption);
+                card.addEventListener("click", function(){
+                    window.playGame(card.getAttribute("data-admin-game"));
+                });
+                row.appendChild(card);
+            });
+            // Show only the first three cards in each category until More is pressed.
+            document.querySelectorAll("#home-page .sl-game-section").forEach(section => {
+                const row = section.querySelector(".sl-game-row");
+                const more = section.querySelector(".sl-more");
+                if (row) row.classList.remove("sl-games-expanded");
+                if (more) more.style.display = row && row.children.length > 3 ? "inline-flex" : "none";
             });
         }
 
@@ -3807,8 +3823,8 @@
             if (snapshot.exists()) snapshot.forEach(child => {
                 const game = child.val() || {};
                 const name = String(game.name || child.key);
-                if (game.url && game.active !== false) {
-                    gameLinks[name] = String(game.url);
+                if (game.active !== false) {
+                    gameLinks[name] = typeof game.url === "string" ? String(game.url) : "";
                     adminGameNames.push(name);
                 }
                 games[child.key] = game;
@@ -4482,9 +4498,9 @@
             var section = document.getElementById(button && button.getAttribute('data-target'));
             var row = section && section.querySelector('.sl-game-row');
             if (!row) return;
-            var distance = Math.max(row.clientWidth * 0.85, 180);
-            if (row.scrollWidth > row.clientWidth + 4) { row.scrollBy({ left: distance, behavior: 'smooth' }); }
-            else { var next = section && section.nextElementSibling; if (next && next.classList.contains('sl-game-section')) next.scrollIntoView({behavior:'smooth',block:'start'}); else section.scrollIntoView({behavior:'smooth',block:'start'}); }
+            row.classList.toggle('sl-games-expanded');
+            var expanded = row.classList.contains('sl-games-expanded');
+            button.innerHTML = expanded ? 'Less <i class="fas fa-angle-up"></i>' : 'More <i class="fas fa-angle-right"></i>';
             button.classList.add('is-used');
             window.setTimeout(function(){ button.classList.remove('is-used'); }, 350);
         };
