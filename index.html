@@ -1518,6 +1518,45 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
 .starlight-welcome-thanks{color:#16865b!important}
 .starlight-welcome-card>button{background:linear-gradient(115deg,#d7b46d,#ad7b31)!important;color:#fff!important}
 </style>
+
+<style id="starlight-vip-white-image-upgrade">
+#vip-page,#vip-page .vip-screen{background:#f4f5f7!important;color:#18324f!important}
+#vip-page .vip-topline{background:linear-gradient(110deg,#102b4c,#1b426b)!important;color:#f4d58f;border-bottom:1px solid #d6b66f}
+#vip-page .vip-member-panel{background:linear-gradient(135deg,#fff,#f5f0e3)!important;border-bottom:1px solid #e6d7b3;box-shadow:0 5px 16px #18324f0d}
+#vip-page .vip-member-meta{color:#18324f}#vip-page .vip-member-meta strong{color:#18324f}
+#vip-page .vip-member-tag{background:#f4e8c9;color:#805d22}
+#vip-page .vip-avatar{background:linear-gradient(145deg,#fff,#ead8a8);color:#17395d;border-color:#d7b66b;box-shadow:0 3px 12px #17395d18}
+#vip-page .vip-progress-box{background:#fff;border:1px solid #e8dfcd;border-radius:11px;box-shadow:0 3px 12px #17395d0a}
+#vip-page .vip-progress-box strong{color:#17395d}#vip-page .vip-progress-box span,#vip-page .vip-cycle-note{color:#7d8795}
+#vip-page .vip-level-slider-wrap{padding:12px 8px 16px}
+#vip-page .vip-level-card{flex:0 0 88%;height:174px;padding:0;border:1px solid #dfc783;border-radius:16px;background:#fff!important;color:#fff;box-shadow:0 8px 20px #17395d20}
+#vip-page .vip-card-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+#vip-page .vip-level-card:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,24,44,.56),rgba(8,24,44,.08) 78%);z-index:1;pointer-events:none}
+#vip-page .vip-level-card:after{display:none}
+#vip-page .vip-card-kicker,#vip-page .vip-card-require,#vip-page .vip-card-bottom{z-index:2;left:15px;right:15px;color:#fff;text-shadow:0 2px 5px #0009}
+#vip-page .vip-card-kicker{position:absolute;top:17px;font-size:19px}
+#vip-page .vip-card-kicker small{font-size:9px}
+#vip-page .vip-card-require{position:absolute;bottom:48px;font-size:12px}
+#vip-page .vip-card-bottom{position:absolute;bottom:13px;border-top:1px solid #ffffff88;padding-top:8px;font-size:14px}
+#vip-page .vip-card-bottom small{color:#fff}
+#vip-page .vip-level-card.selected{outline:2px solid #c49a4c;outline-offset:2px;transform:translateY(-2px)}
+#vip-page .vip-slide-arrow{background:#17395d;color:#f6dda0;border:1px solid #d7b66b}
+#vip-page .vip-benefits-panel,#vip-page .vip-history-panel{background:#fff!important;border:1px solid #e8dfcd;border-radius:14px;box-shadow:0 5px 18px #17395d0c}
+#vip-page .vip-benefit-title{color:#17395d}#vip-page .vip-benefit-title i{color:#bd9143}
+#vip-page .vip-benefit-row{border-bottom:1px solid #f0ece4}
+#vip-page .vip-benefit-copy strong{color:#253b55}#vip-page .vip-benefit-copy small{color:#87909c}
+#vip-page .vip-benefit-value{background:#fbf7ed;color:#946d2c;border-color:#e7d5a8}
+#vip-page .vip-benefit-icon{overflow:hidden;background:#f7f1e3;border:1px solid #eee2c4}
+#vip-page .vip-benefit-icon img{width:100%;height:100%;object-fit:cover;display:block}
+#vip-page .vip-tabs{border-bottom:1px solid #eee8dc}
+#vip-page .vip-tab{color:#687789}#vip-page .vip-tab.active{color:#a77a31;border-color:#c49a4c}
+#vip-page .vip-empty-state{color:#8b95a2}#vip-page .vip-empty-state i{color:#c49a4c}
+#vip-page .vip-rules-content{color:#657386}
+#vip-page .vip-view-all{background:linear-gradient(110deg,#17395d,#28547d);color:#f8dfa0;border:1px solid #d5b66f;border-radius:10px}
+#vip-page .vip-benefit-row:last-child{border-bottom:0}
+@media(min-width:431px){#vip-page .vip-level-card{flex-basis:82%}}
+</style>
+
 </head>
 <body oncontextmenu="return false">
     <div id="starlight-welcome-overlay" class="starlight-welcome-overlay" aria-hidden="true">
@@ -1822,25 +1861,65 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
                     <div class="vip-level-slider-wrap">
                         <button class="vip-slide-arrow left" onclick="changeVipLevel(-1)" aria-label="Previous VIP"><i class="fas fa-chevron-left"></i></button>
                         <div class="vip-level-track" id="vip-level-track">
-                            <button class="vip-level-card vip-lv1" onclick="selectVipLevel(1)">
-                                <span class="vip-card-kicker">♢ VIP1 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
-                                <span class="vip-card-require">Deposit ৳500+</span><span class="vip-card-bottom"><b>৳100/Day</b><small>VIP1</small></span>
+                            <button class="vip-level-card vip-lv1" onclick="selectVipLevel(1)" aria-label="VIP 1">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/N6sG2XfP/IMG-20261116-085946-820.jpg" alt="VIP 1" loading="lazy">
+                                <span class="vip-card-kicker">VIP 1 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳500+</span>
+                                <span class="vip-card-bottom"><b>৳100/Day</b><small>VIP1</small></span>
                             </button>
-                            <button class="vip-level-card vip-lv2" onclick="selectVipLevel(2)">
-                                <span class="vip-card-kicker">♢ VIP2 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
-                                <span class="vip-card-require">Deposit ৳2,000+</span><span class="vip-card-bottom"><b>৳300/Day</b><small>VIP2</small></span>
+                            <button class="vip-level-card vip-lv2" onclick="selectVipLevel(2)" aria-label="VIP 2">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/rRZdZwq5/IMG-20261116-085945-520.jpg" alt="VIP 2" loading="lazy">
+                                <span class="vip-card-kicker">VIP 2 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳2,000+</span>
+                                <span class="vip-card-bottom"><b>৳300/Day</b><small>VIP2</small></span>
                             </button>
-                            <button class="vip-level-card vip-lv3" onclick="selectVipLevel(3)">
-                                <span class="vip-card-kicker">♢ VIP3 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
-                                <span class="vip-card-require">Deposit ৳10,000+</span><span class="vip-card-bottom"><b>৳500/Day</b><small>VIP3</small></span>
+                            <button class="vip-level-card vip-lv3" onclick="selectVipLevel(3)" aria-label="VIP 3">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/FLFkXBrq/IMG-20261116-085944-415.jpg" alt="VIP 3" loading="lazy">
+                                <span class="vip-card-kicker">VIP 3 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳10,000+</span>
+                                <span class="vip-card-bottom"><b>৳500/Day</b><small>VIP3</small></span>
                             </button>
-                            <button class="vip-level-card vip-lv4" onclick="selectVipLevel(4)">
-                                <span class="vip-card-kicker">♢ VIP4 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
-                                <span class="vip-card-require">Deposit ৳50,000+</span><span class="vip-card-bottom"><b>৳2,500/Day</b><small>VIP4</small></span>
+                            <button class="vip-level-card vip-lv4" onclick="selectVipLevel(4)" aria-label="VIP 4">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/1fMdgWgJ/IMG-20261116-085942-782.jpg" alt="VIP 4" loading="lazy">
+                                <span class="vip-card-kicker">VIP 4 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳50,000+</span>
+                                <span class="vip-card-bottom"><b>৳2,500/Day</b><small>VIP4</small></span>
                             </button>
-                            <button class="vip-level-card vip-lv5" onclick="selectVipLevel(5)">
-                                <span class="vip-card-kicker">♢ VIP5 <small>• Member level</small></span><b class="vip-card-emblem"><i class="fas fa-medal"></i></b>
-                                <span class="vip-card-require">Deposit ৳2,00,000+</span><span class="vip-card-bottom"><b>৳10,000/Day</b><small>VIP5</small></span>
+                            <button class="vip-level-card vip-lv5" onclick="selectVipLevel(5)" aria-label="VIP 5">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/fzbcvSFB/IMG-20261116-085941-299.jpg" alt="VIP 5" loading="lazy">
+                                <span class="vip-card-kicker">VIP 5 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳200,000+</span>
+                                <span class="vip-card-bottom"><b>৳10,000/Day</b><small>VIP5</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv6" onclick="selectVipLevel(6)" aria-label="VIP 6">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/7JyNTcLP/IMG-20261116-085938-831.jpg" alt="VIP 6" loading="lazy">
+                                <span class="vip-card-kicker">VIP 6 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳500,000+</span>
+                                <span class="vip-card-bottom"><b>Set in Admin/Day</b><small>VIP6</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv7" onclick="selectVipLevel(7)" aria-label="VIP 7">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/ccD5KvZZ/IMG-20261116-085936-864.jpg" alt="VIP 7" loading="lazy">
+                                <span class="vip-card-kicker">VIP 7 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳1,000,000+</span>
+                                <span class="vip-card-bottom"><b>Set in Admin/Day</b><small>VIP7</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv8" onclick="selectVipLevel(8)" aria-label="VIP 8">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/r2j8Tr4d/IMG-20261116-085935-016.jpg" alt="VIP 8" loading="lazy">
+                                <span class="vip-card-kicker">VIP 8 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳2,000,000+</span>
+                                <span class="vip-card-bottom"><b>Set in Admin/Day</b><small>VIP8</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv9" onclick="selectVipLevel(9)" aria-label="VIP 9">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/cXTxYQfV/IMG-20261116-085934-097.jpg" alt="VIP 9" loading="lazy">
+                                <span class="vip-card-kicker">VIP 9 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳5,000,000+</span>
+                                <span class="vip-card-bottom"><b>Set in Admin/Day</b><small>VIP9</small></span>
+                            </button>
+                            <button class="vip-level-card vip-lv10" onclick="selectVipLevel(10)" aria-label="VIP 10">
+                                <img class="vip-card-image" src="https://i.ibb.co.com/XfmH5Jjp/IMG-20261116-085930-365.jpg" alt="VIP 10" loading="lazy">
+                                <span class="vip-card-kicker">VIP 10 <small>• Member level</small></span>
+                                <span class="vip-card-require">Deposit ৳10,000,000+</span>
+                                <span class="vip-card-bottom"><b>Set in Admin/Day</b><small>VIP10</small></span>
                             </button>
                         </div>
                         <button class="vip-slide-arrow right" onclick="changeVipLevel(1)" aria-label="Next VIP"><i class="fas fa-chevron-right"></i></button>
@@ -1849,13 +1928,13 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
                     <section class="vip-benefits-panel">
                         <div class="vip-benefit-title"><i class="fas fa-gem"></i><strong id="vip-benefit-heading">VIP1 Benefits level</strong></div>
                         <div class="vip-benefit-row">
-                            <span class="vip-benefit-icon gift"><i class="fas fa-gift"></i></span>
+                            <span class="vip-benefit-icon gift"><img src="https://i.ibb.co.com/Dgmzmh13/IMG-20261116-085949-121.jpg" alt="Level up rewards"></span>
                             <div class="vip-benefit-copy"><strong>Level up rewards</strong><small>Each account can only receive 1 time</small></div>
                             <b class="vip-benefit-value" id="vip-level-reward">৳100</b>
                             <button id="vip-level-claim-btn" type="button" onclick="claimVipReward('level')" style="margin-left:8px;border:0;border-radius:8px;padding:8px 10px;background:linear-gradient(135deg,#f5d98f,#bd9143);color:#142744;font-weight:900;white-space:nowrap">Claim</button>
                         </div>
                         <div class="vip-benefit-row">
-                            <span class="vip-benefit-icon coin"><i class="fas fa-coins"></i></span>
+                            <span class="vip-benefit-icon coin"><img src="https://i.ibb.co.com/B5LKnwML/IMG-20261116-085949-665.jpg" alt="Monthly reward"></span>
                             <div class="vip-benefit-copy"><strong>Daily salary</strong><small>Daily reward for eligible members</small></div>
                             <b class="vip-benefit-value" id="vip-daily-reward">৳100</b>
                             <button id="vip-daily-claim-btn" type="button" onclick="claimVipReward('daily')" style="margin-left:8px;border:0;border-radius:8px;padding:8px 10px;background:linear-gradient(135deg,#f5d98f,#bd9143);color:#142744;font-weight:900;white-space:nowrap">Claim</button>
@@ -1864,6 +1943,15 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
                             <span class="vip-benefit-icon rate"><i class="fas fa-percent"></i></span>
                             <div class="vip-benefit-copy"><strong>Deposit requirement</strong><small>Required deposit to reach this level</small></div>
                             <b class="vip-benefit-value" id="vip-deposit-requirement">৳500+</b>
+                        </div>
+                        <div class="vip-benefit-row vip-extra-benefit">
+                            <span class="vip-benefit-icon rate"><img src="https://i.ibb.co.com/xKqbvNn4/IMG-20261116-085951-403.jpg" alt="Safe"></span>
+                            <div class="vip-benefit-copy"><strong>Safe</strong><small>VIP member protection benefit</small></div>
+                        </div>
+                        <div class="vip-benefit-row vip-extra-benefit">
+                            <span class="vip-benefit-icon rate"><img src="https://i.ibb.co.com/cmRRFgj/IMG-20261116-085952-612.jpg" alt="Rebate rate"></span>
+                            <div class="vip-benefit-copy"><strong>Rebate rate</strong><small>Rebate rate for this VIP level</small></div>
+                            <b class="vip-benefit-value" id="vip-rebate-rate">—</b>
                         </div>
                     </section>
 
@@ -4560,11 +4648,16 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
         {level:2,deposit:"৳2,000+",salary:"৳300",reward:"৳300"},
         {level:3,deposit:"৳10,000+",salary:"৳500",reward:"৳500"},
         {level:4,deposit:"৳50,000+",salary:"৳2,500",reward:"৳2,500"},
-        {level:5,deposit:"৳2,00,000+",salary:"৳10,000",reward:"৳10,000"}
+        {level:5,deposit:"৳2,00,000+",salary:"৳10,000",reward:"৳10,000"},
+        {level:6,deposit:"৳5,00,000+",salary:"৳0",reward:"৳0"},
+        {level:7,deposit:"৳10,00,000+",salary:"৳0",reward:"৳0"},
+        {level:8,deposit:"৳20,00,000+",salary:"৳0",reward:"৳0"},
+        {level:9,deposit:"৳50,00,000+",salary:"৳0",reward:"৳0"},
+        {level:10,deposit:"৳1,00,00,000+",salary:"৳0",reward:"৳0"}
     ];
     let activeVipLevel = 1;
     let currentVipUser = null;
-    const defaultThresholds = {1:500,2:2000,3:10000,4:50000,5:200000};
+    const defaultThresholds = {1:500,2:2000,3:10000,4:50000,5:200000,6:500000,7:1000000,8:2000000,9:5000000,10:10000000};
     function money(v){ return "৳" + Number(v||0).toLocaleString("en-US",{maximumFractionDigits:2}); }
     function localDateKey(d=new Date()){ return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0"); }
     function thresholds(){
@@ -4572,18 +4665,20 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
         return {
             1:Number(cfg.vip1_dep||defaultThresholds[1]), 2:Number(cfg.vip2_dep||defaultThresholds[2]),
             3:Number(cfg.vip3_dep||defaultThresholds[3]), 4:Number(cfg.vip4_dep||defaultThresholds[4]),
-            5:Number(cfg.vip5_dep||defaultThresholds[5])
+            5:Number(cfg.vip5_dep||defaultThresholds[5]), 6:Number(cfg.vip6_dep||defaultThresholds[6]),
+            7:Number(cfg.vip7_dep||defaultThresholds[7]), 8:Number(cfg.vip8_dep||defaultThresholds[8]),
+            9:Number(cfg.vip9_dep||defaultThresholds[9]), 10:Number(cfg.vip10_dep||defaultThresholds[10])
         };
     }
     function levelForDeposit(total){
         const t=thresholds(); let level=0;
-        for(let i=1;i<=5;i++) if(Number(total||0)>=t[i]) level=i;
+        for(let i=1;i<=10;i++) if(Number(total||0)>=t[i]) level=i;
         return level;
     }
     window.applyAdminVipSettings = function(settings){
         if(!settings) return;
         window.currentAdminVipSettings=settings;
-        [1,2,3,4,5].forEach(level=>{
+        [1,2,3,4,5,6,7,8,9,10].forEach(level=>{
             const dep=settings["vip"+level+"_dep"], salary=settings["vip"+level+"_salary"];
             const item=vipData.find(x=>x.level===level);
             if(item){
@@ -4604,7 +4699,7 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
         currentVipUser=user||{};
         const total=Number(currentVipUser.totalDeposit||0);
         const calculated=levelForDeposit(total);
-        const existing=Math.max(0,Math.min(5,Number(currentVipUser.vipLevel||0)));
+        const existing=Math.max(0,Math.min(10,Number(currentVipUser.vipLevel||0)));
         const level=Math.max(existing,calculated);
         currentVipUser.vipLevel=level;
         const loggedPhone=localStorage.getItem("userPhone");
@@ -4620,8 +4715,9 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
         const levelClaimed=(currentVipUser.vipRewardClaims||{});
         if(claimLevel){
             const already=!!levelClaimed["level_"+activeVipLevel];
-            claimLevel.disabled=activeVipLevel>level || already;
-            claimLevel.textContent=already?"Claimed":(activeVipLevel>level?"Locked":"Claim");
+            const configuredLevelReward=Number(String(vipData.find(x=>x.level===activeVipLevel)?.reward||"").replace(/[^0-9.]/g,""))>0;
+            claimLevel.disabled=activeVipLevel>level || already || !configuredLevelReward;
+            claimLevel.textContent=already?"Claimed":(activeVipLevel>level?"Locked":(!configuredLevelReward?"Not Set":"Claim"));
             claimLevel.style.opacity=claimLevel.disabled?".55":"1";
         }
         if(claimDaily){
@@ -4629,11 +4725,12 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
             const dailyKey="daily_"+today;
             const already=!!levelClaimed[dailyKey];
             const selectedOwnLevel=activeVipLevel===level;
-            claimDaily.disabled=level<1 || already || !selectedOwnLevel;
-            claimDaily.textContent=already?"Claimed":(level<1?"Locked":(selectedOwnLevel?"Claim Daily":"Select Your VIP"));
+            const configuredDailyReward=Number(String(vipData.find(x=>x.level===level)?.salary||"").replace(/[^0-9.]/g,""))>0;
+            claimDaily.disabled=level<1 || already || !selectedOwnLevel || !configuredDailyReward;
+            claimDaily.textContent=already?"Claimed":(level<1?"Locked":(!configuredDailyReward?"Not Set":(selectedOwnLevel?"Claim Daily":"Select Your VIP")));
             claimDaily.style.opacity=claimDaily.disabled?".55":"1";
         }
-        window.selectVipLevel(Math.max(1,Math.min(5,activeVipLevel)));
+        window.selectVipLevel(Math.max(1,Math.min(10,activeVipLevel)));
         const historyEl=document.getElementById("vip-history-content");
         if(historyEl){
             const history=currentVipUser.vipRewardHistory||{};
@@ -4697,12 +4794,12 @@ button:focus-visible,[role="button"]:focus-visible{outline:2px solid #c69a45!imp
             const claims=currentVipUser.vipRewardClaims||{};
             const levelBtn=document.getElementById("vip-level-claim-btn");
             const ownLevel=Number(currentVipUser.vipLevel||0);
-            if(levelBtn){const done=!!claims["level_"+activeVipLevel];levelBtn.disabled=activeVipLevel>ownLevel||done;levelBtn.textContent=done?"Claimed":(activeVipLevel>ownLevel?"Locked":"Claim");levelBtn.style.opacity=levelBtn.disabled?".55":"1";}
+            if(levelBtn){const done=!!claims["level_"+activeVipLevel];const configured=Number(String(item.reward||"").replace(/[^0-9.]/g,""))>0;levelBtn.disabled=activeVipLevel>ownLevel||done||!configured;levelBtn.textContent=done?"Claimed":(activeVipLevel>ownLevel?"Locked":(!configured?"Not Set":"Claim"));levelBtn.style.opacity=levelBtn.disabled?".55":"1";}
             const dailyBtn=document.getElementById("vip-daily-claim-btn");
-            if(dailyBtn){const done=!!claims["daily_"+localDateKey()];dailyBtn.disabled=ownLevel<1||done||activeVipLevel!==ownLevel;dailyBtn.textContent=done?"Claimed":(ownLevel<1?"Locked":(activeVipLevel===ownLevel?"Claim Daily":"Select Your VIP"));dailyBtn.style.opacity=dailyBtn.disabled?".55":"1";}
+            if(dailyBtn){const done=!!claims["daily_"+localDateKey()];const configured=Number(String(item.salary||"").replace(/[^0-9.]/g,""))>0;dailyBtn.disabled=ownLevel<1||done||activeVipLevel!==ownLevel||!configured;dailyBtn.textContent=done?"Claimed":(ownLevel<1?"Locked":(!configured?"Not Set":(activeVipLevel===ownLevel?"Claim Daily":"Select Your VIP")));dailyBtn.style.opacity=dailyBtn.disabled?".55":"1";}
         }
     };
-    window.changeVipLevel=function(step){window.selectVipLevel(Math.max(1,Math.min(5,activeVipLevel+Number(step))))};
+    window.changeVipLevel=function(step){window.selectVipLevel(Math.max(1,Math.min(10,activeVipLevel+Number(step))))};
     window.switchVipTab=function(tab){
         const history=tab==="history";
         const historyEl=document.getElementById("vip-history-content"),rulesEl=document.getElementById("vip-rules-content");
